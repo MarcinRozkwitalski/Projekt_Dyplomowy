@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
-   
     public void LoadNextSentence(){
         SceneManager.LoadScene(1);
     }
