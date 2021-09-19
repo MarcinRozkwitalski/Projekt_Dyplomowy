@@ -6,12 +6,9 @@ using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
-<<<<<<< HEAD
    public Animator transition;
     public float transitionTime = 1f;
 
-=======
->>>>>>> ae77ace61dc098be65d1f0b146b994bc4bf830cb
     public void LoadNextSentence(){
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
