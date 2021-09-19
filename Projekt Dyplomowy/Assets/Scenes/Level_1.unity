@@ -123,6 +123,100 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &164163534
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2495959623986835088, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_Name
+      value: NetworkManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2495959623986835094, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+--- !u!1 &164163535 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2495959623986835088, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+  m_PrefabInstance: {fileID: 164163534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &164163536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164163535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6cb3446ef5176b43a7fea73ae0d51fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &164163537 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1602836995441717778, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+  m_PrefabInstance: {fileID: 164163534}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &164163538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 164163535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7876902112922f84587162e32b8509f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 164163537}
+  transitionTime: 1
 --- !u!1 &325407910
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +253,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.19215688, g: 0.4745098, b: 0.2374145, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
