@@ -23,7 +23,6 @@ public class SceneLoader : MonoBehaviour
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(levelIndex);
-
     }
 
     void Update()

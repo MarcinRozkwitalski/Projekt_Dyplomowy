@@ -71,20 +71,37 @@ public class CreatePlayer : MonoBehaviour
     IEnumerator CreatePlayerPostRequest ()
     {
         WWWForm newPlayerInfo = new WWWForm();
+
         newPlayerInfo.AddField("username", usernameInput.text);
         newPlayerInfo.AddField("password", passwordInput.text);
         newPlayerInfo.AddField("email", emailInput.text);
+
+        newPlayerInfo.AddField("apppassword", "kodApki123");
 
         UnityWebRequest CreatePostRequest = UnityWebRequest.Post("http://localhost/cruds/newplayer.php", newPlayerInfo);
         yield return CreatePostRequest.SendWebRequest();
 
         if(CreatePostRequest.error == null)
         {
-            Debug.Log("Nie ma błędów. Przeszło");
-            Debug.Log(CreatePostRequest.downloadHandler.text);
-            SetButtonToSucces();
-        }
-        else
+            string response = CreatePostRequest.downloadHandler.text;
+            Debug.Log(response);
+            if (response == "1" || response == "2" || response == "4" || response == "6")
+            {
+                ErrorMessage("Error w Serwerze, spróbuje ponownie! ");
+            }
+            else if (response == "3")
+            {
+                ErrorMessage("Nazwa Użytkownika już istnieje, proszę wybrać inną");
+            }
+            else if (response == "5")
+            {
+                ErrorMessage("E-mail już istnieje, proszę wybrać inny.");
+            }
+            else
+            {
+                SetButtonToSucces();
+            }
+        } else
         {
             Debug.Log(CreatePostRequest.error);
         }
