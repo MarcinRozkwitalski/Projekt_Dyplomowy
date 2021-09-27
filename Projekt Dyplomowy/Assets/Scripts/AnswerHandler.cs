@@ -8,7 +8,7 @@ public class AnswerHandler : MonoBehaviour
 {
     public string getSentence = "Null";
     public Text text;
-    int index;
+    public static int index;
 
     void Start()
     {

@@ -12,7 +12,7 @@ public class GameTimeHandler : MonoBehaviour
     }
     IEnumerator Time()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(5);
         nextSceneLoader = true;
        // Debug.Log("End");
     }
