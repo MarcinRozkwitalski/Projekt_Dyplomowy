@@ -7,10 +7,7 @@ public class TriggerAnimation : MonoBehaviour
     
     void Start()
     {
-        if(int.Parse(gameObject.name) == 1){
-            Debug.Log("To jest animacja 1 ");
-        }
-        if(AnswerHandler.index % 2 == 0){
+        if(AnswerHandler.index != int.Parse(gameObject.name)){
             GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
         }
         else
@@ -22,6 +19,6 @@ public class TriggerAnimation : MonoBehaviour
     IEnumerator Time()
     {
         yield return new WaitForSeconds(0.5f);
-        GetComponent<Animator>().Play("TestPersonWalk");
+        GetComponent<Animator>().Play(gameObject.name);
     }
 }
