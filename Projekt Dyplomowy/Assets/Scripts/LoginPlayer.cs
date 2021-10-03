@@ -65,15 +65,21 @@ public class LoginPlayer : MonoBehaviour
             } else if ( result == "3")
             {
                 ErrorOnLoginMessage("Sprawdż nazwę Użytkownika");
+            } else if (result == "4")
+            {
+                ErrorOnLoginMessage("Sprawdż hasło");
             } else
             {
                 var currentPlayer = Instantiate(currentPlayerObject, new Vector3(0, 0, 0), Quaternion.identity);
-                Debug.Log("UDAŁO SIĘ ZALOGOWAC");
+                currentPlayer.GetComponent<CurrentPlayer>().Username = result.Split(':')[0];
+                currentPlayer.GetComponent<CurrentPlayer>().Score = int.Parse(result.Split(':')[1]);
+
                 loginButton.GetComponent<Image>().color = Color.green;
                 loginButtonText.text = "Zalogowano";
-                loginButtonText.fontSize = 60;
+                ///SCENE SWITCH
+                //FindObjectOfType<SceneSwitcher>.PLAYERSCENE
+
             }
-            Debug.Log(result);
         } else
         {
             Debug.Log(loginRequest.error);
