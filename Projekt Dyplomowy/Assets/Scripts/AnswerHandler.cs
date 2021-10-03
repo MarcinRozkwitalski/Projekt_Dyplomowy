@@ -13,7 +13,6 @@ public class AnswerHandler : MonoBehaviour
     void Start()
     {
         Debug.Log("Category = " + (SentenceHandler.number % 6 + 1));
-
         GettingRandomStatement(SentenceHandler.number);
         SentenceHandler.number++;
     }
