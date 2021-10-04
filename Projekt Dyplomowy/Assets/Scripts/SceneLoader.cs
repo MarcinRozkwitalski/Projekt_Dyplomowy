@@ -18,11 +18,27 @@ public class SceneLoader : MonoBehaviour
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
-     public void LoadStartGameScene(){
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    public void LoadStartScene(){
+        StartCoroutine(LoadLevel(0));
     }
 
-    public void LoadRegister(){
+    public void LoadSentenceScene(){
+        StartCoroutine(LoadLevel(1));
+    }
+
+    public void LoadLevel1Scene(){
+        StartCoroutine(LoadLevel(2));
+    }
+
+    public void LoadLoginUserScene(){
+        StartCoroutine(LoadLevel(3));
+    }
+
+    public void LoadPlayerSceneScene(){
+        StartCoroutine(LoadLevel(4));
+    }
+
+    public void LoadRegisterScene(){
         StartCoroutine(LoadLevel(5));
     }
 

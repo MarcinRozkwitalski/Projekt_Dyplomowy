@@ -13,6 +13,8 @@ public class CreatePlayer : MonoBehaviour
     public Button RegisterButton;
     public Text RegisterButtonText;
 
+    public SceneLoader sceneLoader;
+
     // Logika GUI
     public void RegisterNewPlayer()
     {
@@ -65,6 +67,7 @@ public class CreatePlayer : MonoBehaviour
         RegisterButton.GetComponent<Image>().color = Color.green;
         RegisterButtonText.text = "Stworzone";
         RegisterButtonText.fontSize = 50;
+        sceneLoader.LoadPlayerSceneScene();
     }
 
     // Przesyłanie Posta do bazy
