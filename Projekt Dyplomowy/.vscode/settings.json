@@ -55,8 +55,12 @@
     },
     "files.watcherExclude": {
         "**/target": true
+<<<<<<< HEAD
+    }
+=======
     },
     "cSpell.words": [
         "Użytkownik"
     ]
+>>>>>>> 519d46978aef777b020161fe91b22d326dd5a39d
 }

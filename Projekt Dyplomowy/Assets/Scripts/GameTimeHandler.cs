@@ -16,7 +16,7 @@ public class GameTimeHandler : MonoBehaviour
         yield return new WaitForSeconds(5);
         Debug.Log("NUMBER  = " + SentenceHandler.hashTableAnswers.Count);
        // if(SentenceHandler.hashTableAnswers.Count == 3){
-        //    sceneLoader.LoadRegister();
+       //     sceneLoader.LoadRegister();
        // }
         nextSceneLoader = true;
        // Debug.Log("End");

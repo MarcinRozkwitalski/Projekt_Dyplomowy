@@ -18,6 +18,14 @@ public class SceneLoader : MonoBehaviour
             StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
+     public void LoadStartGameScene(){
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    public void LoadRegister(){
+        StartCoroutine(LoadLevel(5));
+    }
+
     IEnumerator LoadLevel(int levelIndex)
     {
         transition.SetTrigger("Start");
@@ -33,22 +41,4 @@ public class SceneLoader : MonoBehaviour
             LoadNextSentence();
         }
     }
-
-    /// <summary>
-    /// Load the scenes after clicked on a button in the game.
-    /// Uses build settings to determine the scene index.
-    /// </summary>
-    public void LoadStartScene() {StartCoroutine(LoadLevel(0)); }
-
-    public void LoadSentenceScene() {StartCoroutine(LoadLevel(1)); }
-
-    public void LoadLevel1Scene() {StartCoroutine(LoadLevel(2)); }
-
-    public void LoadLoginUserScene() {StartCoroutine(LoadLevel(3)); }
-
-    public void LoadPlayerSceneScene() {StartCoroutine(LoadLevel(4)); }
-
-    public void LoadRegisterScene() {StartCoroutine(LoadLevel(5)); }
-
-    public void LoadStatisticScene() {StartCoroutine(LoadLevel(6)); }
 }
