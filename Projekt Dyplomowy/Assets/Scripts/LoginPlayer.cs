@@ -13,15 +13,6 @@ public class LoginPlayer : MonoBehaviour
     public Text loginButtonText;
 
     public GameObject currentPlayerObject;
-    public SceneLoader sceneLoader;
-
-    private void Awake() 
-    {
-        var CurrentPlayers = GameObject.FindGameObjectsWithTag("CurrentPlayer");
-        foreach (var currentPlayer in CurrentPlayers) {
-            Destroy(currentPlayer);
-        }
-    }
 
     public void Login()
     {
@@ -85,8 +76,9 @@ public class LoginPlayer : MonoBehaviour
 
                 loginButton.GetComponent<Image>().color = Color.green;
                 loginButtonText.text = "Zalogowano";
-                sceneLoader.LoadPlayerSceneScene();
-                
+                ///SCENE SWITCH
+                //FindObjectOfType<SceneSwitcher>.PLAYERSCENE
+
             }
         } else
         {
