@@ -1,4 +1,4 @@
-﻿{
+{
     "files.exclude":
     {
         "**/.DS_Store":true,
@@ -52,13 +52,10 @@
         "ProjectSettings/":true,
         "temp/":true,
         "Temp/":true
-<<<<<<< HEAD
     },
     "files.watcherExclude": {
         "**/target": true
 <<<<<<< HEAD
-=======
->>>>>>> parent of 7cc8f20 (None)
     }
 =======
     },
