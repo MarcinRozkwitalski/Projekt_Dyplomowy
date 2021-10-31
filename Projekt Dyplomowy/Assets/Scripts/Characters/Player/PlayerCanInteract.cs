@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerCanInteract : MonoBehaviour
 {
     // Start is called before the first frame update
-    ObjectSeePlayer objectToUse;
     bool canClickObject = false;
     string clickedObject = "nothing has been clicked";
     string interactableObject = "none";
     public static bool moveSpace = true;
+    ArrayList usedObjects = new ArrayList();
+    Ray ray;
+    RaycastHit2D hit;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,15 +19,10 @@ public class PlayerCanInteract : MonoBehaviour
         if (clickedObject == other.name)
         {
             interactableObject = other.name;
-            // https://www.youtube.com/watch?v=ZHr3v8Ewxc0&ab_channel=GameDevTraum
-            // objectToUse = GameObject.Find(other.name);
-            objectToUse = GameObject.FindGameObjectWithTag(other.name).GetComponent<ObjectSeePlayer>();
-            Debug.Log("Name of the object -> " + objectToUse.youCanUseMe);
+            Debug.Log("Name of the object -> ");
             Debug.Log("Set object for interaction = " + interactableObject);
         }
         Debug.Log("I see object  " + interactableObject);
-        //  player.collider.isTrigger = false;
-        // GetComponent<Collider>().isTrigger = false;
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -49,30 +46,39 @@ public class PlayerCanInteract : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
-            if (hit.collider.name == "Player")
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
+
+            // https://answers.unity.com/questions/464954/raycast-tag-null-reference-exception.html - problem null 
+            if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity))
             {
-                Debug.Log("You click -> " + hit.collider.name);
-            }
-            else if (hit)
-            {
-                Debug.Log("You click -> " + hit.collider.name);
-                clickedObject = hit.collider.name;
-            }
-            else
-            {
-                Debug.Log("No interaction");
-                clickedObject = "";
+                if (hit.collider.name == "Player")
+                {
+                    Debug.Log("You click -> " + hit.collider.name);
+                }
+                else if (hit)
+                {
+                    Debug.Log("You click -> " + hit.collider.name);
+                    clickedObject = hit.collider.name;
+                }
+                else
+                {
+                    Debug.Log("No interaction");
+                    clickedObject = "";
+                }
             }
 
         }
-        if (clickedObject == interactableObject)//&& objectToUse.GetComponent<ObjectSeePlayer>().youCanUseMe == true)
+        if (clickedObject == interactableObject && usedObjects.Contains(clickedObject) == false)
         {
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");
             interactableObject = "none";
-            objectToUse.useObject();
+            usedObjects.Add(clickedObject);
+        }
+        else
+        {
+            // Debug.Log("We cant use that object");
         }
         moveSpace = true;
     }
