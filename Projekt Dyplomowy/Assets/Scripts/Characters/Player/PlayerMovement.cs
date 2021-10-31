@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
             gameObject.transform.position = transform.position + new Vector3(positionJump, -0.1f, 0);
 
             //output to log the position change
-            Debug.Log(transform.position + "horizontal = " + gameObject.transform.position.x + "   positionJump " + positionJump);
+            // Debug.Log(transform.position + "horizontal = " + gameObject.transform.position.x + "   positionJump " + positionJump);
         }
 
     }
