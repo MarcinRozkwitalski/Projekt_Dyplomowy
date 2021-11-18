@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkspeed = 10f;
     public Rigidbody2D rb;
     float move;
-    bool moving, space;
+    public static bool moving, space;
     float newPlayerPosition, lastPlayerPosition;
 
     Vector2 lastClickedPos;
@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
         {
             lastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             moving = true;
+            Debug.Log("moving = " + moving);
         }
 
         if (moving && (Vector2)transform.position != lastClickedPos && PlayerCanInteract.moveSpace == true)
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 
             //SKALOWANIE
             newPlayerPosition = gameObject.transform.position.y;
-            Debug.Log("Scala = " + gameObject.transform.localScale.y);
+            //Debug.Log("Scala = " + gameObject.transform.localScale.y);
 
             // OBSZAR SKALOWANIA JAKO DWIE LINIE KLATKA
             // if (gameObject.transform.position.y >= -1.460f && gameObject.transform.position.y < -0.59f)
@@ -60,13 +61,14 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             moving = false;
+            Debug.Log("moving = " + moving);
         }
 
         // https://docs.unity3d.com/ScriptReference/Transform-position.html
         if (!PlayerCanInteract.moveSpace)
         {
             float positionJump;
-
+            Debug.Log("Sciana :)");
             if (gameObject.transform.position.x > 0) positionJump = -0.1f;
             else positionJump = 0.1f;
 
