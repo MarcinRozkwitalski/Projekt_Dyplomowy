@@ -40,3 +40,5 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+*.db
+Projekt Dyplomowy/.metals/metals.log
