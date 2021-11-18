@@ -1,0 +1,5 @@
+[0m2021.11.18 11:32:17 INFO  Started: Metals version 0.10.9 in workspace 'C:\Users\rafal\Documents\GitHub\Projekt_Dyplomowy\Projekt Dyplomowy' for client Visual Studio Code 1.61.2.[0m
+[0m2021.11.18 11:32:17 INFO  time: initialize in 0.47s[0m
+[0m2021.11.18 11:32:18 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.18 11:32:18 WARN  no build tool detected in workspace 'C:\Users\rafal\Documents\GitHub\Projekt_Dyplomowy\Projekt Dyplomowy'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.18 12:25:34 INFO  shutting down Metals[0m
