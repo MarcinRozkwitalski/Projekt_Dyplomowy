@@ -35,18 +35,18 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Scala = " + gameObject.transform.localScale.y);
 
             // OBSZAR SKALOWANIA JAKO DWIE LINIE KLATKA
-            if (gameObject.transform.position.y >= -1.460f && gameObject.transform.position.y < -0.59f)
-            {
-                if (lastPlayerPosition < newPlayerPosition && gameObject.transform.localScale.y > 0.90f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - 0.01f, gameObject.transform.localScale.y - 0.01f, 1);
-                else if (lastPlayerPosition > newPlayerPosition && gameObject.transform.localScale.y <= 0.99f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.01f, gameObject.transform.localScale.y + 0.01f, 1);
-            }
+            // if (gameObject.transform.position.y >= -1.460f && gameObject.transform.position.y < -0.59f)
+            // {
+            //     if (lastPlayerPosition < newPlayerPosition && gameObject.transform.localScale.y > 0.90f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - 0.01f, gameObject.transform.localScale.y - 0.01f, 1);
+            //     else if (lastPlayerPosition > newPlayerPosition && gameObject.transform.localScale.y <= 0.99f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.01f, gameObject.transform.localScale.y + 0.01f, 1);
+            // }
 
-            if (gameObject.transform.position.y > -10.95f && gameObject.transform.position.y < -1.46f)
-            {
-                if (lastPlayerPosition < newPlayerPosition && gameObject.transform.localScale.y > 0.99f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - 0.001f, gameObject.transform.localScale.y - 0.001f, 1);
-                else if (lastPlayerPosition > newPlayerPosition && gameObject.transform.localScale.y < 1.1f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.001f, gameObject.transform.localScale.y + 0.001f, 1);
-                else Debug.Log("DZIAŁA");
-            }
+            // if (gameObject.transform.position.y > -10.95f && gameObject.transform.position.y < -1.46f)
+            // {
+            //     if (lastPlayerPosition < newPlayerPosition && gameObject.transform.localScale.y > 0.99f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x - 0.001f, gameObject.transform.localScale.y - 0.001f, 1);
+            //     else if (lastPlayerPosition > newPlayerPosition && gameObject.transform.localScale.y < 1.1f) gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.001f, gameObject.transform.localScale.y + 0.001f, 1);
+            //     else Debug.Log("DZIAŁA");
+            // }
 
             // OBSZAR SKALOWANIA JAKO JEDNA LINIA STOPA
             //  Debug.Log("Scala = " + gameObject.transform.localScale.y);
