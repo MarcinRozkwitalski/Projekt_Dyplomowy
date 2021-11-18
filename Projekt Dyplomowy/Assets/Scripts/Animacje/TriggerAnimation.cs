@@ -4,18 +4,19 @@ using UnityEngine;
 
 public class TriggerAnimation : MonoBehaviour
 {
-    
+
     void Start()
     {
-        if(AnswerHandler.index != int.Parse(gameObject.name)){
+        if (AnswerHandler.index != int.Parse(gameObject.name))
+        {
             GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
         }
         else
         {
-         StartCoroutine(Time());   
+            StartCoroutine(Time());
         }
     }
- 
+
     IEnumerator Time()
     {
         yield return new WaitForSeconds(0.5f);

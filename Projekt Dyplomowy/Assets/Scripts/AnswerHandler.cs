@@ -10,7 +10,7 @@ public class AnswerHandler : MonoBehaviour
     public Text text;
     public static int index;
 
-    void Start()
+    public void LoadNewSentence()
     {
         Debug.Log("Category = " + (SentenceHandler.number % 6 + 1));
         GettingRandomStatement(SentenceHandler.number);
