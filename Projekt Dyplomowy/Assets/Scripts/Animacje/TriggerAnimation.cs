@@ -19,7 +19,7 @@ public class TriggerAnimation : MonoBehaviour
 
     IEnumerator Time()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(3f);
         GetComponent<Animator>().Play(gameObject.name);
     }
 }
