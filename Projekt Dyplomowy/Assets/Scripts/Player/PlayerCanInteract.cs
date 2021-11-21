@@ -124,7 +124,7 @@ public class PlayerCanInteract : MonoBehaviour
             interactableObject = "none";
             usedObjects.Add(clickedObject);
             // wybranie stwierdzenia id 2 
-            animator.Play("fromthebottom");
+            // animator.Play("fromthebottom");
             // książka i pocja 1 i 2....blur w tle
             // schowanie książki po odpowiedzi
             LoadNewSentence();
