@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float walkspeed = 10f;
+    public float walkspeed = 3f;
     public Rigidbody2D rb;
     float move;
     public static bool moving, space;
-    float newPlayerPosition, lastPlayerPosition;
+    public static float newPlayerPosition, lastPlayerPosition;
 
-    Vector2 lastClickedPos;
+    public static Vector2 lastClickedPos;
     private void Update()
     {
         // float direction = Input.GetAxisRaw("Horizontal");
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
         {
             lastClickedPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             moving = true;
-            Debug.Log("moving = " + moving);
+            // Debug.Log("moving = " + moving);
         }
 
         if (moving && (Vector2)transform.position != lastClickedPos && PlayerCanInteract.moveSpace == true)
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
             transform.position = Vector2.MoveTowards(transform.position, lastClickedPos, step);
 
             //SKALOWANIE
-            newPlayerPosition = gameObject.transform.position.y;
+            // newPlayerPosition = gameObject.transform.position.y;
             //Debug.Log("Scala = " + gameObject.transform.localScale.y);
 
             // OBSZAR SKALOWANIA JAKO DWIE LINIE KLATKA
@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             moving = false;
-            Debug.Log("moving = " + moving);
+            // Debug.Log("moving = " + moving);
         }
 
         // https://docs.unity3d.com/ScriptReference/Transform-position.html
