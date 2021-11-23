@@ -9,7 +9,16 @@ public class TriggerAnimation : MonoBehaviour
     {
         if (AnswerHandler.index != int.Parse(gameObject.name))
         {
-            GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
+            GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled; // nie rederuje animacji
+            GameObject originalGameObject = GameObject.Find(gameObject.name);
+            //https://stackoverflow.com/questions/40752083/how-to-find-child-of-a-gameobject-or-the-script-attached-to-child-gameobject-via
+            for (int i = 0; i < originalGameObject.transform.childCount; i++)
+            {
+                GameObject child = originalGameObject.transform.GetChild(i).gameObject; // dziecko
+                Debug.Log("Rodzic " + originalGameObject.name + " Dziecko " + child.name);
+                child.SetActive(false); // dzieki marcin 
+            }
+
         }
         else
         {
