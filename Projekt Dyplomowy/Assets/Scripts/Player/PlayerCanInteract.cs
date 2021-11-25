@@ -17,7 +17,6 @@ public class PlayerCanInteract : MonoBehaviour
 
 
 
-
     public string getSentence = "Null";
     public Text text;
     public static int index;
