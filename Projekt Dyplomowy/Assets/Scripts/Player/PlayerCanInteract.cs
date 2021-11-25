@@ -13,7 +13,7 @@ public class PlayerCanInteract : MonoBehaviour
     ArrayList usedObjects = new ArrayList();
     Ray ray;
     RaycastHit2D hit;
-    public AnswerHandler script; // nie działa
+    //public AnswerHandler script; // nie działa
 
 
 
