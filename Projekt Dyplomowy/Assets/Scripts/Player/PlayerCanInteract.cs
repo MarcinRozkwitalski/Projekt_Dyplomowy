@@ -93,7 +93,7 @@ public class PlayerCanInteract : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-
+            DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
@@ -127,6 +127,7 @@ public class PlayerCanInteract : MonoBehaviour
             //animator.Play("fromthebottom");
             // książka i pocja 1 i 2....blur w tle
             // schowanie książki po odpowiedzi
+
             LoadNewSentence();
         }
         else
