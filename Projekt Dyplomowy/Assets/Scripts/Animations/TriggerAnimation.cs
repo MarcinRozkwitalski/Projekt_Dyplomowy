@@ -20,8 +20,8 @@ public class TriggerAnimation : MonoBehaviour
     {
         //(AnswerHandler.index != int.Parse(gameObject.name))
         //podmienić to na dole :)
-        if (DoorHandler.doorStatus != int.Parse(gameObject.name))
-        {          
+        if (PlayerCanInteract.index != int.Parse(gameObject.name))
+        {      
             GameObject originalGameObject = GameObject.Find(gameObject.name);
             if(originalGameObject.GetComponent<Renderer>().enabled) originalGameObject.GetComponent<Renderer>().enabled = !originalGameObject.GetComponent<Renderer>().enabled;
 
@@ -53,6 +53,6 @@ public class TriggerAnimation : MonoBehaviour
         yield return new WaitForSeconds(0f);
         animator.SetBool("isIndexCorrect", true);
         //GetComponent<Animator>().Play(gameObject.name);
-        PlayerMovement.canMove = false;
+        //PlayerMovement.canMove = false;
     }
 }
