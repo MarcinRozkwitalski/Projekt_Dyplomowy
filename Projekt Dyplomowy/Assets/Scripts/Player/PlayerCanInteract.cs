@@ -8,11 +8,15 @@ public class PlayerCanInteract : MonoBehaviour
     bool canClickObject = false;
     string clickedObject = "nothing has been clicked";
     string interactableObject = "none";
+    string otherString = "";
     public static bool moveSpace = true;
     ArrayList usedObjects = new ArrayList();
     Ray ray;
     RaycastHit2D hit;
     public AnswerHandler script; // nie działa
+
+
+
 
     public string getSentence = "Null";
     public Text text;
@@ -64,12 +68,13 @@ public class PlayerCanInteract : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         canClickObject = true;
-        if (clickedObject == other.name)
-        {
-            interactableObject = other.name;
-            Debug.Log("Name of the object -> ");
-            Debug.Log("Set object for interaction = " + interactableObject);
-        }
+        otherString = other.name;
+        // if (clickedObject == other.name)
+        // {
+        //     interactableObject = other.name;
+        //     Debug.Log("Name of the object -> ");
+        //     Debug.Log("Set object for interaction = " + interactableObject);
+        // }
         Debug.Log("I see object  " + interactableObject);
     }
 
@@ -77,7 +82,7 @@ public class PlayerCanInteract : MonoBehaviour
     {
         Debug.Log("I cant see you");
         canClickObject = false;
-        interactableObject = "";
+        interactableObject = "none";
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -89,8 +94,22 @@ public class PlayerCanInteract : MonoBehaviour
         moveSpace = true;
     }
 
+    void ClickWithCollisionOn(){
+        if (clickedObject == otherString && usedObjects.Contains(clickedObject) == false)
+        {
+            interactableObject = otherString;
+            Debug.Log("Name of the object -> ");
+            Debug.Log("Set object for interaction = " + interactableObject);
+        }
+    }
+    
+    void Start(){
+
+    }
+
     void Update()
     {
+        if (canClickObject)ClickWithCollisionOn();
         if (Input.GetMouseButtonDown(0))
         {
             DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
@@ -104,16 +123,17 @@ public class PlayerCanInteract : MonoBehaviour
                 {
                     Debug.Log("You click -> " + hit.collider.name);
                 }
-                else if (hit)
+                else if (hit.collider.name != "")
                 {
                     Debug.Log("You click -> " + hit.collider.name);
                     clickedObject = hit.collider.name;
                 }
-                else
-                {
-                    Debug.Log("No interaction");
-                    clickedObject = "";
-                }
+               
+            }
+            else 
+            {
+                Debug.Log("No interaction");
+                clickedObject = "";
             }
 
         }

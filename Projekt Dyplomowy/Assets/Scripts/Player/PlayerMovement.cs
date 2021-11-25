@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
         if (!PlayerCanInteract.moveSpace)
         {
             float positionJump;
-            Debug.Log("Sciana :)");
+            //Debug.Log("Sciana :)");
             if (gameObject.transform.position.x > 0) positionJump = -0.1f;
             else positionJump = 0.1f;
 

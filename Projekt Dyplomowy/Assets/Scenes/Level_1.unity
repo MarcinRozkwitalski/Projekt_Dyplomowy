@@ -214,7 +214,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 42566791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FartherLegTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 182530612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FartherLegSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -697,7 +697,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 207078303}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FartherArmTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -812,7 +812,7 @@ GameObject:
   - component: {fileID: 262778167}
   - component: {fileID: 262778168}
   - component: {fileID: 262778169}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: _0012_Okno
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -830,8 +830,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 680386374}
-  m_RootOrder: 8
+  m_Father: {fileID: 705026112}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &262778167
 SpriteRenderer:
@@ -1016,7 +1016,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 328485900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightArmTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1129,7 +1129,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 403376951}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftArmSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1244,7 +1244,7 @@ GameObject:
   - component: {fileID: 447025073}
   - component: {fileID: 447025074}
   - component: {fileID: 447025075}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: _0003_Szafka
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1262,8 +1262,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 680386374}
-  m_RootOrder: 3
+  m_Father: {fileID: 705026112}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &447025073
 SpriteRenderer:
@@ -1654,7 +1654,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616362033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CloserArmSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1894,13 +1894,12 @@ Transform:
   m_Children:
   - {fileID: 737546221}
   - {fileID: 1271797940}
+  - {fileID: 705026112}
   - {fileID: 704387588}
-  - {fileID: 447025072}
   - {fileID: 794401319}
   - {fileID: 2067647716}
   - {fileID: 1505314266}
   - {fileID: 37324575}
-  - {fileID: 262778166}
   - {fileID: 1154147814}
   - {fileID: 2099589461}
   - {fileID: 1612635750}
@@ -1936,7 +1935,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 680386374}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &704387589
 SpriteRenderer:
@@ -1989,6 +1988,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &705026111
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705026112}
+  m_Layer: 3
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &705026112
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705026111}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 447025072}
+  - {fileID: 262778166}
+  m_Father: {fileID: 680386374}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705259065
 GameObject:
   m_ObjectHideFlags: 0
@@ -2180,7 +2211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 726367635}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CloserLegSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2457,7 +2488,7 @@ GameObject:
   m_Component:
   - component: {fileID: 908090383}
   - component: {fileID: 908090382}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CloserLegSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2554,7 +2585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 933250542}
   - component: {fileID: 933250541}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CloserArmSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2617,7 +2648,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1031491128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CloserLegTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2667,7 +2698,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 680386374}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1154147815
 SpriteRenderer:
@@ -2730,7 +2761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1185293810}
   - component: {fileID: 1185293809}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftArmSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2950,9 +2981,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 89.883
       objectReference: {fileID: 0}
+    - target: {fileID: -5471571298751716868, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5060483053361826959, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5060483053361826959, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4399058309983298916, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -4266516142265574899, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_RootOrder
@@ -2997,6 +3040,22 @@ PrefabInstance:
     - target: {fileID: -4266516142265574899, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -4144691644889134518, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3954046167531456489, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3722878140475425569, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3615392763445837955, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -3383859437144313342, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3054,6 +3113,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.226
       objectReference: {fileID: 0}
+    - target: {fileID: -1619051407055065132, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -1479713217649109412, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6959481
@@ -3081,6 +3144,10 @@ PrefabInstance:
     - target: {fileID: -1479713217649109412, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -1015827487140320720, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -256973119329530259, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalScale.x
@@ -3110,6 +3177,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -89.193
       objectReference: {fileID: 0}
+    - target: {fileID: -144701079511560260, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2027816428212486897, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.9999999
@@ -3129,6 +3200,10 @@ PrefabInstance:
     - target: {fileID: 2027816428212486897, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.602
+      objectReference: {fileID: 0}
+    - target: {fileID: 2248923653666048834, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3156308656457639629, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3158,9 +3233,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3835925210362989707, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3960460231276294388, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_Name
       value: PlayerFront
+      objectReference: {fileID: 0}
+    - target: {fileID: 3960460231276294388, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4314361315374230624, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalScale.x
@@ -3193,6 +3276,18 @@ PrefabInstance:
     - target: {fileID: 4314361315374230624, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 179.595
+      objectReference: {fileID: 0}
+    - target: {fileID: 4405374224109269226, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639123680887725753, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5160843326279661486, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5723009218596821343, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalScale.x
@@ -3246,6 +3341,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.0029650603
       objectReference: {fileID: 0}
+    - target: {fileID: 6791462730441591359, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6907220436199208452, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3266,6 +3365,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.006112077
       objectReference: {fileID: 0}
+    - target: {fileID: 7073083773852184651, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7155789409676850727, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -3277,6 +3380,14 @@ PrefabInstance:
     - target: {fileID: 7155789409676850727, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_SortingOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389988789953026531, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7628581890317526225, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8301517716634614087, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalScale.x
@@ -3313,6 +3424,10 @@ PrefabInstance:
     - target: {fileID: 8301517716634614087, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320327250445407398, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 446471733170277872, guid: f6bc36616d7f62046b895da3ebe2ffec, type: 3}
@@ -3643,7 +3758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1388216743}
   - component: {fileID: 1388216742}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FartherLegSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4078,7 +4193,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1534626068}
   - component: {fileID: 1534626067}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightArmSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4141,7 +4256,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1537409116}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CloserArmTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4172,7 +4287,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555727644}
   - component: {fileID: 1555727643}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftLegSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4235,7 +4350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593017811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightLegSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4269,7 +4384,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7795548976104646011, guid: f5ab9aa5e2b0f0047a4a024d80e93cb7, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: -7795548976104646011, guid: f5ab9aa5e2b0f0047a4a024d80e93cb7, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4363,7 +4478,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1617130998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftLegSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4393,7 +4508,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1622784623}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FartherArmSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4512,7 +4627,7 @@ GameObject:
   - component: {fileID: 1801165348}
   - component: {fileID: 1801165350}
   - component: {fileID: 1801165351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4908,7 +5023,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1860350187}
   - component: {fileID: 1860350186}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FartherArmSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4971,7 +5086,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1880080917}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftArmTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5019,6 +5134,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8474615240880658784, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -8423513738198636742, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.007
@@ -5055,6 +5174,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.00024412206
       objectReference: {fileID: 0}
+    - target: {fileID: -7139049225137081759, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -6634312472871556523, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
@@ -5074,6 +5197,10 @@ PrefabInstance:
     - target: {fileID: -6634312472871556523, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6623078918204998642, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -6416202426865320271, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5099,6 +5226,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -179.759
       objectReference: {fileID: 0}
+    - target: {fileID: -6062248172032393347, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -5714189210048209731, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: -5602026702843187952, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.99999964
@@ -5106,6 +5241,42 @@ PrefabInstance:
     - target: {fileID: -5602026702843187952, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.0009134673
+      objectReference: {fileID: 0}
+    - target: {fileID: -4174494014136838139, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -4061020738069560125, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -3266842706824921504, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2618542362568627002, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -2130385982988020584, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1793750845498808037, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1564845945782421266, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1401774650079386238, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: -1347813342251544374, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -410102200860010672, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5126,6 +5297,10 @@ PrefabInstance:
     - target: {fileID: 168463749730348221, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_Name
       value: PlayerSide
+      objectReference: {fileID: 0}
+    - target: {fileID: 168463749730348221, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 622516540740597773, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_RootOrder
@@ -5202,6 +5377,22 @@ PrefabInstance:
     - target: {fileID: 2908246850317926149, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.0035210461
+      objectReference: {fileID: 0}
+    - target: {fileID: 4281204336296451412, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5407929521442453482, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5741212248099444037, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6573781880324983403, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6573781880324983403, guid: ec5397dc7f3c2f94499246c873955ab6, type: 3}
       propertyPath: m_IsActive
@@ -5343,7 +5534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1976876606}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightArmSolver_Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5455,7 +5646,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2016364341}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftLegTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5567,7 +5758,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2069718856}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightLegTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5617,7 +5808,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 680386374}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2099589462
 SpriteRenderer:
@@ -5680,7 +5871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2129814270}
   - component: {fileID: 2129814269}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightLegSolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
