@@ -40,14 +40,14 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
 
                 if(PlayerSide.transform.eulerAngles.y == 0) PlayerSide.transform.Rotate(0, 180, 0);
 
-                Debug.Log("Going Right");
+                //Debug.Log("Going Right");
             }
 
             //Right-Down
              if (0.4500001f <= x_dir && x_dir <= 0.8660001f && 
                 -0.8650001f <= y_dir && y_dir <= -0.4500001f){
 
-                Debug.Log("Going Right-Down");
+                //Debug.Log("Going Right-Down");
             
             }
             //Down
@@ -56,14 +56,14 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
                 HideAllPlayerSides();
                 PlayerFront.SetActive(true);
 
-                Debug.Log("Going Down");
+                //Debug.Log("Going Down");
             }
 
             //Left-Down
             if ((-0.8660001f <= x_dir) && (x_dir <= -0.4500001f) && 
                 (-0.8660001f <= y_dir) && (y_dir <= -0.4500001f)){
                 
-                Debug.Log("Going Left-Down");
+                //Debug.Log("Going Left-Down");
             }
 
             //Left
@@ -74,14 +74,14 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
        
                 if(PlayerSide.transform.eulerAngles.y == 180) PlayerSide.transform.Rotate(0, -180, 0);
                 
-                Debug.Log("Going Left");
+                //Debug.Log("Going Left");
             }
 
             //Left-Up
             if (-0.8660001f <= x_dir && x_dir <= -0.4500001f && 
                 0.4500000f <= y_dir && y_dir <= 0.8660001f){
                 
-                Debug.Log("Going Left-Up");
+                //Debug.Log("Going Left-Up");
             }
 
             //Up
@@ -90,19 +90,19 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
                 HideAllPlayerSides();
                 PlayerFront.SetActive(true);
         
-                Debug.Log("Going Up");
+                //Debug.Log("Going Up");
             }
 
             //Right-Up
             if (0.4500000f <= x_dir && x_dir <= 0.8660001f && 
                 0.4500000f <= y_dir && y_dir <= 0.8660001f){
                 
-                Debug.Log("Going Right-Up");
+                //Debug.Log("Going Right-Up");
             }
 
             //Debug.DrawLine(CurrentPosition, NewPosition, Color.red, 15.0f);
 
-            Debug.Log("Direction = " + NormalizedPlayerDirection);
+            //Debug.Log("Direction = " + NormalizedPlayerDirection);
             //Debug.Log("CurrentPosition = " + CurrentPosition);
             //Debug.Log("NewPosition = " + NewPosition);
             //Debug.Log("X equals " + x_dir);
