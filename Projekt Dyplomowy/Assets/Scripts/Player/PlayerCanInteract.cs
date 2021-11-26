@@ -9,14 +9,16 @@ public class PlayerCanInteract : MonoBehaviour
     string clickedObject = "nothing has been clicked";
     string interactableObject = "none";
     string otherString = "";
+    string tagName = "";
     public static bool moveSpace = true;
     ArrayList usedObjects = new ArrayList();
+    ArrayList interactableObjects = new ArrayList();
     Ray ray;
     RaycastHit2D hit;
     //public AnswerHandler script; // nie działa
 
 
-
+/////////////////////////////////////////////////////////////////////// osobny kod od stwierdzeń
     public string getSentence = "Null";
     public Text text;
     public static int index;
@@ -63,25 +65,22 @@ public class PlayerCanInteract : MonoBehaviour
             return true;
         }
     }
-
+////////////////////////////////////////////////////////////////// Interakcja z colliderami
     private void OnTriggerEnter2D(Collider2D other)
     {
         canClickObject = true;
-        otherString = other.name;
-        // if (clickedObject == other.name)
-        // {
-        //     interactableObject = other.name;
-        //     Debug.Log("Name of the object -> ");
-        //     Debug.Log("Set object for interaction = " + interactableObject);
-        // }
-        Debug.Log("I see object  " + interactableObject);
+        interactableObjects.Add(other.name);
+         foreach (string entry in interactableObjects)
+            {
+                Debug.Log(entry);
+            }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("I cant see you");
         canClickObject = false;
-        interactableObject = "none";
+        interactableObjects.Remove(other.name);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -92,15 +91,6 @@ public class PlayerCanInteract : MonoBehaviour
     {
         moveSpace = true;
     }
-
-    void ClickWithCollisionOn(){
-        if (clickedObject == otherString && usedObjects.Contains(clickedObject) == false)
-        {
-            interactableObject = otherString;
-            Debug.Log("Name of the object -> ");
-            Debug.Log("Set object for interaction = " + interactableObject);
-        }
-    }
     
     void Start(){
 
@@ -108,10 +98,9 @@ public class PlayerCanInteract : MonoBehaviour
 
     void Update()
     {
-        if (canClickObject)ClickWithCollisionOn();
         if (Input.GetMouseButtonDown(0))
         {
-            DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
+           
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
@@ -124,7 +113,8 @@ public class PlayerCanInteract : MonoBehaviour
                 }
                 else if (hit.collider.name != "")
                 {
-                    Debug.Log("You click -> " + hit.collider.name);
+                    Debug.Log("You click -> " + hit.collider.tag);
+                    tagName = hit.collider.tag;
                     clickedObject = hit.collider.name;
                 }
                
@@ -133,10 +123,11 @@ public class PlayerCanInteract : MonoBehaviour
             {
                 Debug.Log("No interaction");
                 clickedObject = "";
+                tagName = "";
             }
 
         }
-        if (clickedObject == interactableObject && usedObjects.Contains(clickedObject) == false)
+        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex")
         {
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");
@@ -146,8 +137,12 @@ public class PlayerCanInteract : MonoBehaviour
             //animator.Play("fromthebottom");
             // książka i pocja 1 i 2....blur w tle
             // schowanie książki po odpowiedzi
-
+           // DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
             LoadNewSentence();
+        }
+        else if (tagName == "Decision" && Input.GetMouseButtonDown(0)){
+            TriggerAnimation.runAnimation = false;
+            TriggerAnimation.runAgain = true;
         }
         else
         {
