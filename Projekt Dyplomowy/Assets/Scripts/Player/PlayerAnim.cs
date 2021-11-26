@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnim : MonoBehaviour{
 
     private Animator anim;
+    public Rigidbody2D PlayerRigidbody;
 
     void Start()
     {

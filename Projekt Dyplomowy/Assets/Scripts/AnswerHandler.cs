@@ -7,17 +7,17 @@ using UnityEngine.Networking;
 public class AnswerHandler : MonoBehaviour
 {
     public string getSentence = "Null";
-    public Text text;
+    public static Text text;
     public static int index;
 
-    public void LoadNewSentence()
+    public static void LoadNewSentence()
     {
         Debug.Log("Category = " + (SentenceHandler.number % 6 + 1));
         GettingRandomStatement(SentenceHandler.number);
         SentenceHandler.number++;
     }
 
-    public void GettingRandomStatement(int category)
+    public static void GettingRandomStatement(int category)
     {
         int random;
         bool status = true;
@@ -30,7 +30,7 @@ public class AnswerHandler : MonoBehaviour
         } while (status);
     }
 
-    public bool ReturningStatement(int index)
+    public static bool ReturningStatement(int index)
     {
         if ((string)SentenceHandler.hashTableStatements[index] != null)
         {
