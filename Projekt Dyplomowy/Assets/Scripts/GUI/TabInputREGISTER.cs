@@ -1,4 +1,4 @@
-using System.Collections;
+/* using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,3 +39,5 @@ public class TabInputREGISTER : MonoBehaviour
     public void PasswordSelected() => InputSelected = 1;
     public void EmailSelected() => InputSelected = 2;
 }
+
+*/

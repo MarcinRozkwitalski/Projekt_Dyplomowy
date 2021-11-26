@@ -15,10 +15,11 @@ public class LoginPlayer : MonoBehaviour
     public GameObject currentPlayerObject;
     public SceneLoader sceneLoader;
 
-    private void Awake() 
+    private void Awake()
     {
         var CurrentPlayers = GameObject.FindGameObjectsWithTag("CurrentPlayer");
-        foreach (var currentPlayer in CurrentPlayers) {
+        foreach (var currentPlayer in CurrentPlayers)
+        {
             Destroy(currentPlayer);
         }
     }
@@ -31,10 +32,12 @@ public class LoginPlayer : MonoBehaviour
         if (usernameInput.text.Length < 5)
         {
             ErrorOnLoginMessage("Sprawdż Nazwę Użytkownika");
-        } else if (passwordInput.text.Length < 5)
+        }
+        else if (passwordInput.text.Length < 5)
         {
             ErrorOnLoginMessage("Sprawdż Hasło");
-        } else
+        }
+        else
         {
             StartCoroutine(SendLoginForm());
         }
@@ -42,14 +45,14 @@ public class LoginPlayer : MonoBehaviour
 
     public void ErrorOnLoginMessage(string message)
     {
-        loginButton.GetComponent<Image>().color = Color.red;
+        //loginButton.GetComponent<Image>().color = Color.red;
         loginButtonText.text = message;
         loginButtonText.fontSize = 60;
     }
 
     public void ResetLoginButton()
     {
-        loginButton.GetComponent<Image>().color = Color.white;
+        //loginButton.GetComponent<Image>().color = Color.white;
         loginButtonText.text = "Login";
         loginButtonText.fontSize = 60;
         loginButton.interactable = true;
@@ -71,13 +74,16 @@ public class LoginPlayer : MonoBehaviour
             if (result == "1" || result == "2" || result == "5")
             {
                 ErrorOnLoginMessage("Error Serwerowy");
-            } else if ( result == "3")
+            }
+            else if (result == "3")
             {
                 ErrorOnLoginMessage("Sprawdż nazwę Użytkownika");
-            } else if (result == "4")
+            }
+            else if (result == "4")
             {
                 ErrorOnLoginMessage("Sprawdż hasło");
-            } else
+            }
+            else
             {
                 var currentPlayer = Instantiate(currentPlayerObject, new Vector3(0, 0, 0), Quaternion.identity);
                 currentPlayer.GetComponent<CurrentPlayer>().Username = result.Split(':')[0];
@@ -85,10 +91,11 @@ public class LoginPlayer : MonoBehaviour
 
                 loginButton.GetComponent<Image>().color = Color.green;
                 loginButtonText.text = "Zalogowano";
-                sceneLoader.LoadPlayerSceneScene();
-                
+                //sceneLoader.LoadPlayerSceneScene();
+
             }
-        } else
+        }
+        else
         {
             Debug.Log(loginRequest.error);
         }
