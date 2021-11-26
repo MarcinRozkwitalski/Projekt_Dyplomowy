@@ -8,6 +8,7 @@ TagManager:
   - CanLoadIndex
   - PlayerCantMove
   - Decision
+  - UseDoor
   layers:
   - Default
   - TransparentFX
