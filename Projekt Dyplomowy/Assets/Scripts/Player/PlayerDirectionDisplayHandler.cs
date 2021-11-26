@@ -17,7 +17,6 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         PlayerSideLeft.SetActive(false);
         PlayerBackLeft45.SetActive(false);
         PlayerBack.SetActive(false);
-        //Other Sides of Player are needed to be listed here
     }
 
     void Start()
