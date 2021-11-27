@@ -156,6 +156,7 @@ public class PlayerCanInteract : MonoBehaviour
             TriggerAnimation.runAnimation = false;
             TriggerAnimation.runAgain = true;
             // Debug.Log("TAG = " + tagAnswer + ",  Index =" + index);
+            ReturningStatement(index);// test
             if (tagAnswer == "True") AnswerYes();
             if (tagAnswer == "False") AnswerNo();
         }

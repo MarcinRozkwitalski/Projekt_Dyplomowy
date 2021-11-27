@@ -19,7 +19,7 @@ public class AnimationObjectHodler : MonoBehaviour
         }
         else if (PlayerCanInteract.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null)
         {
-            // czeka na koniec Animacji odpowiedzi 
+            // czeka na koniec Animacji  tylko raz
             if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)].Equals("true"))
             {
                 GameObject child = originalGameObject.transform.GetChild(0).gameObject;

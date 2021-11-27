@@ -12,6 +12,7 @@ public class TriggerAnimation : MonoBehaviour
     Animator animator;
     public static bool runAnimation = true;
     public static bool runAgain = true;
+    public static bool startTransition = false;
 
     void Start()
     {
@@ -61,6 +62,24 @@ public class TriggerAnimation : MonoBehaviour
             StartCoroutine(DoorAnimations());
         }
 
+        // tranzycja wejścia 
+        if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
+        {
+            Debug.Log("Start tranzycji");
+            GameObject square = GameObject.Find("Square");
+            Animator squareAnimator = square.GetComponent<Animator>();
+            squareAnimator.SetBool("RunRight", true);
+            startTransition = false;
+
+            yield return new WaitForSeconds(2.5f);
+
+            // GameObject playerFront = GameObject.Find("PlayerFront");
+            // Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
+            // playerFrontAnimator.SetBool("",true);
+            // Debug.Log("Skończone");
+
+        }
+
         // użycie tranzycji z textem if( po kliknięciu wyboru)
         // ładowanie animacji gracza i czekanie na tranzycje
         // właczenie animacji gracza if(mamy index i stan udzielonej odpowiedzi)
@@ -88,6 +107,8 @@ public class TriggerAnimation : MonoBehaviour
             animator.SetBool("isIndexCorrect", false);
             yield return new WaitForSeconds(1f);
             CloseDoor();
+            yield return new WaitForSeconds(4f); // czas na poczekanie na tranzycje
+            startTransition = true;
             Debug.Log("Zamnknij Drzwi");
         }
     }
@@ -99,5 +120,13 @@ public class TriggerAnimation : MonoBehaviour
     void CloseDoor()
     {
         DoorHandler.doorStatus = 1;
+    }
+
+    private IEnumerator WaitForAnimation(Animation animation)
+    {
+        do
+        {
+            yield return null;
+        } while (animation.isPlaying);
     }
 }
