@@ -39,16 +39,7 @@ public class SceneLoader : MonoBehaviour
     /// Uses build settings to determine the scene index.
     /// </summary>
     public void LoadStartScene() { StartCoroutine(LoadLevel(0)); }
-
     public void LoadSentenceScene() { StartCoroutine(LoadLevel(1)); }
-
-    public void LoadLevel1Scene() { StartCoroutine(LoadLevel(2)); }
-
-    public void LoadLoginUserScene() { StartCoroutine(LoadLevel(3)); }
-
-    public void LoadPlayerSceneScene() { StartCoroutine(LoadLevel(4)); }
-
-    public void LoadRegisterScene() { StartCoroutine(LoadLevel(5)); }
-
-    public void LoadStatisticScene() { StartCoroutine(LoadLevel(6)); }
+    public void LoadPlayerSceneScene() { StartCoroutine(LoadLevel(2)); }
+    public void LoadStatisticScene() { StartCoroutine(LoadLevel(3)); }
 }

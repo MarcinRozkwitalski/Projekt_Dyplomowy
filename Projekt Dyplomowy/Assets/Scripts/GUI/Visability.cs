@@ -58,30 +58,20 @@ public class Visability : MonoBehaviour
 
         }
     }
-    //----------------------------------------------------------------Main-Menu----------------------------------------------------------------//
 
     public void goToMainMenu()
     {
         currentState = MenuStates.Main;
-        Debug.Log("WORKING");
     }
 
     public void goToRegistration()
     {
         currentState = MenuStates.Registration;
-        Debug.Log("WORKING");
     }
-
-    //----------------------------------------------------------------Registration-------------------------------------------------------------//
-
-    //----------------------------------------------------------------Login-------------------------------------------------------------------//
     public void goToLogin()
     {
         currentState = MenuStates.Login;
-        Debug.Log("WORKING");
     }
-
-
     //----------------------------------------------------------------Options-----------------------------------------------------------------//
     //public void goToOptions()
     //{

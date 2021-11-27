@@ -9,25 +9,30 @@ public class Statistics : MonoBehaviour
     public Text ScoreText;
     public GameObject CurrentPlayer;
 
-    void Start() {
+    void Start()
+    {
         CurrentPlayer = GameObject.FindGameObjectWithTag("CurrentPlayer");
         UpdateScoreText();
     }
 
-    public void Add10Points() {
+    public void Add10Points()
+    {
         CurrentPlayer.GetComponent<CurrentPlayer>().Score += 10;
         UpdateScoreText();
     }
 
-    public void UpdateScoreText() {
+    public void UpdateScoreText()
+    {
         ScoreText.text = "Score: " + CurrentPlayer.GetComponent<CurrentPlayer>().Score.ToString();
     }
 
-    public void EndGame() {
+    public void EndGame()
+    {
         StartCoroutine(SavePlayerScore());
     }
 
-    IEnumerator SavePlayerScore() {
+    IEnumerator SavePlayerScore()
+    {
 
         string username = CurrentPlayer.GetComponent<CurrentPlayer>().Username;
         string scoreFormPlayer = CurrentPlayer.GetComponent<CurrentPlayer>().Score.ToString();
@@ -40,14 +45,17 @@ public class Statistics : MonoBehaviour
         UnityWebRequest updatePlayerRequest = UnityWebRequest.Post("http://localhost/cruds/updateplayerscore.php", scoreForm);
         yield return updatePlayerRequest.SendWebRequest();
 
-        if (updatePlayerRequest.error == null) {
+        if (updatePlayerRequest.error == null)
+        {
             string result = updatePlayerRequest.downloadHandler.text;
             Debug.Log(result);
-            if (result == "0") 
+            if (result == "0")
                 Debug.Log("Dobrze");
             else
                 Debug.Log("Error");
-        } else {
+        }
+        else
+        {
             Debug.Log(updatePlayerRequest.error);
         }
     }

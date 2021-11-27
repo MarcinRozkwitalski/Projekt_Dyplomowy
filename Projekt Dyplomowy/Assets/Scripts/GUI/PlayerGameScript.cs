@@ -9,7 +9,8 @@ public class PlayerGameScript : MonoBehaviour
     public SceneLoader sceneLoader;
     public Text UserInfoText;
 
-    void Start () { 
+    void Start()
+    {
         var CurrentPlayer = GameObject.FindGameObjectWithTag("CurrentPlayer");
         string CurrentPlayerUsername = CurrentPlayer.GetComponent<CurrentPlayer>().Username;
         int CurrentPlayerScore = CurrentPlayer.GetComponent<CurrentPlayer>().Score;
@@ -17,12 +18,15 @@ public class PlayerGameScript : MonoBehaviour
         UserInfoText.text = "Użytkownik: " + CurrentPlayerUsername + " | " + "Point: " + CurrentPlayerScore.ToString();
     }
 
-    public void SignOut() {
+    public void SignOut()
+    {
         var CurrentPlayers = GameObject.FindGameObjectsWithTag("CurrentPlayer");
-        foreach (var currentPlayer in CurrentPlayers) {
+        foreach (var currentPlayer in CurrentPlayers)
+        {
             Destroy(currentPlayer);
         }
         sceneLoader.LoadStartScene();
 
     }
 }
+
