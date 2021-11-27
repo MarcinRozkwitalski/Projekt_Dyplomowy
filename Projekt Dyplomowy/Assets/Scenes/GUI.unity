@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: transition
       value: 
       objectReference: {fileID: 34305303}
+    - target: {fileID: 1253700288630643155, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2495959623986835088, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
       propertyPath: m_Name
       value: SceneManager
@@ -283,6 +287,10 @@ PrefabInstance:
     - target: {fileID: 2495959623986835095, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2495959624244859155, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfb294ea3bd5b3e449c8a8bc323bce50, type: 3}

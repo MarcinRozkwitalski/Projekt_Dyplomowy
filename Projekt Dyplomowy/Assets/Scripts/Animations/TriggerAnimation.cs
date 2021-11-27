@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class TriggerAnimation : MonoBehaviour
 {
-
+    PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
     Animator animator;
     public static bool runAnimation = true;
     public static bool runAgain = true;
@@ -72,11 +72,15 @@ public class TriggerAnimation : MonoBehaviour
             startTransition = false;
 
             yield return new WaitForSeconds(2.5f);
+            GameObject player = GameObject.Find("Player");
 
-            // GameObject playerFront = GameObject.Find("PlayerFront");
-            // Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
-            // playerFrontAnimator.SetBool("",true);
-            // Debug.Log("Skończone");
+            playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
+            playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+            player.transform.GetChild(0).gameObject.SetActive(true);
+            GameObject playerFront = GameObject.Find("PlayerFront");
+            Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
+            playerFrontAnimator.SetBool("is"+PlayerCanInteract.index.ToString() + "True",true);
+            Debug.Log("Skończone");
 
         }
 

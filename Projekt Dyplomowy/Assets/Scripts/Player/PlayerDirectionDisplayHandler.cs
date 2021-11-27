@@ -11,7 +11,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
 
     //public Animator PlayerFrontAnim, PlayerFrontLeft45Anim, PlayerSideLeftAnim, PlayerBackLeft45Anim, PlayerBackAnim;
 
-    void HideAllPlayerPerspectives(){
+    public void HideAllPlayerPerspectives(){
         PlayerFront.SetActive(false);
         PlayerFrontLeft45.SetActive(false);
         PlayerSideLeft.SetActive(false);
