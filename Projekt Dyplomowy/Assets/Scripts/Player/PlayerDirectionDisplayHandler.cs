@@ -9,7 +9,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     float x_dir, y_dir;
     public GameObject PlayerFront, PlayerFrontLeft45, PlayerSideLeft, PlayerBackLeft45, PlayerBack;
 
-    //public Animator PlayerFrontAnim, PlayerFrontLeft45Anim, PlayerSideLeftAnim, PlayerBackLeft45Anim, PlayerBackAnim;
+    public Animator PlayerFrontAnim, PlayerFrontLeft45Anim, PlayerSideLeftAnim, PlayerBackLeft45Anim, PlayerBackAnim;
 
     public void HideAllPlayerPerspectives(){
         PlayerFront.SetActive(false);
