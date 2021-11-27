@@ -14,11 +14,8 @@ public class GameTimeHandler : MonoBehaviour
     IEnumerator Time()
     {
         yield return new WaitForSeconds(5);
-        Debug.Log("NUMBER  = " + SentenceHandler.hashTableAnswers.Count);
-        // if(SentenceHandler.hashTableAnswers.Count == 3){
-        //    sceneLoader.LoadRegister();
-        // }
-        //  nextSceneLoader = true;
+        // Debug.Log("NUMBER  = " + SentenceHandler.hashTableAnswers.Count);
+        // nextSceneLoader = true;
         // Debug.Log("End");
     }
 
