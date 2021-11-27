@@ -4,13 +4,89 @@ using UnityEngine;
 
 public class Visability : MonoBehaviour
 {
-    public void showIt(GameObject gameObject)
+    public enum MenuStates
     {
-        gameObject.SetActive(true);
+        Main,
+        Registration,
+        Login,
+        Options
+    };
+    public MenuStates currentState;
+
+    public GameObject mainMenu;
+    public GameObject registration;
+    public GameObject login;
+
+    public Animator transition;
+    public float transitionTime = 1f;
+
+    // When script starts
+    void Awake()
+    {
+        // Always set main menu as active 
+        currentState = MenuStates.Main;
     }
 
-    public void hideIt(GameObject gameObject)
+    void Update()
     {
-        gameObject.SetActive(false);
+        switch (currentState)
+        {
+            case MenuStates.Main:
+                mainMenu.SetActive(true);
+                registration.SetActive(false);
+                login.SetActive(false);
+                //options.setActive(false);
+                break;
+            case MenuStates.Registration:
+                mainMenu.SetActive(false);
+                registration.SetActive(true);
+                login.SetActive(false);
+                //options.setActive(false);
+                break;
+            case MenuStates.Login:
+                mainMenu.SetActive(false);
+                registration.SetActive(false);
+                login.SetActive(true);
+                //options.setActive(false);
+                break;
+                //case MenuStates.Options:
+                //mainMenu.setActive(false);
+                //registration.setActive(false);
+                //login.setActive(false);
+                //options.setActive(true);
+                //break;
+
+        }
     }
+    //----------------------------------------------------------------Main-Menu----------------------------------------------------------------//
+
+    public void goToMainMenu()
+    {
+        currentState = MenuStates.Main;
+        Debug.Log("WORKING");
+    }
+
+    public void goToRegistration()
+    {
+        currentState = MenuStates.Registration;
+        Debug.Log("WORKING");
+    }
+
+    //----------------------------------------------------------------Registration-------------------------------------------------------------//
+
+    //----------------------------------------------------------------Login-------------------------------------------------------------------//
+    public void goToLogin()
+    {
+        currentState = MenuStates.Login;
+        Debug.Log("WORKING");
+    }
+
+
+    //----------------------------------------------------------------Options-----------------------------------------------------------------//
+    //public void goToOptions()
+    //{
+    //    currentState = MenuStates.Options;
+    //}
+
+
 }
