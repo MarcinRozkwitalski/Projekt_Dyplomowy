@@ -5,12 +5,31 @@ using UnityEngine;
 
 public class AnimationObjectHodler : MonoBehaviour
 {
-    void Start()
+    void Update()
     {
-        if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null || AnswerHandler.index == int.Parse(gameObject.name))
+        GameObject originalGameObject = gameObject;
+        if (PlayerCanInteract.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null)
         {
-            GetComponent<Renderer>().enabled = !GetComponent<Renderer>().enabled;
-            GetComponent<Collider2D>().enabled = false;
+            for (int i = 0; i < originalGameObject.transform.childCount; i++)
+            {
+                GameObject child = originalGameObject.transform.GetChild(i).gameObject;
+                child.SetActive(false);
+            }
+
+        }
+        else if (PlayerCanInteract.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null)
+        {
+            // czeka na koniec Animacji odpowiedzi 
+            if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)].Equals("true"))
+            {
+                GameObject child = originalGameObject.transform.GetChild(0).gameObject;
+                child.SetActive(true);
+            }
+            else if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)].Equals("false"))
+            {
+                GameObject child = originalGameObject.transform.GetChild(1).gameObject;
+                child.SetActive(true);
+            }
         }
     }
 }

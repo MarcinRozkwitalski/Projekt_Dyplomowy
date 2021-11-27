@@ -10,6 +10,7 @@ public class PlayerCanInteract : MonoBehaviour
     string interactableObject = "none";
     string otherString = "";
     string tagName = "";
+    string tagAnswer = "";
     public static bool moveSpace = true;
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
@@ -18,10 +19,10 @@ public class PlayerCanInteract : MonoBehaviour
     //public AnswerHandler script; // nie działa
 
 
-/////////////////////////////////////////////////////////////////////// osobny kod od stwierdzeń
+    /////////////////////////////////////////////////////////////////////// osobny kod od stwierdzeń
     public string getSentence = "Null";
     public Text text;
-    public static int index;
+    public static int index = 1;
 
     public void LoadNewSentence()
     {
@@ -65,15 +66,26 @@ public class PlayerCanInteract : MonoBehaviour
             return true;
         }
     }
-////////////////////////////////////////////////////////////////// Interakcja z colliderami
+    public void AnswerYes()
+    {
+        SentenceHandler.hashTableAnswers.Add(index, "true");
+        Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
+    }
+    public void AnswerNo()
+    {
+        SentenceHandler.hashTableAnswers.Add(index, "false");
+        Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
+    }
+
+    ////////////////////////////////////////////////////////////////// Interakcja z colliderami
     private void OnTriggerEnter2D(Collider2D other)
     {
         canClickObject = true;
         interactableObjects.Add(other.name);
-         foreach (string entry in interactableObjects)
-            {
-                Debug.Log(entry);
-            }
+        foreach (string entry in interactableObjects)
+        {
+            Debug.Log(entry);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -91,8 +103,9 @@ public class PlayerCanInteract : MonoBehaviour
     {
         moveSpace = true;
     }
-    
-    void Start(){
+
+    void Start()
+    {
 
     }
 
@@ -100,7 +113,7 @@ public class PlayerCanInteract : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-           
+
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
@@ -115,11 +128,13 @@ public class PlayerCanInteract : MonoBehaviour
                 {
                     Debug.Log("You click -> " + hit.collider.tag);
                     tagName = hit.collider.tag;
+                    GameObject child = hit.collider.transform.GetChild(0).gameObject;
+                    tagAnswer = child.tag;
                     clickedObject = hit.collider.name;
                 }
-               
+
             }
-            else 
+            else
             {
                 Debug.Log("No interaction");
                 clickedObject = "";
@@ -133,16 +148,16 @@ public class PlayerCanInteract : MonoBehaviour
             Debug.Log("RUN ANIMATION ");
             interactableObject = "none";
             usedObjects.Add(clickedObject);
-            // wybranie stwierdzenia id 2 
-            //animator.Play("fromthebottom");
-            // książka i pocja 1 i 2....blur w tle
-            // schowanie książki po odpowiedzi
-           // DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
+            // DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
             LoadNewSentence();
         }
-        else if (tagName == "Decision" && Input.GetMouseButtonDown(0)){
+        else if (tagName == "Decision" && Input.GetMouseButtonDown(0))
+        {
             TriggerAnimation.runAnimation = false;
             TriggerAnimation.runAgain = true;
+            // Debug.Log("TAG = " + tagAnswer + ",  Index =" + index);
+            if (tagAnswer == "True") AnswerYes();
+            if (tagAnswer == "False") AnswerNo();
         }
         else
         {

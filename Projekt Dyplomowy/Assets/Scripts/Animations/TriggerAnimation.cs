@@ -53,33 +53,43 @@ public class TriggerAnimation : MonoBehaviour
 
     IEnumerator Time()
     {
+        // index 1 
         yield return new WaitForSeconds(0f);
 
         if (gameObject.tag == "UseDoor")
         {
-            if (runAnimation == true && runAgain == true)
-            {
-                runAgain = false;
-                OpenDoor();
-                yield return new WaitForSeconds(1f);
-                animator.SetBool("isIndexCorrect", true);
-                Debug.Log("Otwórz Drzwi");
-            }
-            if (runAnimation == false && runAgain == true)
-            {
-                runAgain = false;
-                animator.SetBool("isIndexCorrect", false);
-                yield return new WaitForSeconds(1f);
-                CloseDoor();
-                Debug.Log("Zamnknij Drzwi");
-            }
+            StartCoroutine(DoorAnimations());
         }
 
-
+        // użycie tranzycji z textem if( po kliknięciu wyboru)
+        // ładowanie animacji gracza i czekanie na tranzycje
+        // właczenie animacji gracza if(mamy index i stan udzielonej odpowiedzi)
+        // zmienna przejscie wszystkich animacji po to by załadować obiekt
 
 
         if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
         else PlayerMovement.canMove = true;
+    }
+
+
+    IEnumerator DoorAnimations()
+    {
+        if (runAnimation == true && runAgain == true)
+        {
+            runAgain = false;
+            OpenDoor();
+            yield return new WaitForSeconds(1f);
+            animator.SetBool("isIndexCorrect", true);
+            Debug.Log("Otwórz Drzwi");
+        }
+        if (runAnimation == false && runAgain == true)
+        {
+            runAgain = false;
+            animator.SetBool("isIndexCorrect", false);
+            yield return new WaitForSeconds(1f);
+            CloseDoor();
+            Debug.Log("Zamnknij Drzwi");
+        }
     }
 
     void OpenDoor()
