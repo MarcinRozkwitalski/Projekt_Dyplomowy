@@ -9,6 +9,8 @@ TagManager:
   - PlayerCantMove
   - Decision
   - UseDoor
+  - True
+  - False
   layers:
   - Default
   - TransparentFX
