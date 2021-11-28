@@ -46,7 +46,7 @@ public class PlayerCanInteract : MonoBehaviour
 
     void Start()
     {
-        answerHandler = GameObject.Find("Handler").GetComponent<AnswerHandler>();
+        answerHandler = GameObject.Find("IndexHandler").GetComponent<AnswerHandler>();
     }
 
     void Update()
