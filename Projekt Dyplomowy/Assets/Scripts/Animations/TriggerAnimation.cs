@@ -66,10 +66,13 @@ public class TriggerAnimation : MonoBehaviour
         if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
         {
             TransitionStart();
-           yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(2.4f);
+            PlayerMovement.canMove = false;
+
             PlayerPlayAnimation();
             PlayerSetDeafultPosition();
-            yield return new WaitForSeconds(AnimationTime()-2);
+            yield return new WaitForSeconds(AnimationTime() - 2);
+            
             TransitionEnd();
             yield return new WaitForSeconds(2f);
             PlayerStopAnimations();
@@ -82,8 +85,8 @@ public class TriggerAnimation : MonoBehaviour
         // zmienna przejscie wszystkich animacji po to by załadować obiekt
 
 
-        if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
-        else PlayerMovement.canMove = true;
+        // if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
+        // else PlayerMovement.canMove = true;
     }
 
 
@@ -147,14 +150,17 @@ public class TriggerAnimation : MonoBehaviour
         squareAnimator.SetBool("RunRight", false);
     }
 
-    void PlayerStopAnimations(){
+    void PlayerStopAnimations()
+    {
         playerDirectionDisplayHandler.StopAnimations();
     }
-    void PlayerSetDeafultPosition(){
+    void PlayerSetDeafultPosition()
+    {
         playerDirectionDisplayHandler.PlayerSetDeafultPosition();
     }
 
-    float AnimationTime(){
-      return playerDirectionDisplayHandler.AnimationLength();
+    float AnimationTime()
+    {
+        return playerDirectionDisplayHandler.AnimationLength();
     }
 }

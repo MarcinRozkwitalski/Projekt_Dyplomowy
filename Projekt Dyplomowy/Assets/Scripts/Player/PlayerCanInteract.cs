@@ -68,8 +68,11 @@ public class PlayerCanInteract : MonoBehaviour
                 {
                     Debug.Log("You click -> " + hit.collider.tag);
                     tagName = hit.collider.tag;
-                    GameObject child = hit.collider.transform.GetChild(0).gameObject;
-                    tagAnswer = child.tag;
+                    if (hit.collider.transform.childCount > 0)
+                    {
+                        GameObject child = hit.collider.transform.GetChild(0).gameObject;
+                        tagAnswer = child.tag;
+                    }
                     clickedObject = hit.collider.name;
                 }
 

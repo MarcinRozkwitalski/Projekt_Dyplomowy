@@ -63,7 +63,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && PlayerMovement.canMove == true)
         {
             CurrentPosition = transform.position;
             NewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
