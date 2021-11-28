@@ -7676,8 +7676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a62dfe4036cd53449a4c17a60a19b3c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getSentence: Null
-  text: {fileID: 760752301}
 --- !u!114 &1801165351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7700,6 +7698,7 @@ MonoBehaviour:
   PlayerSideLeftAnim: {fileID: 0}
   PlayerBackLeft45Anim: {fileID: 0}
   PlayerBackAnim: {fileID: 0}
+  clip: {fileID: 0}
 --- !u!1 &1808405136
 GameObject:
   m_ObjectHideFlags: 0

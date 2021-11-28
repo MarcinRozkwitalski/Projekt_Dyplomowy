@@ -8,7 +8,7 @@ public class AnimationObjectHodler : MonoBehaviour
     void Update()
     {
         GameObject originalGameObject = gameObject;
-        if (PlayerCanInteract.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null)
+        if (AnswerHandler.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null)
         {
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
             {
@@ -17,7 +17,7 @@ public class AnimationObjectHodler : MonoBehaviour
             }
 
         }
-        else if (PlayerCanInteract.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null)
+        else if (AnswerHandler.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null)
         {
             // czeka na koniec Animacji  tylko raz
             if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)].Equals("true"))
