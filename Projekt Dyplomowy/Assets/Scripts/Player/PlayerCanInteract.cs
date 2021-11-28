@@ -16,68 +16,8 @@ public class PlayerCanInteract : MonoBehaviour
     ArrayList interactableObjects = new ArrayList();
     Ray ray;
     RaycastHit2D hit;
-    //public AnswerHandler script; // nie działa
+    AnswerHandler answerHandler;
 
-
-    /////////////////////////////////////////////////////////////////////// osobny kod od stwierdzeń
-    public string getSentence = "Null";
-    public Text text;
-    public static int index = 1;
-
-    public void LoadNewSentence()
-    {
-        Debug.Log("Category = " + (SentenceHandler.number % 6 + 1));
-        GettingRandomStatement(SentenceHandler.number);
-        SentenceHandler.number++;
-    }
-
-    public void GettingRandomStatement(int category)
-    {
-        int random;
-        bool status = true;
-        do
-        {
-            random = Random.Range(0, 15);
-            index = category % 6 + 1 + random * 6;
-            status = ReturningStatement(index);
-            Debug.Log("index = " + index);
-        } while (status);
-    }
-
-    public bool ReturningStatement(int index)
-    {
-        if ((string)SentenceHandler.hashTableStatements[index] != null)
-        {
-            text.text = (string)SentenceHandler.hashTableStatements[index];
-            SentenceHandler.hashTableStatements.Remove(index);
-
-            // information about hashTableAnswers
-            Debug.Log("Number of answers = " + SentenceHandler.hashTableAnswers.Count);
-            foreach (DictionaryEntry entry in SentenceHandler.hashTableAnswers)
-            {
-                Debug.Log(" [" + entry.Key + "] = " + entry.Value);
-            }
-            // Debug.Log("Yes");
-            return false;
-        }
-        else
-        {
-            // Debug.Log("None");
-            return true;
-        }
-    }
-    public void AnswerYes()
-    {
-        SentenceHandler.hashTableAnswers.Add(index, "true");
-        Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
-    }
-    public void AnswerNo()
-    {
-        SentenceHandler.hashTableAnswers.Add(index, "false");
-        Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
-    }
-
-    ////////////////////////////////////////////////////////////////// Interakcja z colliderami
     private void OnTriggerEnter2D(Collider2D other)
     {
         canClickObject = true;
@@ -106,7 +46,7 @@ public class PlayerCanInteract : MonoBehaviour
 
     void Start()
     {
-
+        answerHandler = GameObject.Find("Handler").GetComponent<AnswerHandler>();
     }
 
     void Update()
@@ -149,16 +89,16 @@ public class PlayerCanInteract : MonoBehaviour
             interactableObject = "none";
             usedObjects.Add(clickedObject);
             // DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
-            LoadNewSentence();
+            answerHandler.LoadNewSentence();
         }
         else if (tagName == "Decision" && Input.GetMouseButtonDown(0))
         {
             TriggerAnimation.runAnimation = false;
             TriggerAnimation.runAgain = true;
-            // Debug.Log("TAG = " + tagAnswer + ",  Index =" + index);
-            ReturningStatement(index);// test
-            if (tagAnswer == "True") AnswerYes();
-            if (tagAnswer == "False") AnswerNo();
+            Debug.Log("TAG = " + tagAnswer + ",  Index =" + AnswerHandler.index);
+            if (tagAnswer == "True") answerHandler.AnswerYes();
+            if (tagAnswer == "False") answerHandler.AnswerNo();
+            answerHandler.ReturningStatement(AnswerHandler.index);// test
         }
         else
         {
