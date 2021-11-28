@@ -96,6 +96,7 @@ public class PlayerCanInteract : MonoBehaviour
         }
         else if (tagName == "Decision" && Input.GetMouseButtonDown(0))
         {
+            tagName = "";
             TriggerAnimation.runAnimation = false;
             TriggerAnimation.runAgain = true;
             Debug.Log("TAG = " + tagAnswer + ",  Index =" + AnswerHandler.index);
