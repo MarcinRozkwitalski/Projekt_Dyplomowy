@@ -65,23 +65,18 @@ public class TriggerAnimation : MonoBehaviour
         // tranzycja wejścia 
         if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
         {
-            Debug.Log("Start tranzycji");
-            GameObject square = GameObject.Find("Square");
-            Animator squareAnimator = square.GetComponent<Animator>();
-            squareAnimator.SetBool("RunRight", true);
-            startTransition = false;
+            TransitionStart();
+            yield return new WaitForSeconds(2.4f);
+            PlayerMovement.canMove = false;
 
-            yield return new WaitForSeconds(2.5f);
-            GameObject player = GameObject.Find("Player");
-
-            playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
-            playerDirectionDisplayHandler.HideAllPlayerPerspectives();
-            player.transform.GetChild(0).gameObject.SetActive(true);
-            GameObject playerFront = GameObject.Find("PlayerFront");
-            Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
-            playerFrontAnimator.SetBool("is"+PlayerCanInteract.index.ToString() + "True",true);
+            PlayerPlayAnimation();
+            PlayerSetDeafultPosition();
+            yield return new WaitForSeconds(AnimationTime() - 2);
+            
+            TransitionEnd();
+            yield return new WaitForSeconds(2f);
+            PlayerStopAnimations();
             Debug.Log("Skończone");
-
         }
 
         // użycie tranzycji z textem if( po kliknięciu wyboru)
@@ -90,8 +85,8 @@ public class TriggerAnimation : MonoBehaviour
         // zmienna przejscie wszystkich animacji po to by załadować obiekt
 
 
-        if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
-        else PlayerMovement.canMove = true;
+        // if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
+        // else PlayerMovement.canMove = true;
     }
 
 
@@ -111,7 +106,6 @@ public class TriggerAnimation : MonoBehaviour
             animator.SetBool("isIndexCorrect", false);
             yield return new WaitForSeconds(1f);
             CloseDoor();
-            yield return new WaitForSeconds(4f); // czas na poczekanie na tranzycje
             startTransition = true;
             Debug.Log("Zamnknij Drzwi");
         }
@@ -126,11 +120,47 @@ public class TriggerAnimation : MonoBehaviour
         DoorHandler.doorStatus = 1;
     }
 
-    private IEnumerator WaitForAnimation(Animation animation)
+
+    void TransitionStart()
     {
-        do
-        {
-            yield return null;
-        } while (animation.isPlaying);
+        Debug.Log("Start tranzycji");
+        GameObject square = GameObject.Find("Square");
+        Animator squareAnimator = square.GetComponent<Animator>();
+        squareAnimator.SetBool("RunRight", true);
+        startTransition = false;
+    }
+
+    void PlayerPlayAnimation()
+    {
+        GameObject player = GameObject.Find("Player");
+        playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
+        playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+        playerDirectionDisplayHandler.ShowPlayerFront();
+        GameObject playerFront = GameObject.Find("PlayerFront");
+        Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
+        playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
+    }
+
+    void TransitionEnd()
+    {
+        Debug.Log("Koniec tranzycji");
+        GameObject square = GameObject.Find("Square");
+        Animator squareAnimator = square.GetComponent<Animator>();
+        squareAnimator.SetBool("RunLeft", true);
+        squareAnimator.SetBool("RunRight", false);
+    }
+
+    void PlayerStopAnimations()
+    {
+        playerDirectionDisplayHandler.StopAnimations();
+    }
+    void PlayerSetDeafultPosition()
+    {
+        playerDirectionDisplayHandler.PlayerSetDeafultPosition();
+    }
+
+    float AnimationTime()
+    {
+        return playerDirectionDisplayHandler.AnimationLength();
     }
 }

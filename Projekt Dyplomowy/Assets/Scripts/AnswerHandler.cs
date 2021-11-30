@@ -7,17 +7,17 @@ using UnityEngine.Networking;
 public class AnswerHandler : MonoBehaviour
 {
     public string getSentence = "Null";
-    public static Text text;
-    public static int index;
+    public Text text;
+    public static int index = 1;
 
-    public static void LoadNewSentence()
+   public void LoadNewSentence()
     {
         Debug.Log("Category = " + (SentenceHandler.number % 6 + 1));
         GettingRandomStatement(SentenceHandler.number);
         SentenceHandler.number++;
     }
 
-    public static void GettingRandomStatement(int category)
+    public void GettingRandomStatement(int category)
     {
         int random;
         bool status = true;
@@ -30,7 +30,7 @@ public class AnswerHandler : MonoBehaviour
         } while (status);
     }
 
-    public static bool ReturningStatement(int index)
+   public bool ReturningStatement(int index)
     {
         if ((string)SentenceHandler.hashTableStatements[index] != null)
         {
@@ -52,16 +52,15 @@ public class AnswerHandler : MonoBehaviour
             return true;
         }
     }
-
     public void AnswerYes()
     {
         SentenceHandler.hashTableAnswers.Add(index, "true");
-        // Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
+        Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
     }
     public void AnswerNo()
     {
         SentenceHandler.hashTableAnswers.Add(index, "false");
-        //  Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
+        Debug.Log("Sentence : " + SentenceHandler.hashTableStatements[index] + "\n Answer : " + SentenceHandler.hashTableAnswers[index]);
     }
 
 }
