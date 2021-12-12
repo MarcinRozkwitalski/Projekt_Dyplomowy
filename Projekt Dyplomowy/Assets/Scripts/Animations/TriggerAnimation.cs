@@ -12,7 +12,7 @@ public class TriggerAnimation : MonoBehaviour
     Animator animator;
     public static bool runAnimation = true;
     public static bool runAgain = true;
-    public static bool startTransition = false;
+    public static bool startTransition = true;
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class TriggerAnimation : MonoBehaviour
         //(AnswerHandler.index != int.Parse(gameObject.name))
         //podmienić to na dole :)
         // PlayerCanInteract.index
-        if (1 != int.Parse(gameObject.name))
+        if (11 != int.Parse(gameObject.name))
         {
             GameObject originalGameObject = GameObject.Find(gameObject.name);
             if (originalGameObject.GetComponent<Renderer>().enabled) originalGameObject.GetComponent<Renderer>().enabled = !originalGameObject.GetComponent<Renderer>().enabled;
@@ -62,7 +62,7 @@ public class TriggerAnimation : MonoBehaviour
             StartCoroutine(DoorAnimations());
         }
 
-        // tranzycja wejścia 
+        // tranzycja wejścia dla animacji gracza po odpowiedzi
         if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
         {
             TransitionStart();
@@ -72,17 +72,24 @@ public class TriggerAnimation : MonoBehaviour
             PlayerPlayAnimation();
             PlayerSetDeafultPosition();
             yield return new WaitForSeconds(AnimationTime() - 2);
-            
+
             TransitionEnd();
             yield return new WaitForSeconds(2f);
             PlayerStopAnimations();
             Debug.Log("Skończone");
+            PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
         }
 
-        // użycie tranzycji z textem if( po kliknięciu wyboru)
-        // ładowanie animacji gracza i czekanie na tranzycje
-        // właczenie animacji gracza if(mamy index i stan udzielonej odpowiedzi)
-        // zmienna przejscie wszystkich animacji po to by załadować obiekt
+        // wejście fabuły bez tranzycji przed odpowiedzią gracza
+        if (gameObject.tag == "Tale" && startTransition == true)
+        {
+            animator.SetBool("Start", true);
+            yield return new WaitForSeconds(1f);
+            animator.SetBool("Start", false);
+            startTransition = false;
+            PlayerMovement.canMove = false;
+
+        }
 
 
         // if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
@@ -97,7 +104,7 @@ public class TriggerAnimation : MonoBehaviour
             runAgain = false;
             OpenDoor();
             yield return new WaitForSeconds(1f);
-            animator.SetBool("isIndexCorrect", true);
+            animator.SetBool("isIndexCorrect", true); // parametr odpalający animacje 
             Debug.Log("Otwórz Drzwi");
         }
         if (runAnimation == false && runAgain == true)
