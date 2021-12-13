@@ -8,14 +8,17 @@ using UnityEngine;
 
 public class TriggerAnimation : MonoBehaviour
 {
-    PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
+    WaysOfLaunchingTheAnimations waysOfLaunchingTheAnimations;
     Animator animator;
     public static bool runAnimation = true;
     public static bool runAgain = true;
     public static bool startTransition = true;
+    public static bool startTale = true;
+    public static bool sentenceAnswered = false; // czy udzielono odpowiedzi na stwierdzenie
 
     void Start()
     {
+        waysOfLaunchingTheAnimations = GameObject.Find("AnimationHandler").GetComponent<WaysOfLaunchingTheAnimations>();
         animator = GetComponent<Animator>();
     }
 
@@ -24,7 +27,7 @@ public class TriggerAnimation : MonoBehaviour
         //(AnswerHandler.index != int.Parse(gameObject.name))
         //podmienić to na dole :)
         // PlayerCanInteract.index
-        if (11 != int.Parse(gameObject.name))
+        if (1 != int.Parse(gameObject.name))
         {
             GameObject originalGameObject = GameObject.Find(gameObject.name);
             if (originalGameObject.GetComponent<Renderer>().enabled) originalGameObject.GetComponent<Renderer>().enabled = !originalGameObject.GetComponent<Renderer>().enabled;
@@ -54,42 +57,26 @@ public class TriggerAnimation : MonoBehaviour
 
     IEnumerator Time()
     {
-        // index 1 
         yield return new WaitForSeconds(0f);
 
         if (gameObject.tag == "UseDoor")
         {
-            StartCoroutine(DoorAnimations());
+            StartCoroutine(waysOfLaunchingTheAnimations.DoorAnimations(animator));
         }
 
         // tranzycja wejścia dla animacji gracza po odpowiedzi
         if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
         {
-            TransitionStart();
-            yield return new WaitForSeconds(2.4f);
-            PlayerMovement.canMove = false;
-
-            PlayerPlayAnimation();
-            PlayerSetDeafultPosition();
-            yield return new WaitForSeconds(AnimationTime() - 2);
-
-            TransitionEnd();
-            yield return new WaitForSeconds(2f);
-            PlayerStopAnimations();
-            Debug.Log("Skończone");
-            PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
+            StartCoroutine(waysOfLaunchingTheAnimations.TransitionWithPlayer());
         }
 
         // wejście fabuły bez tranzycji przed odpowiedzią gracza
-        if (gameObject.tag == "Tale" && startTransition == true)
+        if (gameObject.tag == "Tale")
         {
-            animator.SetBool("Start", true);
-            yield return new WaitForSeconds(1f);
-            animator.SetBool("Start", false);
-            startTransition = false;
-            PlayerMovement.canMove = false;
-
+            StartCoroutine(waysOfLaunchingTheAnimations.TaleAnimation(animator));
         }
+
+        // Odpalenie animacji PASEK
 
 
         // if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
@@ -97,77 +84,8 @@ public class TriggerAnimation : MonoBehaviour
     }
 
 
-    IEnumerator DoorAnimations()
-    {
-        if (runAnimation == true && runAgain == true)
-        {
-            runAgain = false;
-            OpenDoor();
-            yield return new WaitForSeconds(1f);
-            animator.SetBool("isIndexCorrect", true); // parametr odpalający animacje 
-            Debug.Log("Otwórz Drzwi");
-        }
-        if (runAnimation == false && runAgain == true)
-        {
-            runAgain = false;
-            animator.SetBool("isIndexCorrect", false);
-            yield return new WaitForSeconds(1f);
-            CloseDoor();
-            startTransition = true;
-            Debug.Log("Zamnknij Drzwi");
-        }
-    }
-
-    void OpenDoor()
-    {
-        DoorHandler.doorStatus = 0;
-    }
-    void CloseDoor()
-    {
-        DoorHandler.doorStatus = 1;
-    }
 
 
-    void TransitionStart()
-    {
-        Debug.Log("Start tranzycji");
-        GameObject square = GameObject.Find("Square");
-        Animator squareAnimator = square.GetComponent<Animator>();
-        squareAnimator.SetBool("RunRight", true);
-        startTransition = false;
-    }
 
-    void PlayerPlayAnimation()
-    {
-        GameObject player = GameObject.Find("Player");
-        playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
-        playerDirectionDisplayHandler.HideAllPlayerPerspectives();
-        playerDirectionDisplayHandler.ShowPlayerFront();
-        GameObject playerFront = GameObject.Find("PlayerFront");
-        Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
-        playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
-    }
 
-    void TransitionEnd()
-    {
-        Debug.Log("Koniec tranzycji");
-        GameObject square = GameObject.Find("Square");
-        Animator squareAnimator = square.GetComponent<Animator>();
-        squareAnimator.SetBool("RunLeft", true);
-        squareAnimator.SetBool("RunRight", false);
-    }
-
-    void PlayerStopAnimations()
-    {
-        playerDirectionDisplayHandler.StopAnimations();
-    }
-    void PlayerSetDeafultPosition()
-    {
-        playerDirectionDisplayHandler.PlayerSetDeafultPosition();
-    }
-
-    float AnimationTime()
-    {
-        return playerDirectionDisplayHandler.AnimationLength();
-    }
 }
