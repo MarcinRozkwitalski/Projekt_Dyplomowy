@@ -24,7 +24,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     {
         PlayerFront.SetActive(true);
     }
-
+/// FILIP START
     public float AnimationLength()
     {  
         float playerFrontJumpTime = 0.0f;
@@ -50,6 +50,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(0, -4, 0);
     }
+    //// FILIP END
 
     void Start()
     {

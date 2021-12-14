@@ -63,6 +63,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     // Using Tale Animations
     public IEnumerator TaleAnimation(Animator animator)
     {
+        // odpalenie animacji wprowadzenia wybory 1
         if (TriggerAnimation.startTale == true)
         {
             animator.SetBool("Start", true);
@@ -71,6 +72,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             TriggerAnimation.startTale = false;
             PlayerMovement.canMove = false;
         }
+        // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
         else
         {
             if (SentenceHandler.hashTableAnswers[AnswerHandler.index] != null)
@@ -83,8 +85,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     // else use animation of given index
 
                 }
-                else{
-                    
+                else
+                {
+
                 }
             }
         }
