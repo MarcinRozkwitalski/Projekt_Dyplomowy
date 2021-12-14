@@ -5,9 +5,11 @@ using UnityEngine;
 public class WaysOfLaunchingTheAnimations : MonoBehaviour
 {
     PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
+    PreparedStatementAnimations preparedStatementAnimations;
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
+        preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
     }
 
     // Using doors for animation
@@ -66,6 +68,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         // odpalenie animacji wprowadzenia wybory 1
         if (TriggerAnimation.startTale == true)
         {
+            playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Start", true);
             yield return new WaitForSeconds(1f);
             animator.SetBool("Start", false);
@@ -77,17 +80,42 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         {
             if (SentenceHandler.hashTableAnswers[AnswerHandler.index] != null)
             {
-                if (SentenceHandler.hashTableAnswers[AnswerHandler.index] == "true")
+                if (SentenceHandler.hashTableAnswers[AnswerHandler.index].Equals("true"))
                 {
-                    // Check if Player has animation yes
+
+                    switch (AnswerHandler.index)
+                    {
+                        case 11:
+                            animator.SetBool("Outro", true);
+                            yield return new WaitForSeconds(1.5f);
+                            preparedStatementAnimations.Statement_Yes_11();
+                            break;
+                        default:
+                            Debug.Log("Something went wrong with choosing statement animation");
+                            break;
+
+                    }
 
 
-                    // else use animation of given index
+
+                    // NPC - skrypt
+                    // Check if Player has animation yes - skrypt
+                    // else use animation of given index - skrypt
+                    // Prepared Animations - skrypt
+                    // miniGames - skrypt
 
                 }
                 else
                 {
+                    switch (AnswerHandler.index)
+                    {
+                        case 11:
+                            break;
+                        default:
+                            Debug.Log("Something went wrong with choosing statement animation");
+                            break;
 
+                    }
                 }
             }
         }

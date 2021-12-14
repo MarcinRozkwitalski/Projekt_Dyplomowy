@@ -8,7 +8,8 @@ public class AnimationObjectHodler : MonoBehaviour
     void Update()
     {
         GameObject originalGameObject = gameObject;
-        if (AnswerHandler.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null)
+        // AnswerHandler.index == int.Parse(gameObject.name) &&
+        if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null)
         {
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
             {

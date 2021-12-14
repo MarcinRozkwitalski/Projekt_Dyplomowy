@@ -11,7 +11,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
 
     public Animator PlayerFrontAnim, PlayerFrontLeft45Anim, PlayerSideLeftAnim, PlayerBackLeft45Anim, PlayerBackAnim;
     public AnimationClip clip;
-     
+    Collider2D collider2d;
     public void HideAllPlayerPerspectives()
     {
         PlayerFront.SetActive(false);
@@ -20,18 +20,28 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         PlayerBackLeft45.SetActive(false);
         PlayerBack.SetActive(false);
     }
+    public void DisablePLayersCollider()
+    {
+        collider2d.enabled = false;
+    }
+
+    public void EnablePLayersCollider()
+    {
+        collider2d.enabled = true;
+    }
+
     public void ShowPlayerFront()
     {
         PlayerFront.SetActive(true);
     }
-/// FILIP START
+    /// FILIP START IDEA STWORZENIA GLOBALNEGO ANIMATIONCLIP[] ze wszystkimi klipami WYCIĄGANIE ANIMACJI I ANIMATORÓW W PĘTLI
     public float AnimationLength()
-    {  
+    {
         float playerFrontJumpTime = 0.0f;
         AnimationClip[] clips = PlayerFrontAnim.runtimeAnimatorController.animationClips;
-        foreach(AnimationClip clip in clips)
+        foreach (AnimationClip clip in clips)
         {
-            switch(clip.name)
+            switch (clip.name)
             {
                 case "PlayerFrontJump":
                     playerFrontJumpTime = clip.length;
@@ -57,9 +67,11 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         HideAllPlayerPerspectives();
         PlayerFront.SetActive(true);
 
-        PlayerFrontAnim = PlayerFront.GetComponent<Animator>();
+        PlayerFrontAnim = PlayerFront.GetComponent<Animator>(); // Filip
+        collider2d = gameObject.GetComponent<Collider2D>(); // Filip
+
         // do czas animacji 
-        
+
     }
 
     void Update()
