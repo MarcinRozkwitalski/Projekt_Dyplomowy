@@ -1826,7 +1826,7 @@ GameObject:
   m_Component:
   - component: {fileID: 284566540}
   m_Layer: 0
-  m_Name: AI
+  m_Name: AIScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7162,7 +7162,7 @@ GameObject:
   m_Component:
   - component: {fileID: 995273385}
   m_Layer: 0
-  m_Name: AI
+  m_Name: AIChoice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7367,7 +7367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1061447770}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerScore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11371,7 +11371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1518205549}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerChoice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
