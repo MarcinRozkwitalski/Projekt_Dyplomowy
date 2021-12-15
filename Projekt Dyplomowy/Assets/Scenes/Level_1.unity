@@ -3604,7 +3604,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558601581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.9073161, y: -0.36596948, z: -19.866451}
+  m_LocalPosition: {x: -0.9073161, y: -0.36596948, z: 5.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4610,7 +4610,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &675530841
 Transform:
   m_ObjectHideFlags: 0
@@ -4939,7 +4939,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &704974674
 Transform:
   m_ObjectHideFlags: 0
@@ -5536,7 +5536,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &772650207
 Transform:
   m_ObjectHideFlags: 0
@@ -6048,7 +6048,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &780761210
 Transform:
   m_ObjectHideFlags: 0
@@ -6255,7 +6255,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 100
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -6266,7 +6266,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Wygrana, przegrana
+  m_Text: 
 --- !u!222 &808836442
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6485,7 +6485,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &849015711
 Transform:
   m_ObjectHideFlags: 0
@@ -6751,9 +6751,10 @@ GameObject:
   m_Component:
   - component: {fileID: 907609611}
   - component: {fileID: 907609612}
+  - component: {fileID: 907609613}
   m_Layer: 0
   m_Name: Scissors
-  m_TagString: Untagged
+  m_TagString: RPSButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6801,6 +6802,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.85, y: 2.9}
   m_EdgeRadius: 0
+--- !u!114 &907609613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907609610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0cca6f8688a45449a8ff3fd9406f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &908090381
 GameObject:
   m_ObjectHideFlags: 0
@@ -7201,7 +7214,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &995696789
 Transform:
   m_ObjectHideFlags: 0
@@ -8809,9 +8822,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1269202229}
   - component: {fileID: 1269202230}
+  - component: {fileID: 1269202231}
   m_Layer: 0
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: RPSButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8859,6 +8873,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.94, y: 3.02}
   m_EdgeRadius: 0
+--- !u!114 &1269202231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269202228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0cca6f8688a45449a8ff3fd9406f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1269664200
 GameObject:
   m_ObjectHideFlags: 0
@@ -10863,7 +10889,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1417909438
 Transform:
   m_ObjectHideFlags: 0
@@ -11094,7 +11120,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1478957739
 Transform:
   m_ObjectHideFlags: 0
@@ -11854,7 +11880,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1553837115
 Transform:
   m_ObjectHideFlags: 0
@@ -12030,7 +12056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1577597822
 Transform:
   m_ObjectHideFlags: 0
@@ -12285,7 +12311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1595941290
 Transform:
   m_ObjectHideFlags: 0
@@ -13769,7 +13795,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1902734473
 Transform:
   m_ObjectHideFlags: 0
@@ -15265,9 +15291,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2130746614}
   - component: {fileID: 2130746615}
+  - component: {fileID: 2130746616}
   m_Layer: 0
   m_Name: Paper
-  m_TagString: Untagged
+  m_TagString: RPSButton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15315,3 +15342,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.94, y: 3.01}
   m_EdgeRadius: 0
+--- !u!114 &2130746616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130746613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c0cca6f8688a45449a8ff3fd9406f73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

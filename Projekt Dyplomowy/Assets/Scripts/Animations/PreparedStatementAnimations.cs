@@ -6,11 +6,13 @@ public class PreparedStatementAnimations : MonoBehaviour
 {
     PlayerStatementAnimations playerStatementAnimations;
     NPCStatementAnimations npcStatementAnimations;
+    RockPaperScissors rockPaperScissors;
     // Start is called before the first frame update
     void Start()
     {
         playerStatementAnimations = GameObject.Find("Player").GetComponent<PlayerStatementAnimations>();
         npcStatementAnimations = GameObject.Find("NPC").GetComponent<NPCStatementAnimations>();
+        rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
     }
 
 
@@ -21,12 +23,11 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
 
     public void Statement_Yes_11(){
+
         Start_Yes_11();
 
-        // do{
-        //    //gra skrypt
-        // }while(true);
-
+        //wchodzą Judo wojownicy, po animacji startowej Judo (poza, przywitanie, "gotowość walki") wchodzi cały HUD oraz losowanie wyborów znaku w Scoreboard
+        
     }
 
 

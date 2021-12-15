@@ -17,17 +17,24 @@ public class RPSInteractableButtons : MonoBehaviour
             }
         }
     }
-    void OnMouseEnter()
-    {
-        GameObject originalGameObject = GameObject.Find(gameObject.name);
-        GameObject child = originalGameObject.transform.GetChild(0).gameObject;
-        child.SetActive(true);
-    }
 
-    void OnMouseExit()
-    {
-        GameObject originalGameObject = GameObject.Find(gameObject.name);
-        GameObject child = originalGameObject.transform.GetChild(0).gameObject;
-        child.SetActive(false);
+    public void ClickedButton(string PlayerChoice){
+        switch(PlayerChoice){
+            case "Rock":
+                gameObject.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.transform.GetChild(0).transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case "Paper":
+                gameObject.transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.transform.GetChild(1).transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case "Scissors":
+                gameObject.transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(false);
+                gameObject.transform.GetChild(2).transform.GetChild(2).gameObject.SetActive(true);
+                break;
+        }
     }
 }

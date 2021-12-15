@@ -17,6 +17,7 @@ public class PlayerCanInteract : MonoBehaviour
     Ray ray;
     RaycastHit2D hit;
     AnswerHandler answerHandler;
+    RockPaperScissors rockPaperScissors;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -47,6 +48,7 @@ public class PlayerCanInteract : MonoBehaviour
     void Start()
     {
         answerHandler = GameObject.Find("IndexHandler").GetComponent<AnswerHandler>();
+        rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
     }
 
     void Update()
@@ -104,6 +106,13 @@ public class PlayerCanInteract : MonoBehaviour
             if (tagAnswer == "False") answerHandler.AnswerNo();
             answerHandler.ReturningStatement(AnswerHandler.index);// test
         }
+        else if (tagName == "RPSButton" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("RPS: " + clickedObject);
+            StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
+        }
+
         else
         {
             // Debug.Log("We cant use that object");

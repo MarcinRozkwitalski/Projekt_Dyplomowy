@@ -19,8 +19,18 @@ public class RockPaperScissors : MonoBehaviour
                 RockChosen, PaperChosen, ScissorsChosen,
                 PlayerChoice_Rock, PlayerChoice_Paper, PlayerChoice_Scissors,
                 AIChoice_Rock, AIChoice_Paper, AIChoice_Scissors;
+    
+    GameObject playerScoreParent, AIScoreParent;
 
-    public void PlayRound(string PlayerChoice){
+    RPSInteractableButtons rpsInteractableButtons;
+
+    public IEnumerator PlayRound(string PlayerChoice){
+        rpsInteractableButtons.ClickedButton(PlayerChoice);
+        //zatrzymanie losowania PlayerChoice
+        //tu będą animacje HandSign
+        yield return new WaitForSeconds(3.0f);
+        //zatrzymanie losowanie AIChoice
+
         string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
 
         switch(AIRandomChoice){
@@ -66,14 +76,58 @@ public class RockPaperScissors : MonoBehaviour
         }
     }
 
+    public void UpdateScoreboard(){
+        SetActiveFalseScoreboard();
+        switch(PlayerScore){
+            case 0:
+                playerScoreParent.transform.GetChild(0).gameObject.SetActive(true);
+                break;
+            case 1:
+                playerScoreParent.transform.GetChild(1).gameObject.SetActive(true);
+                break;
+            case 2:
+                playerScoreParent.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case 3:
+                playerScoreParent.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+        }
+
+        switch(AIScore){
+            case 0:
+                AIScoreParent.transform.GetChild(0).gameObject.SetActive(true);
+                break;
+            case 1:
+                AIScoreParent.transform.GetChild(1).gameObject.SetActive(true);
+                break;
+            case 2:
+                AIScoreParent.transform.GetChild(2).gameObject.SetActive(true);
+                break;
+            case 3:
+                AIScoreParent.transform.GetChild(3).gameObject.SetActive(true);
+                break;
+        }
+    }
+
+    public void SetActiveFalseScoreboard(){
+        for(int i = 0; i < playerScoreParent.transform.childCount; i++){
+            playerScoreParent.transform.GetChild(i).gameObject.SetActive(false);
+            AIScoreParent.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
     public void Win(){
         Result.text = "Wygrana!";
         PlayerScore++;
+        UpdateScoreboard();
+        CheckWinCondition();
     }
 
     public void Lose(){
         Result.text = "Przegrana...";
         AIScore++;
+        UpdateScoreboard();
+        CheckWinCondition();
     }
 
     public void Tie(){
@@ -91,23 +145,12 @@ public class RockPaperScissors : MonoBehaviour
         }
     }
 
-    void OnMouseEnter()
-    {
-        GameObject originalGameObject = GameObject.Find(gameObject.name);
-        GameObject child = originalGameObject.transform.GetChild(0).gameObject;
-        child.SetActive(true);
-    }
-
-    void OnMouseExit()
-    {
-        GameObject originalGameObject = GameObject.Find(gameObject.name);
-        GameObject child = originalGameObject.transform.GetChild(0).gameObject;
-        child.SetActive(false);
-    }
-
     // Start is called before the first frame update
     void Start()
     {
+        playerScoreParent = GameObject.Find("PlayerScore");
+        AIScoreParent = GameObject.Find("AIScore");
+        rpsInteractableButtons = GameObject.Find("InteractableButtons").GetComponent<RPSInteractableButtons>();
         PlayerScore = 0;
         AIScore = 0;
         HasGameEnded = false;

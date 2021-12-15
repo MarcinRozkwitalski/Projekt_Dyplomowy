@@ -12,6 +12,7 @@ TagManager:
   - True
   - False
   - Tale
+  - RPSButton
   layers:
   - Default
   - TransparentFX

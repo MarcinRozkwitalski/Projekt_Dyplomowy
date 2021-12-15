@@ -29,7 +29,7 @@ public class PlayerStatementAnimations : MonoBehaviour
     public void MoveHands_Yes_11()
     {
         animator_yes_11.SetBool("MoveHands", true);
-        animator_yes_11.SetBool("MoveHands", false);
+        //animator_yes_11.SetBool("MoveHands", false);
     }
     public void Start_No_11()
     {
