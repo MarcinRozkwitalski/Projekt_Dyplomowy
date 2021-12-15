@@ -7,16 +7,20 @@ public class RockPaperScissors : MonoBehaviour
 {
     public int PlayerScore = 0, AIScore = 0, ScoreNeededToWin = 3;
 
+    public bool HasGameEnded = false;
+
     public Text Result;
-    public Sprite PlayerChoice, AIChoice;
+    public string PlayerCurrentChoice, AICurrentChoice;
 
     public string[] Choices = {"Rock", "Paper", "Scissors"};
 
     public Sprite RockDefault, PaperDefault, ScissorsDefault,
                 RockHover, PaperHover, ScissorsHover,
-                RockChosen, PaperChosen, ScissorsChosen;
+                RockChosen, PaperChosen, ScissorsChosen,
+                PlayerChoice_Rock, PlayerChoice_Paper, PlayerChoice_Scissors,
+                AIChoice_Rock, AIChoice_Paper, AIChoice_Scissors;
 
-    public void Play(string PlayerChoice){
+    public void PlayRound(string PlayerChoice){
         string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
 
         switch(AIRandomChoice){
@@ -76,11 +80,37 @@ public class RockPaperScissors : MonoBehaviour
         Result.text = "Remis";
     }
 
+    public void CheckWinCondition(){
+        if(PlayerScore == 3){
+            Result.text = "Wygrałeś grę w papier kamień nożyce!";
+            HasGameEnded = true;
+        }
+        if(AIScore == 3){
+            Result.text = "Przegrałeś grę w papier kamień nożyce!";
+            HasGameEnded = true;
+        }
+    }
+
+    void OnMouseEnter()
+    {
+        GameObject originalGameObject = GameObject.Find(gameObject.name);
+        GameObject child = originalGameObject.transform.GetChild(0).gameObject;
+        child.SetActive(true);
+    }
+
+    void OnMouseExit()
+    {
+        GameObject originalGameObject = GameObject.Find(gameObject.name);
+        GameObject child = originalGameObject.transform.GetChild(0).gameObject;
+        child.SetActive(false);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         PlayerScore = 0;
         AIScore = 0;
+        HasGameEnded = false;
     }
 
     // Update is called once per frame
