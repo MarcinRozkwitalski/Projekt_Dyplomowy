@@ -33,6 +33,8 @@ public class PreparedStatementAnimations : MonoBehaviour
         // wchodzi cały HUD oraz losowanie wyborów znaku w Scoreboard
         if(!RockPaperScissors.HasGameEnded);
 
+        // przywrócenie gracza wraz z kliakniem obiektów
+
     }
 
 
