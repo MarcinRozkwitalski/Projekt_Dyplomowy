@@ -30,15 +30,17 @@ public class PlayerStatementAnimations : MonoBehaviour
     {
         animator_yes_11.SetBool("MoveHands", true);
     }
-      public void MoveHands_No_11()
+    public void MoveHands_No_11()
     {
         animator_yes_11.SetBool("MoveHands", false);
     }
-    public string MoveHands_Get_Name_11(){
+    public string MoveHands_Get_Name_11()
+    {
         string name = "PlayerSideLeftJudoPickingHandsign";
         return name;
     }
-    public Animator Player_Get_Animator_Yes_11(){
+    public Animator Player_Get_Animator_Yes_11()
+    {
         Animator animator = animator_yes_11;
         return animator;
     }

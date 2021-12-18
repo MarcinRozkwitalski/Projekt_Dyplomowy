@@ -7,7 +7,7 @@ public class RockPaperScissors : MonoBehaviour
 {
     public int PlayerScore = 0, AIScore = 0, ScoreNeededToWin = 3;
 
-    public bool HasGameEnded = false;
+    public static bool HasGameEnded = false;
 
     public Text Result;
     public string PlayerCurrentChoice, AICurrentChoice;

@@ -12,6 +12,7 @@ public class PlayerCanInteract : MonoBehaviour
     string tagName = "";
     string tagAnswer = "";
     public static bool moveSpace = true;
+    public static bool canChangeIndex = false;
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
     Ray ray;
@@ -87,8 +88,9 @@ public class PlayerCanInteract : MonoBehaviour
             }
 
         }
-        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex")
+        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true)
         {
+            canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");
             interactableObject = "none";
