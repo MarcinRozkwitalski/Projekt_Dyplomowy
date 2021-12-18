@@ -88,7 +88,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                         case 11:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(1.5f);
-                            preparedStatementAnimations.Statement_Yes_11();
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
                             break;
                         default:
                             Debug.Log("Something went wrong with choosing statement animation");

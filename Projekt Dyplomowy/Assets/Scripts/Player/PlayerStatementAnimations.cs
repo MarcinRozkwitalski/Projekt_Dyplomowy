@@ -13,16 +13,10 @@ public class PlayerStatementAnimations : MonoBehaviour
         animator_yes_11 = player_yes_11.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Start_Yes_11()
     {
         HideAllPlayerPerspectives();
-        gameObject.transform.position = new Vector3(3, -4, 0);
+        gameObject.transform.position = new Vector3(-2, -4, 0);
         player_yes_11.SetActive(true);
         animator_yes_11.SetBool("Start", true);
     }
@@ -37,6 +31,21 @@ public class PlayerStatementAnimations : MonoBehaviour
     public string MoveHands_Get_Name_11()
     {
         string name = "PlayerSideLeftJudoPickingHandsign";
+        return name;
+    }
+     public string PlayerSideLeftJudoPose_Get_Name_11()
+    {
+        string name = "PlayerSideLeftJudoPose";
+        return name;
+    }
+     public string PlayerSideLeftJudoStandingBow_Get_Name_11()
+    {
+        string name = "PlayerSideLeftJudoStandingBow";
+        return name;
+    }
+     public string PlayerSideLeftJudoGettingReady_Get_Name_11()
+    {
+        string name = "PlayerSideLeftJudoGettingReady";
         return name;
     }
     public Animator Player_Get_Animator_Yes_11()

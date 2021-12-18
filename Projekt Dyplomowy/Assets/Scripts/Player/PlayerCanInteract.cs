@@ -13,6 +13,7 @@ public class PlayerCanInteract : MonoBehaviour
     string tagAnswer = "";
     public static bool moveSpace = true;
     public static bool canChangeIndex = false;
+    public static bool playerCanPlay = true;
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
     Ray ray;
@@ -108,10 +109,11 @@ public class PlayerCanInteract : MonoBehaviour
             if (tagAnswer == "False") answerHandler.AnswerNo();
             answerHandler.ReturningStatement(AnswerHandler.index);// test
         }
-        else if (tagName == "RPSButton" && Input.GetMouseButtonDown(0))
+        else if (tagName == "RPSButton" && Input.GetMouseButtonDown(0) && playerCanPlay == true)
         {
             tagName = "";
             Debug.Log("RPS: " + clickedObject);
+            playerCanPlay = false;
             StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
         }
 

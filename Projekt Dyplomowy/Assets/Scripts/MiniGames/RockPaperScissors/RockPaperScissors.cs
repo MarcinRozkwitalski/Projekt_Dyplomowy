@@ -33,6 +33,7 @@ public class RockPaperScissors : MonoBehaviour
         //zatrzymanie losowanie AIChoice
         yield return new WaitForSeconds(preparedStatementAnimations.MoveHands_Yes_11()-0.30f);
         preparedStatementAnimations.MoveHands_No_11();
+        PlayerCanInteract.playerCanPlay = true;
         string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
 
         switch (AIRandomChoice)

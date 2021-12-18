@@ -6,6 +6,7 @@ public class PreparedStatementAnimations : MonoBehaviour
 {
     PlayerStatementAnimations playerStatementAnimations;
     NPCStatementAnimations npcStatementAnimations;
+    RPSAnimations rpsAnimations;
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
     // Start is called before the first frame update
@@ -15,7 +16,9 @@ public class PreparedStatementAnimations : MonoBehaviour
         playerStatementAnimations = GameObject.Find("Player").GetComponent<PlayerStatementAnimations>();
         npcStatementAnimations = GameObject.Find("NPC").GetComponent<NPCStatementAnimations>();
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
+        rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
+
     }
 
 
@@ -25,15 +28,20 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     }
 
-    public void Statement_Yes_11()
+    public IEnumerator Statement_Yes_11()
     {
 
         Start_Yes_11();
-        //wchodzą Judo wojownicy, po animacji startowej Judo (poza, przywitanie, "gotowość walki")
+        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoPose_Get_Name_11())+animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoStandingBow_Get_Name_11())+animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoGettingReady_Get_Name_11())-2f);
+        rpsAnimations.Intro();
         // wchodzi cały HUD oraz losowanie wyborów znaku w Scoreboard
-        if(!RockPaperScissors.HasGameEnded);
-
+        if (RockPaperScissors.HasGameEnded)
+        {
+            rpsAnimations.Outro();
+        // tranzycja
         // przywrócenie gracza wraz z kliakniem obiektów
+        }
+
 
     }
 
