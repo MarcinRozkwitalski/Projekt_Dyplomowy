@@ -4819,7 +4819,6 @@ MonoBehaviour:
   PlayerScore: 0
   AIScore: 0
   ScoreNeededToWin: 3
-  HasGameEnded: 0
   Result: {fileID: 808836441}
   PlayerCurrentChoice: 
   AICurrentChoice: 
@@ -8051,11 +8050,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5781979076900125780, guid: 124ed0d69993c594891dd9af2f15b914, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: -5781979076900125780, guid: 124ed0d69993c594891dd9af2f15b914, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: -5781979076900125780, guid: 124ed0d69993c594891dd9af2f15b914, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8695,7 +8694,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1211117399}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.85, y: -3.93, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1153003501}
