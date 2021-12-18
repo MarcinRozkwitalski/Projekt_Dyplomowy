@@ -7,35 +7,39 @@ public class RockPaperScissors : MonoBehaviour
 {
     public int PlayerScore = 0, AIScore = 0, ScoreNeededToWin = 3;
 
-    public bool HasGameEnded = false;
+    public static bool HasGameEnded = false;
 
     public Text Result;
     public string PlayerCurrentChoice, AICurrentChoice;
 
-    public string[] Choices = {"Rock", "Paper", "Scissors"};
+    public string[] Choices = { "Rock", "Paper", "Scissors" };
 
     public Sprite RockDefault, PaperDefault, ScissorsDefault,
                 RockHover, PaperHover, ScissorsHover,
                 RockChosen, PaperChosen, ScissorsChosen,
                 PlayerChoice_Rock, PlayerChoice_Paper, PlayerChoice_Scissors,
                 AIChoice_Rock, AIChoice_Paper, AIChoice_Scissors;
-    
+
     GameObject playerScoreParent, AIScoreParent;
 
     RPSInteractableButtons rpsInteractableButtons;
+    PreparedStatementAnimations preparedStatementAnimations;
 
-    public IEnumerator PlayRound(string PlayerChoice){
+    public IEnumerator PlayRound(string PlayerChoice)
+    {
         rpsInteractableButtons.ClickedButton(PlayerChoice);
         //zatrzymanie losowania PlayerChoice
         //tu będą animacje HandSign
-        yield return new WaitForSeconds(3.0f);
         //zatrzymanie losowanie AIChoice
-
+        yield return new WaitForSeconds(preparedStatementAnimations.MoveHands_Yes_11()-0.30f);
+        preparedStatementAnimations.MoveHands_No_11();
         string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
 
-        switch(AIRandomChoice){
+        switch (AIRandomChoice)
+        {
             case "Rock":
-                switch(PlayerChoice){
+                switch (PlayerChoice)
+                {
                     case "Paper":
                         Win();
                         break;
@@ -48,7 +52,8 @@ public class RockPaperScissors : MonoBehaviour
                 }
                 break;
             case "Paper":
-                switch(PlayerChoice){
+                switch (PlayerChoice)
+                {
                     case "Scissors":
                         Win();
                         break;
@@ -61,7 +66,8 @@ public class RockPaperScissors : MonoBehaviour
                 }
                 break;
             case "Scissors":
-                switch(PlayerChoice){
+                switch (PlayerChoice)
+                {
                     case "Rock":
                         Win();
                         break;
@@ -76,9 +82,11 @@ public class RockPaperScissors : MonoBehaviour
         }
     }
 
-    public void UpdateScoreboard(){
+    public void UpdateScoreboard()
+    {
         SetActiveFalseScoreboard();
-        switch(PlayerScore){
+        switch (PlayerScore)
+        {
             case 0:
                 playerScoreParent.transform.GetChild(0).gameObject.SetActive(true);
                 break;
@@ -93,7 +101,8 @@ public class RockPaperScissors : MonoBehaviour
                 break;
         }
 
-        switch(AIScore){
+        switch (AIScore)
+        {
             case 0:
                 AIScoreParent.transform.GetChild(0).gameObject.SetActive(true);
                 break;
@@ -109,37 +118,45 @@ public class RockPaperScissors : MonoBehaviour
         }
     }
 
-    public void SetActiveFalseScoreboard(){
-        for(int i = 0; i < playerScoreParent.transform.childCount; i++){
+    public void SetActiveFalseScoreboard()
+    {
+        for (int i = 0; i < playerScoreParent.transform.childCount; i++)
+        {
             playerScoreParent.transform.GetChild(i).gameObject.SetActive(false);
             AIScoreParent.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
 
-    public void Win(){
+    public void Win()
+    {
         Result.text = "Wygrana!";
         PlayerScore++;
         UpdateScoreboard();
         CheckWinCondition();
     }
 
-    public void Lose(){
+    public void Lose()
+    {
         Result.text = "Przegrana...";
         AIScore++;
         UpdateScoreboard();
         CheckWinCondition();
     }
 
-    public void Tie(){
+    public void Tie()
+    {
         Result.text = "Remis";
     }
 
-    public void CheckWinCondition(){
-        if(PlayerScore == 3){
+    public void CheckWinCondition()
+    {
+        if (PlayerScore == 3)
+        {
             Result.text = "Wygrałeś grę w papier kamień nożyce!";
             HasGameEnded = true;
         }
-        if(AIScore == 3){
+        if (AIScore == 3)
+        {
             Result.text = "Przegrałeś grę w papier kamień nożyce!";
             HasGameEnded = true;
         }
@@ -151,6 +168,7 @@ public class RockPaperScissors : MonoBehaviour
         playerScoreParent = GameObject.Find("PlayerScore");
         AIScoreParent = GameObject.Find("AIScore");
         rpsInteractableButtons = GameObject.Find("InteractableButtons").GetComponent<RPSInteractableButtons>();
+        preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
         PlayerScore = 0;
         AIScore = 0;
         HasGameEnded = false;
@@ -159,6 +177,6 @@ public class RockPaperScissors : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
