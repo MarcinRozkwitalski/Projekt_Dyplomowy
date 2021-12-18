@@ -6889,6 +6889,7 @@ GameObject:
   - component: {fileID: 908899126}
   - component: {fileID: 908899127}
   - component: {fileID: 908899128}
+  - component: {fileID: 908899129}
   m_Layer: 0
   m_Name: AnimationHandler
   m_TagString: Untagged
@@ -6936,6 +6937,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8530275986d911843a7432bb2a33485d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &908899129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 908899125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc38a2f1d70767b418539f87155b0df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &914182588 stripped
