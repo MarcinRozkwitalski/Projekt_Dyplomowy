@@ -29,8 +29,9 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
 
         Start_Yes_11();
-
-        //wchodzą Judo wojownicy, po animacji startowej Judo (poza, przywitanie, "gotowość walki") wchodzi cały HUD oraz losowanie wyborów znaku w Scoreboard
+        //wchodzą Judo wojownicy, po animacji startowej Judo (poza, przywitanie, "gotowość walki")
+        // wchodzi cały HUD oraz losowanie wyborów znaku w Scoreboard
+        if(!RockPaperScissors.HasGameEnded);
 
     }
 
@@ -47,9 +48,10 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         playerStatementAnimations.MoveHands_Yes_11();
         return animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.MoveHands_Get_Name_11());
-        
+
     }
-    public void MoveHands_No_11(){
+    public void MoveHands_No_11()
+    {
         playerStatementAnimations.MoveHands_No_11();
     }
     public void Start_No_11()
