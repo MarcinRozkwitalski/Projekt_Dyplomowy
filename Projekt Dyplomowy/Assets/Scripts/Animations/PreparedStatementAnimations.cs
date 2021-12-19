@@ -47,6 +47,9 @@ public class PreparedStatementAnimations : MonoBehaviour
                 playerStatementAnimations.SetActive_False_Object_Yes_11();
                 PlayerCanInteract.canChangeIndex = true;
                 PlayerMovement.canMove = true;
+                PlayerCanInteract.playerCanDecide = true;
+                TriggerAnimation.runAnimation = true; // drzwi przypadek 1
+                TriggerAnimation.runAgain = true;
             }
             else
             {

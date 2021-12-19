@@ -111,8 +111,8 @@ public class PlayerCanInteract : MonoBehaviour
         {
             playerCanDecide = false; // kontrola by nie odpowiadać wiele razy na jedno pytanie
             tagName = "";
-            TriggerAnimation.runAnimation = false;
-            TriggerAnimation.runAgain = true;
+            TriggerAnimation.runAnimation = false; // dla drzwi
+            TriggerAnimation.runAgain = true; // dla drzwi
             Debug.Log("TAG = " + tagAnswer + ",  Index =" + AnswerHandler.index);
             if (tagAnswer == "True") answerHandler.AnswerYes();
             if (tagAnswer == "False") answerHandler.AnswerNo();
