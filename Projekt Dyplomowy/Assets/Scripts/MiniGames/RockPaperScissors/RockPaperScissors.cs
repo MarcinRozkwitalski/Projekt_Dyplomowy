@@ -7,7 +7,7 @@ public class RockPaperScissors : MonoBehaviour
 {
     public int PlayerScore = 0, AIScore = 0, ScoreNeededToWin = 3;
 
-    public static bool HasGameEnded = false, stopRandomisingPlayerChoice = false, stopRandomisingAIChoice = false;
+    public static bool HasGameEnded = false, stopRandomisingPlayerChoice = false, stopRandomisingAIChoice = false, doRandomization = true;
 
     public Text Result;
     public string PlayerCurrentChoice, AICurrentChoice;
@@ -44,6 +44,7 @@ public class RockPaperScissors : MonoBehaviour
         //setbool StopRandomisingChoice to false
         stopRandomisingPlayerChoice = false;
         stopRandomisingAIChoice = false;
+        doRandomization = true;
 
         switch (AIRandomChoice)
         {
@@ -130,7 +131,7 @@ public class RockPaperScissors : MonoBehaviour
 
     public void ViewChoiceOnScoreboard(string choice, string whichSide)
     {
-        SetDisactiveChoicesOnScoreboard();
+        SetDisactiveChoicesOnScoreboard(whichSide);
         switch(choice)
         {
             case "Rock":
@@ -166,21 +167,38 @@ public class RockPaperScissors : MonoBehaviour
         }
     }
 
-    public void SetDisactiveChoicesOnScoreboard()
+    public void SetDisactiveChoicesOnScoreboard(string whichSide)
     {
-        for (int i = 0; i < playerChoiceParent.transform.childCount; i++)
+        if(whichSide == "Player"){
+            for (int i = 0; i < playerChoiceParent.transform.childCount; i++)
+            {
+                playerChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
+            }
+        }
+        else if(whichSide == "AI")
         {
-            playerChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
-            AIChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
+            for (int i = 0; i < playerChoiceParent.transform.childCount; i++)
+            {
+                AIChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
+            }
         }
     }
 
     public IEnumerator RandomiseChoicesOnScoreboard(bool randomiseChoice, string whichSide)
     {
-        SetDisactiveChoicesOnScoreboard();
         if(randomiseChoice == false)
         {
+            if(whichSide == "Player")
+            {
+                SetDisactiveChoicesOnScoreboard("Player");
+            }
+            else if(whichSide == "AI")
+            {
+                SetDisactiveChoicesOnScoreboard("AI");
+            }
+            
             string RandomChoice = Choices[Random.Range(0, Choices.Length)];
+            
             switch(RandomChoice)
             {
                 case "Rock":
@@ -214,8 +232,9 @@ public class RockPaperScissors : MonoBehaviour
                     }
                     break;
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.4f);
         }
+        doRandomization = true;
     }
 
     public void SetActiveFalseScoreboard()

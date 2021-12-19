@@ -53,6 +53,14 @@ public class PreparedStatementAnimations : MonoBehaviour
                 Start_Yes_11();
                 yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoPose_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoStandingBow_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoGettingReady_Get_Name_11()) - 2f);
                 rpsAnimations.Intro();
+                if(RockPaperScissors.doRandomization == true){
+                    StartCoroutine(rockPaperScissors.RandomiseChoicesOnScoreboard(RockPaperScissors.stopRandomisingPlayerChoice, "Player"));
+                    StartCoroutine(rockPaperScissors.RandomiseChoicesOnScoreboard(RockPaperScissors.stopRandomisingAIChoice, "AI"));
+                    RockPaperScissors.doRandomization = false;
+                }
+
+                
+
                 //wchodzi cały HUD
                 //losowanie wyborów znaku w Scoreboard i wyświetlanie 
 
