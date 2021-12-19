@@ -14,6 +14,8 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool moveSpace = true;
     public static bool canChangeIndex = false;
     public static bool playerCanPlay = true;
+    public static bool playerCanDecide = true;
+
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
     Ray ray;
@@ -99,8 +101,9 @@ public class PlayerCanInteract : MonoBehaviour
             // DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
             answerHandler.LoadNewSentence();
         }
-        else if (tagName == "Decision" && Input.GetMouseButtonDown(0))
+        else if (tagName == "Decision" && Input.GetMouseButtonDown(0) && playerCanDecide == true)
         {
+            playerCanDecide = false; // kontrola by nie odpowiadać wiele razy na jedno pytanie
             tagName = "";
             TriggerAnimation.runAnimation = false;
             TriggerAnimation.runAgain = true;

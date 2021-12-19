@@ -6,10 +6,12 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 {
     PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
     PreparedStatementAnimations preparedStatementAnimations;
+    AnimationTime animationtime;
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
         preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
+        animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
     }
 
     // Using doors for animation
@@ -87,7 +89,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     {
                         case 11:
                             animator.SetBool("Outro", true);
-                            yield return new WaitForSeconds(1.5f);
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator,"Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
                             break;
                         default:

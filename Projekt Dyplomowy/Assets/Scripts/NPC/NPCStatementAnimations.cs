@@ -17,7 +17,9 @@ public class NPCStatementAnimations : MonoBehaviour
     {
 
     }
-
+    public void SetActive_False_Object_Yes_11(){
+        npc_yes_11.SetActive(false);
+    }
     public void Start_Yes_11()
     {
         npc_yes_11.SetActive(true);
@@ -26,6 +28,9 @@ public class NPCStatementAnimations : MonoBehaviour
     public void MoveHands_Yes_11()
     {
         animator_yes_11.SetBool("MoveHands", true);
+    }
+    public void MoveHands_No_11()
+    {
         animator_yes_11.SetBool("MoveHands", false);
     }
     public void Start_No_11()

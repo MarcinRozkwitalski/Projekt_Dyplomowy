@@ -13,6 +13,10 @@ public class PlayerStatementAnimations : MonoBehaviour
         animator_yes_11 = player_yes_11.GetComponent<Animator>();
     }
 
+    public void SetActive_False_Object_Yes_11()
+    {
+        player_yes_11.SetActive(false);
+    }
     public void Start_Yes_11()
     {
         HideAllPlayerPerspectives();
@@ -33,17 +37,17 @@ public class PlayerStatementAnimations : MonoBehaviour
         string name = "PlayerSideLeftJudoPickingHandsign";
         return name;
     }
-     public string PlayerSideLeftJudoPose_Get_Name_11()
+    public string PlayerSideLeftJudoPose_Get_Name_11()
     {
         string name = "PlayerSideLeftJudoPose";
         return name;
     }
-     public string PlayerSideLeftJudoStandingBow_Get_Name_11()
+    public string PlayerSideLeftJudoStandingBow_Get_Name_11()
     {
         string name = "PlayerSideLeftJudoStandingBow";
         return name;
     }
-     public string PlayerSideLeftJudoGettingReady_Get_Name_11()
+    public string PlayerSideLeftJudoGettingReady_Get_Name_11()
     {
         string name = "PlayerSideLeftJudoGettingReady";
         return name;
