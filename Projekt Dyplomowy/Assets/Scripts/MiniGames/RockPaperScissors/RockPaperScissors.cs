@@ -7,7 +7,7 @@ public class RockPaperScissors : MonoBehaviour
 {
     public int PlayerScore = 0, AIScore = 0, ScoreNeededToWin = 3;
 
-    public static bool HasGameEnded = false;
+    public static bool HasGameEnded = false, stopRandomisingPlayerChoice = false, stopRandomisingAIChoice = false;
 
     public Text Result;
     public string PlayerCurrentChoice, AICurrentChoice;
@@ -20,21 +20,30 @@ public class RockPaperScissors : MonoBehaviour
                 PlayerChoice_Rock, PlayerChoice_Paper, PlayerChoice_Scissors,
                 AIChoice_Rock, AIChoice_Paper, AIChoice_Scissors;
 
-    GameObject playerScoreParent, AIScoreParent;
+    GameObject playerScoreParent, AIScoreParent, playerChoiceParent, AIChoiceParent;
 
     RPSInteractableButtons rpsInteractableButtons;
     PreparedStatementAnimations preparedStatementAnimations;
 
     public IEnumerator PlayRound(string PlayerChoice)
     {
+        string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
         rpsInteractableButtons.ClickedButton(PlayerChoice);
         //zatrzymanie losowania PlayerChoice
-        //tu będą animacje HandSign
-        //zatrzymanie losowanie AIChoice
+        //setbool stopRandomisingChoice to true
+        stopRandomisingPlayerChoice = true;
+        ViewChoiceOnScoreboard(PlayerChoice, "Player");
+        
         yield return new WaitForSeconds(preparedStatementAnimations.MoveHands_Yes_11()-0.30f);
+        //zatrzymanie losowanie AIChoice
+        stopRandomisingAIChoice = true;
+        ViewChoiceOnScoreboard(AIRandomChoice, "AI");
         preparedStatementAnimations.MoveHands_No_11();
+        yield return new WaitForSeconds(2.0f);
         PlayerCanInteract.playerCanPlay = true;
-        string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
+        //setbool StopRandomisingChoice to false
+        stopRandomisingPlayerChoice = false;
+        stopRandomisingAIChoice = false;
 
         switch (AIRandomChoice)
         {
@@ -119,6 +128,96 @@ public class RockPaperScissors : MonoBehaviour
         }
     }
 
+    public void ViewChoiceOnScoreboard(string choice, string whichSide)
+    {
+        SetDisactiveChoicesOnScoreboard();
+        switch(choice)
+        {
+            case "Rock":
+                if (whichSide == "Player")
+                {
+                    playerChoiceParent.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                else if (whichSide == "AI")
+                {
+                    AIChoiceParent.transform.GetChild(0).gameObject.SetActive(true);
+                }
+                break;
+            case "Paper":
+                if (whichSide == "Player")
+                {
+                    playerChoiceParent.transform.GetChild(1).gameObject.SetActive(true);
+                }
+                else if (whichSide == "AI")
+                {
+                    AIChoiceParent.transform.GetChild(1).gameObject.SetActive(true);
+                }
+                break;
+            case "Scissors":
+                if (whichSide == "Player")
+                {
+                    playerChoiceParent.transform.GetChild(2).gameObject.SetActive(true);
+                }
+                else if (whichSide == "AI")
+                {
+                    AIChoiceParent.transform.GetChild(2).gameObject.SetActive(true);
+                }
+                break;
+        }
+    }
+
+    public void SetDisactiveChoicesOnScoreboard()
+    {
+        for (int i = 0; i < playerChoiceParent.transform.childCount; i++)
+        {
+            playerChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
+            AIChoiceParent.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+
+    public IEnumerator RandomiseChoicesOnScoreboard(bool randomiseChoice, string whichSide)
+    {
+        SetDisactiveChoicesOnScoreboard();
+        if(randomiseChoice == false)
+        {
+            string RandomChoice = Choices[Random.Range(0, Choices.Length)];
+            switch(RandomChoice)
+            {
+                case "Rock":
+                    if (whichSide == "Player")
+                    {
+                        playerChoiceParent.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                    else if (whichSide == "AI")
+                    {
+                        AIChoiceParent.transform.GetChild(0).gameObject.SetActive(true);
+                    }
+                    break;
+                case "Paper":
+                    if (whichSide == "Player")
+                    {
+                        playerChoiceParent.transform.GetChild(1).gameObject.SetActive(true);
+                    }
+                    else if (whichSide == "AI")
+                    {
+                        AIChoiceParent.transform.GetChild(1).gameObject.SetActive(true);
+                    }
+                    break;
+                case "Scissors":
+                    if (whichSide == "Player")
+                    {
+                        playerChoiceParent.transform.GetChild(2).gameObject.SetActive(true);
+                    }
+                    else if (whichSide == "AI")
+                    {
+                        AIChoiceParent.transform.GetChild(2).gameObject.SetActive(true);
+                    }
+                    break;
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
     public void SetActiveFalseScoreboard()
     {
         for (int i = 0; i < playerScoreParent.transform.childCount; i++)
@@ -168,6 +267,8 @@ public class RockPaperScissors : MonoBehaviour
     {
         playerScoreParent = GameObject.Find("PlayerScore");
         AIScoreParent = GameObject.Find("AIScore");
+        playerChoiceParent = GameObject.Find("PlayerChoice");
+        AIChoiceParent = GameObject.Find("AIChoice");
         rpsInteractableButtons = GameObject.Find("InteractableButtons").GetComponent<RPSInteractableButtons>();
         preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
         PlayerScore = 0;
