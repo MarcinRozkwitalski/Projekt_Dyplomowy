@@ -62,6 +62,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         PlayerStopAnimations();
         Debug.Log("Skończone");
         PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
+        PlayerCanInteract.canChangeIndex = true;
+        PlayerCanInteract.playerCanDecide = true;
     }
 
     // Using Tale Animations
@@ -84,12 +86,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             {
                 if (SentenceHandler.hashTableAnswers[AnswerHandler.index].Equals("true"))
                 {
-
                     switch (AnswerHandler.index)
                     {
                         case 11:
                             animator.SetBool("Outro", true);
-                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator,"Outro"));
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
                             break;
                         default:

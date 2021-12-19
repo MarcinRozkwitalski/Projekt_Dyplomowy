@@ -12,7 +12,7 @@ public class PlayerCanInteract : MonoBehaviour
     string tagName = "";
     string tagAnswer = "";
     public static bool moveSpace = true;
-    public static bool canChangeIndex = false;
+    public static bool canChangeIndex = true;
     public static bool playerCanPlay = true;
     public static bool playerCanDecide = true;
 
@@ -22,6 +22,8 @@ public class PlayerCanInteract : MonoBehaviour
     RaycastHit2D hit;
     AnswerHandler answerHandler;
     RockPaperScissors rockPaperScissors;
+    // do usunięcia
+    TestScrpitForIndex testScrpitForIndex;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -53,6 +55,8 @@ public class PlayerCanInteract : MonoBehaviour
     {
         answerHandler = GameObject.Find("IndexHandler").GetComponent<AnswerHandler>();
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
+        // do usunięcia
+        testScrpitForIndex = GameObject.Find("IndexHandler").GetComponent<TestScrpitForIndex>();
     }
 
     void Update()
@@ -91,15 +95,17 @@ public class PlayerCanInteract : MonoBehaviour
             }
 
         }
-        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true)
+        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true && TestScrpitForIndex.stop == true)
         {
+            // usunąc
+             AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
+
             canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");
             interactableObject = "none";
             usedObjects.Add(clickedObject);
-            // DoorHandler.doorStatus += 1; // zmienna do otwierania drzwi
-            answerHandler.LoadNewSentence();
+           // answerHandler.LoadNewSentence();
         }
         else if (tagName == "Decision" && Input.GetMouseButtonDown(0) && playerCanDecide == true)
         {
