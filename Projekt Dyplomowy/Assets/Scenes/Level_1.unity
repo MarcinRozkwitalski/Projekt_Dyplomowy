@@ -6241,7 +6241,7 @@ GameObject:
   - component: {fileID: 808836442}
   - component: {fileID: 808836441}
   m_Layer: 5
-  m_Name: Text
+  m_Name: RPSText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

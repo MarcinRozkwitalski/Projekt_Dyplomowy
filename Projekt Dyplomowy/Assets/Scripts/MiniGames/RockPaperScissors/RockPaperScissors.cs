@@ -20,7 +20,7 @@ public class RockPaperScissors : MonoBehaviour
                 PlayerChoice_Rock, PlayerChoice_Paper, PlayerChoice_Scissors,
                 AIChoice_Rock, AIChoice_Paper, AIChoice_Scissors;
 
-    GameObject playerScoreParent, AIScoreParent, playerChoiceParent, AIChoiceParent;
+    GameObject playerScoreParent, AIScoreParent, playerChoiceParent, AIChoiceParent, RPSText;
 
     RPSInteractableButtons rpsInteractableButtons;
     PreparedStatementAnimations preparedStatementAnimations;
@@ -39,6 +39,7 @@ public class RockPaperScissors : MonoBehaviour
         stopRandomisingAIChoice = true;
         ViewChoiceOnScoreboard(AIRandomChoice, "AI");
         preparedStatementAnimations.MoveHands_No_11();
+        RPSText.SetActive(true);
         yield return new WaitForSeconds(2.0f);
         PlayerCanInteract.playerCanPlay = true;
         //setbool StopRandomisingChoice to false
@@ -91,6 +92,9 @@ public class RockPaperScissors : MonoBehaviour
                 }
                 break;
         }
+        yield return new WaitForSeconds(1.0f);
+        RPSText.SetActive(false);
+        CleanResultText();
     }
 
     public void UpdateScoreboard()
@@ -267,6 +271,11 @@ public class RockPaperScissors : MonoBehaviour
         Result.text = "Remis";
     }
 
+    public void CleanResultText()
+    {
+        Result.text = "";
+    }
+
     public void CheckWinCondition()
     {
         if (PlayerScore == 3)
@@ -288,6 +297,7 @@ public class RockPaperScissors : MonoBehaviour
         AIScoreParent = GameObject.Find("AIScore");
         playerChoiceParent = GameObject.Find("PlayerChoice");
         AIChoiceParent = GameObject.Find("AIChoice");
+        RPSText = GameObject.Find("RPSText");
         rpsInteractableButtons = GameObject.Find("InteractableButtons").GetComponent<RPSInteractableButtons>();
         preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
         PlayerScore = 0;
