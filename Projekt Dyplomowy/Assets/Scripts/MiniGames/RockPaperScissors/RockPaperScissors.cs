@@ -29,23 +29,13 @@ public class RockPaperScissors : MonoBehaviour
     {
         string AIRandomChoice = Choices[Random.Range(0, Choices.Length)];
         rpsInteractableButtons.ClickedButton(PlayerChoice);
-        //zatrzymanie losowania PlayerChoice
-        //setbool stopRandomisingChoice to true
         stopRandomisingPlayerChoice = true;
-        ViewChoiceOnScoreboard(PlayerChoice, "Player");
-        
-        yield return new WaitForSeconds(preparedStatementAnimations.MoveHands_Yes_11()-0.30f);
-        //zatrzymanie losowanie AIChoice
+        ViewChoiceOnScoreboard(PlayerChoice, "Player");     
+        yield return new WaitForSeconds(preparedStatementAnimations.MoveHands_Yes_11()-1.00f);
         stopRandomisingAIChoice = true;
         ViewChoiceOnScoreboard(AIRandomChoice, "AI");
         preparedStatementAnimations.MoveHands_No_11();
         RPSText.SetActive(true);
-        yield return new WaitForSeconds(2.0f);
-        PlayerCanInteract.playerCanPlay = true;
-        //setbool StopRandomisingChoice to false
-        stopRandomisingPlayerChoice = false;
-        stopRandomisingAIChoice = false;
-        doRandomization = true;
 
         switch (AIRandomChoice)
         {
@@ -92,9 +82,15 @@ public class RockPaperScissors : MonoBehaviour
                 }
                 break;
         }
-        yield return new WaitForSeconds(1.0f);
+        //time of viewing result of one round
+        yield return new WaitForSeconds(2.0f);
+        PlayerCanInteract.playerCanPlay = true;
+        stopRandomisingPlayerChoice = false;
+        stopRandomisingAIChoice = false;
+        doRandomization = true;
         RPSText.SetActive(false);
         CleanResultText();
+        StartCoroutine(CheckWinCondition());
     }
 
     public void UpdateScoreboard()
@@ -255,7 +251,6 @@ public class RockPaperScissors : MonoBehaviour
         Result.text = "Wygrana!";
         PlayerScore++;
         UpdateScoreboard();
-        CheckWinCondition();
     }
 
     public void Lose()
@@ -263,7 +258,6 @@ public class RockPaperScissors : MonoBehaviour
         Result.text = "Przegrana...";
         AIScore++;
         UpdateScoreboard();
-        CheckWinCondition();
     }
 
     public void Tie()
@@ -276,21 +270,26 @@ public class RockPaperScissors : MonoBehaviour
         Result.text = "";
     }
 
-    public void CheckWinCondition()
+    public IEnumerator CheckWinCondition()
     {
         if (PlayerScore == 3)
         {
+            RPSText.SetActive(true);
             Result.text = "Wygrałeś grę w papier kamień nożyce!";
+            yield return new WaitForSeconds(2.0f);
+            RPSText.SetActive(false);
             HasGameEnded = true;
         }
         if (AIScore == 3)
         {
-            Result.text = "Przegrałeś grę w papier kamień nożyce!";
+            RPSText.SetActive(true);
+            Result.text = "Przegrałeś grę w papier kamień nożyce...";
+            yield return new WaitForSeconds(2.0f);
+            RPSText.SetActive(false);
             HasGameEnded = true;
         }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         playerScoreParent = GameObject.Find("PlayerScore");
@@ -303,11 +302,5 @@ public class RockPaperScissors : MonoBehaviour
         PlayerScore = 0;
         AIScore = 0;
         HasGameEnded = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }
