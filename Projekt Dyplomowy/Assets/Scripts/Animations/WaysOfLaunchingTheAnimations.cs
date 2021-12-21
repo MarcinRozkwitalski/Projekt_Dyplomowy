@@ -26,7 +26,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
-            animator.SetBool("Outro", false);
+            animator.SetBool("Intro", false);
             TriggerAnimation.startTale = false;
 
         }
