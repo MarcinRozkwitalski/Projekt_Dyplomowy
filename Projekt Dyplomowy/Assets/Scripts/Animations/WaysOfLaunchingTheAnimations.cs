@@ -40,9 +40,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     switch (AnswerHandler.index)
                     {
                         case 2:
-                            // animator.SetBool("Outro", true);
-                            // yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
-                            // StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
+                            animator.SetBool("Outro", true);
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            PlayerCanInteract.canChangeIndex = true;
+                            PlayerMovement.canMove = true;
+                            PlayerCanInteract.playerCanDecide = true;
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
@@ -62,6 +64,13 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                 {
                     switch (AnswerHandler.index)
                     {
+                        case 2:
+                            animator.SetBool("Outro", true);
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            PlayerCanInteract.canChangeIndex = true;
+                            PlayerMovement.canMove = true;
+                            PlayerCanInteract.playerCanDecide = true;
+                            break;
                         case 11:
                             break;
                         default:

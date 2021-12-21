@@ -58,9 +58,9 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     public void StopMoving()
     {
         PlayerFrontAnim.SetBool("isMoving", false);
-        PlayerFrontLeft45Anim.SetBool("isMoving", false);
+       // PlayerFrontLeft45Anim.SetBool("isMoving", false);
         PlayerSideLeftAnim.SetBool("isMoving", false);
-        PlayerBackLeft45Anim.SetBool("isMoving", false);
+       // PlayerBackLeft45Anim.SetBool("isMoving", false);
         PlayerBackAnim.SetBool("isMoving", false);
     }
 
