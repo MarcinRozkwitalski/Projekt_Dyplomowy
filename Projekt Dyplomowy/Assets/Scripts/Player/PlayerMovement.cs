@@ -80,5 +80,8 @@ public class PlayerMovement : MonoBehaviour
                 // Debug.Log(transform.position + "horizontal = " + gameObject.transform.position.x + "   positionJump " + positionJump);
             }
         }
+        else{
+            moving = false;
+        }
     }
 }

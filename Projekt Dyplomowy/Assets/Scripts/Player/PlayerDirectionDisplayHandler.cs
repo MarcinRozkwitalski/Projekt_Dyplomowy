@@ -55,6 +55,14 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         PlayerFrontAnim.SetBool("is1True", false);
         PlayerFrontAnim.SetBool("is1False", false);
     }
+    public void StopMoving()
+    {
+        PlayerFrontAnim.SetBool("isMoving", false);
+        PlayerFrontLeft45Anim.SetBool("isMoving", false);
+        PlayerSideLeftAnim.SetBool("isMoving", false);
+        PlayerBackLeft45Anim.SetBool("isMoving", false);
+        PlayerBackAnim.SetBool("isMoving", false);
+    }
 
     public void PlayerSetDeafultPosition()
     {
@@ -68,6 +76,10 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         PlayerFront.SetActive(true);
 
         PlayerFrontAnim = PlayerFront.GetComponent<Animator>(); // Filip
+        PlayerFrontLeft45Anim = PlayerFrontLeft45.GetComponent<Animator>(); // Filip
+        PlayerBackLeft45Anim = PlayerBackLeft45.GetComponent<Animator>(); // Filip
+        PlayerSideLeftAnim = PlayerSideLeft.GetComponent<Animator>(); // Filip
+        PlayerBackAnim = PlayerBack.GetComponent<Animator>(); // Filip
         collider2d = gameObject.GetComponent<Collider2D>(); // Filip
 
         // do czas animacji 

@@ -35,23 +35,25 @@ public class PreparedStatementAnimations : MonoBehaviour
 
         if(PlayerCanInteract.canChangeIndex == false) // dopóki nie można zmienić indexu rozgrywaj scenariusz
         {
-            if (RockPaperScissors.HasGameEnded)
+            if (RockPaperScissors.HasGameEnded && PlayerMovement.canMove == false)
             {
                 rpsAnimations.Outro();
+                //BŁAD BO UŻYTE DWA RAZY JEST KIEDY NOWY INDEX ????????????CHYBA 
                 // tranzycja spada głaz potem wciągnięty na linie 
                 // przywrócenie gracza wraz z kliakniem obiektów
                 npcStatementAnimations.SetActive_False_Object_Yes_11();
+                playerStatementAnimations.SetActive_False_Object_Yes_11();
                 playerDirectionDisplayHandler.EnablePLayersCollider();
                 playerDirectionDisplayHandler.ShowPlayerFront();
                 playerDirectionDisplayHandler.PlayerSetDeafultPosition();
-                playerStatementAnimations.SetActive_False_Object_Yes_11();
-                PlayerCanInteract.canChangeIndex = true;
-                PlayerMovement.canMove = true;
-                PlayerCanInteract.playerCanDecide = true;
+                PlayerCanInteract.canChangeIndex = true; // włączenie możliwości generowania nowego indexu
+                PlayerMovement.canMove = true; // Włączenie chodzenia gracza
+                PlayerCanInteract.playerCanDecide = true; // Gracz może znowu dokonywac wyboru
                 TriggerAnimation.runAnimation = true; // drzwi przypadek 1
-                TriggerAnimation.runAgain = true;
+                TriggerAnimation.runAgain = true; // drzwi przypadek 1
+                // wyłaczenie ostatniego kliknięcia
             }
-            else
+            else if(RockPaperScissors.HasGameEnded == false)
             {
                 Start_Yes_11();
                 yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoPose_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoStandingBow_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoGettingReady_Get_Name_11()) - 2f);

@@ -98,8 +98,8 @@ public class PlayerCanInteract : MonoBehaviour
         if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true && TestScrpitForIndex.stop == true)
         {
             // usunąc
-             AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
-
+            AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
+            
             canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");

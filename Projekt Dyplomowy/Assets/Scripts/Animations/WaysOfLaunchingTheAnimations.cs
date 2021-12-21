@@ -14,6 +14,72 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
     }
 
+
+    // Using Tale Animations
+    public IEnumerator TaleAnimation(Animator animator)
+    {
+        // odpalenie animacji wprowadzenia wybory 1
+        if (TriggerAnimation.startTale == true)
+        {
+            PlayerMovement.canMove = false;
+            playerDirectionDisplayHandler.StopMoving();
+            playerDirectionDisplayHandler.DisablePLayersCollider();
+            animator.SetBool("Start", true);
+            yield return new WaitForSeconds(1f);
+            animator.SetBool("Start", false);
+            TriggerAnimation.startTale = false;
+
+        }
+        // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
+        else
+        {
+            if (SentenceHandler.hashTableAnswers[AnswerHandler.index] != null)
+            {
+                if (SentenceHandler.hashTableAnswers[AnswerHandler.index].Equals("true"))
+                {
+                    switch (AnswerHandler.index)
+                    {
+                        case 2:
+                            // animator.SetBool("Outro", true);
+                            // yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            // StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
+                            break;
+                        case 11:
+                            animator.SetBool("Outro", true);
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
+                            break;
+                        default:
+                            Debug.Log("Something went wrong with choosing statement animation");
+                            break;
+
+                    }
+                    // Check if Player has animation yes - skrypt
+                    // else use animation of given index - skrypt
+                    // Prepared Animations - skrypt
+                }
+                else
+                {
+                    switch (AnswerHandler.index)
+                    {
+                        case 11:
+                            break;
+                        default:
+                            Debug.Log("Something went wrong with choosing statement animation");
+                            break;
+
+                    }
+                }
+            }
+        }
+
+    }
+
+    // Using StatementOnly for animation
+
+
+
+
     // Using doors for animation
     public IEnumerator DoorAnimations(Animator animator)
     {
@@ -66,64 +132,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         PlayerCanInteract.playerCanDecide = true;
     }
 
-    // Using Tale Animations
-    public IEnumerator TaleAnimation(Animator animator)
-    {
-        // odpalenie animacji wprowadzenia wybory 1
-        if (TriggerAnimation.startTale == true)
-        {
-            playerDirectionDisplayHandler.DisablePLayersCollider();
-            animator.SetBool("Start", true);
-            yield return new WaitForSeconds(1f);
-            animator.SetBool("Start", false);
-            TriggerAnimation.startTale = false;
-            PlayerMovement.canMove = false;
-        }
-        // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
-        else
-        {
-            if (SentenceHandler.hashTableAnswers[AnswerHandler.index] != null)
-            {
-                if (SentenceHandler.hashTableAnswers[AnswerHandler.index].Equals("true"))
-                {
-                    switch (AnswerHandler.index)
-                    {
-                        case 11:
-                            animator.SetBool("Outro", true);
-                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
-                            StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
-                            break;
-                        default:
-                            Debug.Log("Something went wrong with choosing statement animation");
-                            break;
-
-                    }
-
-
-
-                    // NPC - skrypt
-                    // Check if Player has animation yes - skrypt
-                    // else use animation of given index - skrypt
-                    // Prepared Animations - skrypt
-                    // miniGames - skrypt
-
-                }
-                else
-                {
-                    switch (AnswerHandler.index)
-                    {
-                        case 11:
-                            break;
-                        default:
-                            Debug.Log("Something went wrong with choosing statement animation");
-                            break;
-
-                    }
-                }
-            }
-        }
-
-    }
 
     // Methods for TransitionWithPlayer
     void TransitionStart()
