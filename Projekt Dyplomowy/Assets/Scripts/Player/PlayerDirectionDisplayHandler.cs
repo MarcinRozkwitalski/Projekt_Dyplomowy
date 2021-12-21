@@ -55,14 +55,6 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         PlayerFrontAnim.SetBool("is1True", false);
         PlayerFrontAnim.SetBool("is1False", false);
     }
-    public void StopMoving()
-    {
-        PlayerFrontAnim.SetBool("isMoving", false);
-        PlayerFrontLeft45Anim.SetBool("isMoving", false);
-        PlayerSideLeftAnim.SetBool("isMoving", false);
-        PlayerBackLeft45Anim.SetBool("isMoving", false);
-        PlayerBackAnim.SetBool("isMoving", false);
-    }
 
     public void PlayerSetDeafultPosition()
     {

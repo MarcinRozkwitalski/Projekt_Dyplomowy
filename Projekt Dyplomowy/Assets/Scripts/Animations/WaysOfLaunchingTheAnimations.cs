@@ -22,7 +22,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         if (TriggerAnimation.startTale == true)
         {
             PlayerMovement.canMove = false;
-            playerDirectionDisplayHandler.StopMoving();
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
