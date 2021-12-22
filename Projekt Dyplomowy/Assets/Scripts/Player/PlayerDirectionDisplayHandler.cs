@@ -7,7 +7,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     Vector2 CurrentPosition, NewPosition, PlayerDirection, NormalizedPlayerDirection;
     Vector3 CurrentPlayerRotation;
     float x_dir, y_dir;
-    public GameObject PlayerFront, PlayerFrontLeft45, PlayerSideLeft, PlayerBackLeft45, PlayerBack;
+    public GameObject Player, PlayerFront, PlayerFrontLeft45, PlayerSideLeft, PlayerBackLeft45, PlayerBack;
 
     public Animator PlayerFrontAnim, PlayerFrontLeft45Anim, PlayerSideLeftAnim, PlayerBackLeft45Anim, PlayerBackAnim;
     public AnimationClip clip;

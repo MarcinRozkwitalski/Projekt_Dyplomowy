@@ -71,6 +71,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             PlayerCanInteract.playerCanDecide = true;
                             break;
                         case 11:
+                            animator.SetBool("Outro", true);
+                            //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            StartCoroutine(preparedStatementAnimations.Statement_No_11());
                             break;
                         default:
                             Debug.Log("Something went wrong with choosing statement animation");
