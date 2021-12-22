@@ -64,7 +64,6 @@ public class PlayerStatementAnimations : MonoBehaviour
         HideAllPlayerPerspectives();
         gameObject.transform.position = new Vector3(-2, -4, 0);
         playerSideLeft.transform.Rotate(0, 180, 0);
-        //PlayerSideLeft.transform.Rotate(0, 180, 0);
         playerSideLeft.SetActive(true);
         animator_no_11.SetBool("is11False", true);
     }
