@@ -10,7 +10,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     RPSAnimations rpsAnimations;
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
-    // Start is called before the first frame update
+    // Start is called before the first frame update HOHO
     bool animationFinished = false;
     void Start()
     {
