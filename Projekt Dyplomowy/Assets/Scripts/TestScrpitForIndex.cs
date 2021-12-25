@@ -13,8 +13,8 @@ public class TestScrpitForIndex : MonoBehaviour
     public static bool stop = true;
     void Start()
     {
-        //indexList.Add(1);
-        indexList.Add(11);
+        indexList.Add(1);
+        //indexList.Add(11);
         //indexList.Add(2);
     }
 

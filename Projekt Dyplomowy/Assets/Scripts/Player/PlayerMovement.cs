@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float walkspeed = 3f;
+    public static float walkspeed = 3f;
     public Rigidbody2D rb;
     float move;
     public static bool moving, space, canMove = true;

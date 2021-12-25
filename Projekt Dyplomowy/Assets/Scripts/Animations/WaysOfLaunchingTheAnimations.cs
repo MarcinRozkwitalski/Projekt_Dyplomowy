@@ -6,10 +6,12 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 {
     PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
     PreparedStatementAnimations preparedStatementAnimations;
+    PlayerPathFollower playerPathFollower;
     AnimationTime animationtime;
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
+        playerPathFollower = GameObject.Find("Player").GetComponent<PlayerPathFollower>();
         preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
     }
@@ -96,6 +98,12 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
+            //// zrobić z tego metodę 
+            PlayerPathFollower.statementPosition = 1;
+            PlayerPathFollower.playerCanChangePosition = true;
+            PlayerMovement.canMove = false;
+            ////
+
             TriggerAnimation.runAgain = false;
             OpenDoor();
             yield return new WaitForSeconds(1f);
