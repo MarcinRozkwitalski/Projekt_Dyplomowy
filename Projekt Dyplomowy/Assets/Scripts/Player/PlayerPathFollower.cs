@@ -37,8 +37,7 @@ public class PlayerPathFollower : MonoBehaviour
         if (playerDestination == currentPlayerPosition)
         {
             playerCanChangePosition = false;
-            // kiedy przywracamy canMove na true dostajemy starą zmienną z kliknięcia przez co nasza postać biega w "lewo a potem w prawo"
-            //PlayerMovement.canMove = true;
+            PlayerMovement.canMove = true;
         }
     }
     public void Statement_1_Active()
@@ -53,6 +52,7 @@ public class PlayerPathFollower : MonoBehaviour
     {
         playerDestination = new Vector2(2, -6);
         currentPlayerPosition = gameObject.transform.position;
+        PlayerMovement.lastClickedPos = currentPlayerPosition; // ustawia nam pozycje lastClickedPos po to by po zakonczeniu przmieszczania nie potrzebnie znowu się nam pozycja zmieniła
         Debug.Log("current position" + currentPlayerPosition);
         PlayerMovement.moving = true; // zmienna aktywacji animacji chodzenia
     }
