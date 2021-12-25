@@ -102,6 +102,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             PlayerPathFollower.statementPosition = 1;
             PlayerPathFollower.playerCanChangePosition = true;
             PlayerMovement.canMove = false;
+            // Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             ////
 
             TriggerAnimation.runAgain = false;

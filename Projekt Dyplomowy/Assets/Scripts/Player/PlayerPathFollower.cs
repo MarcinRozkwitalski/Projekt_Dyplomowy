@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerPathFollower : MonoBehaviour
 {
-    public Vector2 playerDestination = new Vector2(-2, -8);
+    public static Vector2 playerDestination = new Vector2(-2, -8);
     public Vector2 currentPlayerPosition;
     public static bool playerCanChangePosition = false;
     public static int statementPosition = 0;
