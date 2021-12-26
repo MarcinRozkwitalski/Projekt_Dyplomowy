@@ -22,7 +22,6 @@ public class PlayerPathFollower : MonoBehaviour
         // aktywacja zmiany pozycji gracza 
         if (playerCanChangePosition)
         {
-            Debug.Log("playerCanChangePosition = true");
             switch (statementPosition)
             {
                 case 1:
