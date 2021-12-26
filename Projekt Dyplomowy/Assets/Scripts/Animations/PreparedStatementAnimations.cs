@@ -24,7 +24,7 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_Yes_11()
     {
-        if(PlayerCanInteract.canChangeIndex == false) // dopóki nie można zmienić indexu rozgrywaj scenariusz
+        if (PlayerCanInteract.canChangeIndex == false) // dopóki nie można zmienić indexu rozgrywaj scenariusz
         {
             if (RockPaperScissors.HasGameEnded && PlayerMovement.canMove == false)
             {
@@ -44,12 +44,13 @@ public class PreparedStatementAnimations : MonoBehaviour
                 TriggerAnimation.runAgain = true; // drzwi przypadek 1
                 // wyłaczenie ostatniego kliknięcia
             }
-            else if(RockPaperScissors.HasGameEnded == false)
+            else if (RockPaperScissors.HasGameEnded == false)
             {
                 Start_Yes_11();
                 yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoPose_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoStandingBow_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoGettingReady_Get_Name_11()) - 2f);
                 rpsAnimations.Intro();
-                if(RockPaperScissors.doRandomization == true){
+                if (RockPaperScissors.doRandomization == true)
+                {
                     StartCoroutine(rockPaperScissors.RandomiseChoicesOnScoreboard(RockPaperScissors.stopRandomisingPlayerChoice, "Player"));
                     StartCoroutine(rockPaperScissors.RandomiseChoicesOnScoreboard(RockPaperScissors.stopRandomisingAIChoice, "AI"));
                     RockPaperScissors.doRandomization = false;
@@ -61,7 +62,7 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_No_11()
     {
-        if(PlayerCanInteract.canChangeIndex == false)
+        if (PlayerCanInteract.canChangeIndex == false)
         {
             if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is11False() && PlayerMovement.canMove == false && playerStatementAnimations.No_11_Helper == true)
             {
@@ -77,12 +78,12 @@ public class PreparedStatementAnimations : MonoBehaviour
                 TriggerAnimation.runAnimation = true; // drzwi przypadek 1
                 TriggerAnimation.runAgain = true; // drzwi przypadek 1
             }
-            else if(!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is11False())
+            else if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is11False())
             {
                 Debug.Log("Początek 11 Fałsz");
                 Start_No_11();
                 yield return new WaitForSeconds(
-                    animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_No_11(), 
+                    animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_No_11(),
                     playerStatementAnimations.PlayerSideSittingInArmchair_Get_Name_No_11()) + 1.8f);
                 End_No_11();
             }
@@ -115,5 +116,74 @@ public class PreparedStatementAnimations : MonoBehaviour
     public void End_No_11()
     {
         playerStatementAnimations.End_No_11();
+    }
+
+
+
+
+    public IEnumerator TransitionWithPlayer()
+    {
+        if (PlayerCanInteract.canChangeIndex == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            TransitionStart();
+            yield return new WaitForSeconds(2.4f);
+            PlayerMovement.canMove = false;
+            Start_Yes_1();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_1(), playerStatementAnimations.PlayerWorkout_Get_Name_1()));
+            TransitionEnd();
+            yield return new WaitForSeconds(2f);
+            PlayerStopAnimations();
+            Debug.Log("Skończone");
+            Debug.Log("STOP 1 = " + PlayerCanInteract.canChangeIndex);
+            PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
+            PlayerCanInteract.playerCanDecide = true;
+            Debug.Log("STOP 2 = " + PlayerCanInteract.canChangeIndex);
+        }
+    }
+
+    void Start_Yes_1()
+    {
+        playerStatementAnimations.Start_Yes_1();
+    }
+
+    void TransitionStart()
+    {
+        Debug.Log("Start tranzycji");
+        GameObject square = GameObject.Find("Square");
+        Animator squareAnimator = square.GetComponent<Animator>();
+        squareAnimator.SetBool("RunRight", true);
+        TriggerAnimation.startTransition = false;
+    }
+
+    void TransitionEnd()
+    {
+        Debug.Log("Koniec tranzycji");
+        GameObject square = GameObject.Find("Square");
+        Animator squareAnimator = square.GetComponent<Animator>();
+        squareAnimator.SetBool("RunLeft", true);
+        squareAnimator.SetBool("RunRight", false);
+    }
+    // void PlayerPlayAnimation()
+    // {
+    //     playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+    //     playerDirectionDisplayHandler.ShowPlayerFront();
+    //     GameObject playerFront = GameObject.Find("PlayerFront");
+    //     Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
+    //     playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
+    // }
+
+    void PlayerStopAnimations()
+    {
+        playerDirectionDisplayHandler.StopAnimations();
+    }
+    // void PlayerSetDeafultPosition()
+    // {
+    //     playerDirectionDisplayHandler.PlayerSetDeafultPosition();
+    // }
+
+    float PlayerAnimationTime()
+    {
+        return playerDirectionDisplayHandler.AnimationLength();
     }
 }

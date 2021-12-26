@@ -33,7 +33,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            StartCoroutine(DoorAnimations(animator));
+            StartCoroutine(OpenDoorAnimation(animator));
         }
         // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
         else
@@ -45,6 +45,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     switch (AnswerHandler.index)
                     {
                         case 1:
+                            StartCoroutine(CloseDoorAnimation(animator));
+                            StartCoroutine(preparedStatementAnimations.TransitionWithPlayer());
                             break;
                         case 2:
                             animator.SetBool("Outro", true);
@@ -103,15 +105,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
 
     // Using doors for animation -> przeniesienie do PreparedAnimations 
-    public IEnumerator DoorAnimations(Animator animator)
+    public IEnumerator OpenDoorAnimation(Animator animator)
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
-            //// zrobić z tego metodę i uruchamiać względem konkretnego indexu przy pomocy switch
-            PlayerPathFollower.statementPosition = 1; // wybór statement
-            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
-            PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
-            ////
+            PlayerPathFollowerStatement(AnswerHandler.index);
 
             TriggerAnimation.runAgain = false;
             DoorHandler.doorStatus = 0;
@@ -119,7 +117,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             animator.SetBool("Start", true); // parametr odpalający animacje 
             Debug.Log("Otwórz Drzwi");
         }
-        if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
+    }
+
+    public IEnumerator CloseDoorAnimation(Animator animator){
+         if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
         {
             TriggerAnimation.runAgain = false;
             animator.SetBool("Start", false);
@@ -130,68 +131,12 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
     }
 
-    // Methods for TransitionWithPlayer -> preparedStatement
-    // Using Transitions for player animation
-
-    public IEnumerator TransitionWithPlayer()
+    public void PlayerPathFollowerStatement(int index)
     {
-        TransitionStart();
-        yield return new WaitForSeconds(2.4f);
-        PlayerMovement.canMove = false;
 
-        PlayerPlayAnimation();
-        PlayerSetDeafultPosition();
-        yield return new WaitForSeconds(PlayerAnimationTime() - 2);
-
-        TransitionEnd();
-        yield return new WaitForSeconds(2f);
-        PlayerStopAnimations();
-        Debug.Log("Skończone");
-        PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
-        PlayerCanInteract.canChangeIndex = true;
-        PlayerCanInteract.playerCanDecide = true;
+        PlayerPathFollower.statementPosition = index; // wybór statement
+        PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+        PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
     }
 
-
-
-    void TransitionStart()
-    {
-        Debug.Log("Start tranzycji");
-        GameObject square = GameObject.Find("Square");
-        Animator squareAnimator = square.GetComponent<Animator>();
-        squareAnimator.SetBool("RunRight", true);
-        TriggerAnimation.startTransition = false;
-    }
-
-    void TransitionEnd()
-    {
-        Debug.Log("Koniec tranzycji");
-        GameObject square = GameObject.Find("Square");
-        Animator squareAnimator = square.GetComponent<Animator>();
-        squareAnimator.SetBool("RunLeft", true);
-        squareAnimator.SetBool("RunRight", false);
-    }
-    void PlayerPlayAnimation()
-    {
-        GameObject player = GameObject.Find("Player");
-        playerDirectionDisplayHandler.HideAllPlayerPerspectives();
-        playerDirectionDisplayHandler.ShowPlayerFront();
-        GameObject playerFront = GameObject.Find("PlayerFront");
-        Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
-        playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
-    }
-
-    void PlayerStopAnimations()
-    {
-        playerDirectionDisplayHandler.StopAnimations();
-    }
-    void PlayerSetDeafultPosition()
-    {
-        playerDirectionDisplayHandler.PlayerSetDeafultPosition();
-    }
-
-    float PlayerAnimationTime()
-    {
-        return playerDirectionDisplayHandler.AnimationLength();
-    }
 }
