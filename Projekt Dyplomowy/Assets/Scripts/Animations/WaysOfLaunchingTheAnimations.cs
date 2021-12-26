@@ -111,8 +111,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             PlayerPathFollower.statementPosition = 1; // wybór statement
             PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
             PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
-            // Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
-            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             ////
 
             TriggerAnimation.runAgain = false;

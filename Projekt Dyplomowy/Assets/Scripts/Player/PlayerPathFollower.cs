@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class PlayerPathFollower : MonoBehaviour
 {
-    public static Vector2 playerDestination = new Vector2(1,1); // w celu blokowania chodzenia dla innych statements
+    public static Vector2 playerDestination = new Vector2(1, 1); // w celu blokowania chodzenia dla innych statements
     public Vector2 currentPlayerPosition;
     public static bool playerCanChangePosition = false;
     public static int statementPosition = 0;
 
-
+    bool updateWalkingAnimation = true;
 
 
     // Nie możemy tu ustawić canMove na true bo gracz będzie mógł sam chodzić po pokoju
@@ -37,6 +37,7 @@ public class PlayerPathFollower : MonoBehaviour
         if (playerDestination == currentPlayerPosition)
         {
             // jak się wejdzie w to samo miejsce to nagle ANOMALIA
+            updateWalkingAnimation = true;
             playerCanChangePosition = false;
             PlayerMovement.canMove = true;
         }
@@ -44,6 +45,10 @@ public class PlayerPathFollower : MonoBehaviour
     public void Statement_1_Active()
     {
         playerDestination = new Vector2(2, -6);
+        if(updateWalkingAnimation == true){// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+        updateWalkingAnimation = false;
+        }
         Player_Position_Update();
         Player_Moving();
     }

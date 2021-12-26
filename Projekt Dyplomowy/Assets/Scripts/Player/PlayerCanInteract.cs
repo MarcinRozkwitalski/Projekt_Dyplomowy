@@ -85,7 +85,12 @@ public class PlayerCanInteract : MonoBehaviour
                     }
                     clickedObject = hit.collider.name;
                 }
-
+                else
+                {
+                    Debug.Log("No interaction");
+                    clickedObject = "";
+                    tagName = "";
+                }
             }
             else
             {
@@ -99,13 +104,13 @@ public class PlayerCanInteract : MonoBehaviour
         {
             // usunąc
             AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
-            
+
             canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");
             interactableObject = "none";
             usedObjects.Add(clickedObject);
-           // answerHandler.LoadNewSentence();
+            // answerHandler.LoadNewSentence();
         }
         else if (tagName == "Decision" && Input.GetMouseButtonDown(0) && playerCanDecide == true)
         {
