@@ -295,16 +295,6 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
 
                 //Debug.Log("Going Up");
             }
-
-
-
-            //Debug.DrawLine(CurrentPosition, NewPosition, Color.red, 15.0f);
-
-            //Debug.Log("Direction = " + NormalizedPlayerDirection);
-            //Debug.Log("CurrentPosition = " + CurrentPosition);
-            //Debug.Log("NewPosition = " + NewPosition);
-            //Debug.Log("X equals " + x_dir);
-            //Debug.Log("Y equals " + y_dir);
             activeAnimationForPlayerPathFollower = false;
         }
     }

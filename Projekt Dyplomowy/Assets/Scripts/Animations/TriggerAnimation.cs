@@ -59,33 +59,21 @@ public class TriggerAnimation : MonoBehaviour
     {
         yield return new WaitForSeconds(0f);
 
-        if (gameObject.tag == "UseDoor")
-        {
-            StartCoroutine(waysOfLaunchingTheAnimations.DoorAnimations(animator));
-        }
+        // if (gameObject.tag == "UseDoor")
+        // {
+        //     StartCoroutine(waysOfLaunchingTheAnimations.DoorAnimations(animator));
+        // }
 
-        // tranzycja wejścia dla animacji gracza po odpowiedzi
-        if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
-        {
-            StartCoroutine(waysOfLaunchingTheAnimations.TransitionWithPlayer());
-        }
+        // // tranzycja wejścia dla animacji gracza po odpowiedzi
+        // if (SentenceHandler.hashTableAnswers[1] != null && startTransition == true)
+        // {
+        //     StartCoroutine(waysOfLaunchingTheAnimations.TransitionWithPlayer());
+        // }
 
         // wejście fabuły bez tranzycji przed odpowiedzią gracza
-        if (gameObject.tag == "Tale")
-        {
-            StartCoroutine(waysOfLaunchingTheAnimations.TaleAnimation(animator));
-        }
-
-        // Odpalenie animacji PASEK
-
-
-        // if (gameObject.tag == "PlayerCantMove") PlayerMovement.canMove = false;
-        // else PlayerMovement.canMove = true;
+        // if (gameObject.tag == "Tale")
+        // {
+            StartCoroutine(waysOfLaunchingTheAnimations.TaleAnimation(animator,gameObject.tag));
+        // }
     }
-
-
-
-
-
-
 }

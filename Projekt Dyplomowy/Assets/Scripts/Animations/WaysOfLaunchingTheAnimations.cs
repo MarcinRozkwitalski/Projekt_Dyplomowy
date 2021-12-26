@@ -18,10 +18,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
 
     // Using Tale Animations
-    public IEnumerator TaleAnimation(Animator animator)
+    public IEnumerator TaleAnimation(Animator animator, string tag)
     {
-        // odpalenie animacji wprowadzenia wybory 1
-        if (TriggerAnimation.startTale == true)
+        // odpalenie animacji wybory 
+        if (TriggerAnimation.startTale == true && tag != "UseDoor")
         {
             PlayerMovement.canMove = false;
             playerDirectionDisplayHandler.DisablePLayersCollider();
@@ -30,6 +30,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             animator.SetBool("Intro", false);
             TriggerAnimation.startTale = false;
 
+        }
+        else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
+        {
+            StartCoroutine(DoorAnimations(animator));
         }
         // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
         else
@@ -40,6 +44,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                 {
                     switch (AnswerHandler.index)
                     {
+                        case 1:
+                            break;
                         case 2:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
@@ -57,14 +63,13 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
 
                     }
-                    // Check if Player has animation yes - skrypt
-                    // else use animation of given index - skrypt
-                    // Prepared Animations - skrypt
                 }
                 else
                 {
                     switch (AnswerHandler.index)
                     {
+                        case 1:
+                            break;
                         case 2:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
@@ -84,6 +89,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     }
                 }
             }
+            else
+            {
+                Debug.Log("No answer");
+            }
         }
 
     }
@@ -93,21 +102,21 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
 
 
-    // Using doors for animation
+    // Using doors for animation -> przeniesienie do PreparedAnimations 
     public IEnumerator DoorAnimations(Animator animator)
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
-            //// zrobić z tego metodę 
-            PlayerPathFollower.statementPosition = 1;
-            PlayerPathFollower.playerCanChangePosition = true;
-            PlayerMovement.canMove = false;
+            //// zrobić z tego metodę i uruchamiać względem konkretnego indexu przy pomocy switch
+            PlayerPathFollower.statementPosition = 1; // wybór statement
+            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+            PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
             // Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             ////
 
             TriggerAnimation.runAgain = false;
-            OpenDoor();
+            DoorHandler.doorStatus = 0;
             yield return new WaitForSeconds(1f);
             animator.SetBool("Start", true); // parametr odpalający animacje 
             Debug.Log("Otwórz Drzwi");
@@ -117,21 +126,13 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             TriggerAnimation.runAgain = false;
             animator.SetBool("Start", false);
             yield return new WaitForSeconds(1f);
-            CloseDoor();
+            DoorHandler.doorStatus = 1;
             TriggerAnimation.startTransition = true;
             Debug.Log("Zamnknij Drzwi");
         }
     }
 
-    void OpenDoor()
-    {
-        DoorHandler.doorStatus = 0;
-    }
-    void CloseDoor()
-    {
-        DoorHandler.doorStatus = 1;
-    }
-
+    // Methods for TransitionWithPlayer -> preparedStatement
     // Using Transitions for player animation
 
     public IEnumerator TransitionWithPlayer()
@@ -154,7 +155,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     }
 
 
-    // Methods for TransitionWithPlayer
+
     void TransitionStart()
     {
         Debug.Log("Start tranzycji");
