@@ -130,12 +130,12 @@ public class PreparedStatementAnimations : MonoBehaviour
         {
             PlayerCanInteract.playerCanDecide = true;
             TransitionStart();
-            yield return new WaitForSeconds(2.4f);
+            yield return new WaitForSeconds(2.8f);
             PlayerMovement.canMove = false;
             Debug.Log("canMove" + PlayerMovement.canMove);
             Start_Yes_1();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_1(),
-             "PlayerFrontJump"));
+             "PlayerFrontJump") - 2.0f);
             TransitionEnd();
             yield return new WaitForSeconds(2f);
             PlayerStopAnimations();
