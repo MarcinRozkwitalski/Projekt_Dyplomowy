@@ -5,10 +5,7 @@ using UnityEngine.UI;
 public class PlayerCanInteract : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool canClickObject = false;
     string clickedObject = "nothing has been clicked";
-    string interactableObject = "none";
-    string otherString = "";
     string tagName = "";
     string tagAnswer = "";
     public static bool moveSpace = true;
@@ -27,7 +24,6 @@ public class PlayerCanInteract : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        canClickObject = true;
         interactableObjects.Add(other.name);
         foreach (string entry in interactableObjects)
         {
@@ -38,7 +34,6 @@ public class PlayerCanInteract : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("I cant see you");
-        canClickObject = false;
         interactableObjects.Remove(other.name);
     }
 
@@ -108,7 +103,6 @@ public class PlayerCanInteract : MonoBehaviour
             canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);
             Debug.Log("RUN ANIMATION ");
-            interactableObject = "none";
             usedObjects.Add(clickedObject);
             // answerHandler.LoadNewSentence();
         }

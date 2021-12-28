@@ -10,8 +10,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     RPSAnimations rpsAnimations;
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
-    // Start is called before the first frame update HOHO
-    bool animationFinished = false;
+
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
@@ -47,7 +46,10 @@ public class PreparedStatementAnimations : MonoBehaviour
             else if (RockPaperScissors.HasGameEnded == false)
             {
                 Start_Yes_11();
-                yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoPose_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoStandingBow_Get_Name_11()) + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.PlayerSideLeftJudoGettingReady_Get_Name_11()) - 2f);
+                yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(),
+                 "PlayerSideLeftJudoPose") + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(),
+                  "PlayerSideLeftJudoStandingBow") + animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(),
+                   "PlayerSideLeftJudoGettingReady") - 2f);
                 rpsAnimations.Intro();
                 if (RockPaperScissors.doRandomization == true)
                 {
@@ -84,7 +86,7 @@ public class PreparedStatementAnimations : MonoBehaviour
                 Start_No_11();
                 yield return new WaitForSeconds(
                     animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_No_11(),
-                    playerStatementAnimations.PlayerSideSittingInArmchair_Get_Name_No_11()) + 1.8f);
+                    "PlayerSideSittingInArmchair") + 1.8f);
                 End_No_11();
             }
         }
@@ -100,7 +102,8 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         playerStatementAnimations.MoveHands_Yes_11();
         npcStatementAnimations.MoveHands_Yes_11();
-        return animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(), playerStatementAnimations.MoveHands_Get_Name_11());
+        return animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(),
+         "PlayerSideLeftJudoPickingHandsign");
 
     }
     public void MoveHands_No_11()
@@ -121,24 +124,24 @@ public class PreparedStatementAnimations : MonoBehaviour
 
 
 
-    public IEnumerator TransitionWithPlayer()
+    public IEnumerator Statement_Yes_1()
     {
-        if (PlayerCanInteract.canChangeIndex == false)
+        if (PlayerCanInteract.playerCanDecide == false)
         {
-            PlayerCanInteract.canChangeIndex = true;
+            PlayerCanInteract.playerCanDecide = true;
             TransitionStart();
             yield return new WaitForSeconds(2.4f);
             PlayerMovement.canMove = false;
+            Debug.Log("canMove" + PlayerMovement.canMove);
             Start_Yes_1();
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_1(), playerStatementAnimations.PlayerWorkout_Get_Name_1()));
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_1(),
+             "PlayerFrontJump"));
             TransitionEnd();
             yield return new WaitForSeconds(2f);
             PlayerStopAnimations();
             Debug.Log("Skończone");
-            Debug.Log("STOP 1 = " + PlayerCanInteract.canChangeIndex);
             PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
-            PlayerCanInteract.playerCanDecide = true;
-            Debug.Log("STOP 2 = " + PlayerCanInteract.canChangeIndex);
+            PlayerCanInteract.canChangeIndex = true; // musi być pierwsze 
         }
     }
 
@@ -164,23 +167,11 @@ public class PreparedStatementAnimations : MonoBehaviour
         squareAnimator.SetBool("RunLeft", true);
         squareAnimator.SetBool("RunRight", false);
     }
-    // void PlayerPlayAnimation()
-    // {
-    //     playerDirectionDisplayHandler.HideAllPlayerPerspectives();
-    //     playerDirectionDisplayHandler.ShowPlayerFront();
-    //     GameObject playerFront = GameObject.Find("PlayerFront");
-    //     Animator playerFrontAnimator = playerFront.GetComponent<Animator>();
-    //     playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
-    // }
 
     void PlayerStopAnimations()
     {
         playerDirectionDisplayHandler.StopAnimations();
     }
-    // void PlayerSetDeafultPosition()
-    // {
-    //     playerDirectionDisplayHandler.PlayerSetDeafultPosition();
-    // }
 
     float PlayerAnimationTime()
     {

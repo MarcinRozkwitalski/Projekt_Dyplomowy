@@ -46,7 +46,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     {
                         case 1:
                             StartCoroutine(CloseDoorAnimation(animator));
-                            StartCoroutine(preparedStatementAnimations.TransitionWithPlayer());
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_1());
                             break;
                         case 2:
                             animator.SetBool("Outro", true);
@@ -99,10 +99,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
     }
 
-    // Using StatementOnly for animation
-
-
-
 
     // Using doors for animation -> przeniesienie do PreparedAnimations 
     public IEnumerator OpenDoorAnimation(Animator animator)
@@ -119,8 +115,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
     }
 
-    public IEnumerator CloseDoorAnimation(Animator animator){
-         if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
+    public IEnumerator CloseDoorAnimation(Animator animator)
+    {
+        if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
         {
             TriggerAnimation.runAgain = false;
             animator.SetBool("Start", false);

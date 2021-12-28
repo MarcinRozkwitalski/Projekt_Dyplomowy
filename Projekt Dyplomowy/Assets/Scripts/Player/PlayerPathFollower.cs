@@ -39,6 +39,7 @@ public class PlayerPathFollower : MonoBehaviour
             updateWalkingAnimation = true;
             playerCanChangePosition = false;
             PlayerMovement.canMove = true;
+            playerDestination = new Vector2(1, 1); // by żaden if nie działał 
         }
     }
     public void Statement_1_Active()

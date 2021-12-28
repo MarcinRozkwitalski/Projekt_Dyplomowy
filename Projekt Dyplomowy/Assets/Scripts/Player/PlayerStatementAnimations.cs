@@ -6,7 +6,7 @@ public class PlayerStatementAnimations : MonoBehaviour
 {
 
     public GameObject playerFront, playerFrontLeft45, playerSideLeft, playerBackLeft45, playerBack, player_yes_11;
-    Animator animator_no_1,animator_yes_1,animator_no_11, animator_yes_11;
+    Animator animator_no_1, animator_yes_1, animator_no_11, animator_yes_11;
     public bool No_11_Helper = false;
     // Start is called before the first frame update
     void Start()
@@ -16,23 +16,19 @@ public class PlayerStatementAnimations : MonoBehaviour
         animator_no_11 = playerSideLeft.GetComponent<Animator>();
     }
 
-    public void Start_Yes_1(){
+    public void Start_Yes_1()
+    {
         HideAllPlayerPerspectives();
         gameObject.transform.position = new Vector3(0, -4, 0);
         playerFront.SetActive(true);
         animator_yes_1.SetBool("is1True", true);
+        //playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
     }
 
     public Animator Player_Get_Animator_Yes_1()
     {
         Animator animator = animator_yes_1;
         return animator;
-    }
-
-    public string PlayerWorkout_Get_Name_1()
-    {
-        string name = "PlayerFrontJump";
-        return name;
     }
 
     public void SetActive_False_Object_Yes_11()
@@ -54,26 +50,6 @@ public class PlayerStatementAnimations : MonoBehaviour
     {
         animator_yes_11.SetBool("MoveHands", false);
     }
-    public string MoveHands_Get_Name_11()
-    {
-        string name = "PlayerSideLeftJudoPickingHandsign";
-        return name;
-    }
-    public string PlayerSideLeftJudoPose_Get_Name_11()
-    {
-        string name = "PlayerSideLeftJudoPose";
-        return name;
-    }
-    public string PlayerSideLeftJudoStandingBow_Get_Name_11()
-    {
-        string name = "PlayerSideLeftJudoStandingBow";
-        return name;
-    }
-    public string PlayerSideLeftJudoGettingReady_Get_Name_11()
-    {
-        string name = "PlayerSideLeftJudoGettingReady";
-        return name;
-    }
     public Animator Player_Get_Animator_Yes_11()
     {
         Animator animator = animator_yes_11;
@@ -92,12 +68,6 @@ public class PlayerStatementAnimations : MonoBehaviour
     {
         animator_no_11.SetBool("is11False", false);
         No_11_Helper = true;
-    }
-
-    public string PlayerSideSittingInArmchair_Get_Name_No_11()
-    {
-        string name = "PlayerSideSittingInArmchair";
-        return name;
     }
 
     public Animator Player_Get_Animator_No_11()
