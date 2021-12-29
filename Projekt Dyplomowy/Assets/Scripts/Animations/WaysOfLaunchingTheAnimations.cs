@@ -8,12 +8,14 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     PreparedStatementAnimations preparedStatementAnimations;
     PlayerPathFollower playerPathFollower;
     AnimationTime animationtime;
+    DoorHandler doorHandler;
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
         playerPathFollower = GameObject.Find("Player").GetComponent<PlayerPathFollower>();
         preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
+        doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
     }
 
 
@@ -108,9 +110,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             PlayerPathFollowerStatement(AnswerHandler.index);
 
             TriggerAnimation.runAgain = false;
-            DoorHandler.doorStatus = 0;
-            yield return new WaitForSeconds(1f);
-            animator.SetBool("Start", true); // parametr odpalający animacje 
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
+            animator.SetBool("Outro", false);
+            animator.SetBool("Intro", true); // parametr odpalający animacje 
             Debug.Log("Otwórz Drzwi");
         }
     }
@@ -120,9 +123,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
         {
             TriggerAnimation.runAgain = false;
-            animator.SetBool("Start", false);
-            yield return new WaitForSeconds(1f);
-            DoorHandler.doorStatus = 1;
+            animator.SetBool("Intro", false);
+            animator.SetBool("Outro", true);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "1"));
+            doorHandler.CloseDoor();
             TriggerAnimation.startTransition = true;
             Debug.Log("Zamnknij Drzwi");
         }

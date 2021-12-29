@@ -9,36 +9,22 @@ public class DoorHandler : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        // animator.SetBool("OpenDoor", false);
-        // animator.SetBool("StayClosed", false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OpenDoor()
     {
-        switch (doorStatus % 2)
-        {
-            case 0:
-                OpenDoor();
-                break;
-
-            case 1:
-                CloseDoor();
-                break;
-
-        }
-    }
-
-    void OpenDoor()
-    {
-        animator.SetBool("OpenDoor", true);
         animator.SetBool("CloseDoor", false);
+        animator.SetBool("OpenDoor", true);
     }
 
-    void CloseDoor()
+    public void CloseDoor()
     {
         animator.SetBool("OpenDoor", false);
         animator.SetBool("CloseDoor", true);
+    }
+
+    public Animator Get_Animator(){
+        return animator;
     }
 
     
