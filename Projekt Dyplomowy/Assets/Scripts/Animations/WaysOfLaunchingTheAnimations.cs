@@ -8,19 +8,19 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     PreparedStatementAnimations preparedStatementAnimations;
     PlayerPathFollower playerPathFollower;
     AnimationTime animationtime;
-    DoorHandler doorHandler;
+
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
         playerPathFollower = GameObject.Find("Player").GetComponent<PlayerPathFollower>();
         preparedStatementAnimations = GameObject.Find("AnimationHandler").GetComponent<PreparedStatementAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
-        doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
+
     }
 
 
     // Using Tale Animations
-    public IEnumerator TaleAnimation(Animator animator, string tag)
+    public IEnumerator Animation(Animator animator, string tag)
     {
         // odpalenie animacji wybory 
         if (TriggerAnimation.startTale == true && tag != "UseDoor")
@@ -35,7 +35,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            StartCoroutine(OpenDoorAnimation(animator));
+            StartCoroutine(preparedStatementAnimations.OpenDoorAnimation(animator));
         }
         // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
         else
@@ -47,7 +47,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     switch (AnswerHandler.index)
                     {
                         case 1:
-                            StartCoroutine(CloseDoorAnimation(animator));
+                            StartCoroutine(preparedStatementAnimations.CloseDoorAnimation(animator));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_1());
                             break;
                         case 2:
@@ -103,41 +103,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
 
     // Using doors for animation -> przeniesienie do PreparedAnimations 
-    public IEnumerator OpenDoorAnimation(Animator animator)
-    {
-        if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
-        {
-            PlayerPathFollowerStatement(AnswerHandler.index);
 
-            TriggerAnimation.runAgain = false;
-            doorHandler.OpenDoor();
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
-            animator.SetBool("Outro", false);
-            animator.SetBool("Intro", true); // parametr odpalający animacje 
-            Debug.Log("Otwórz Drzwi");
-        }
-    }
-
-    public IEnumerator CloseDoorAnimation(Animator animator)
-    {
-        if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
-        {
-            TriggerAnimation.runAgain = false;
-            animator.SetBool("Intro", false);
-            animator.SetBool("Outro", true);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "1"));
-            doorHandler.CloseDoor();
-            TriggerAnimation.startTransition = true;
-            Debug.Log("Zamnknij Drzwi");
-        }
-    }
-
-    public void PlayerPathFollowerStatement(int index)
-    {
-
-        PlayerPathFollower.statementPosition = index; // wybór statement
-        PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
-        PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
-    }
 
 }

@@ -58,6 +58,6 @@ public class TriggerAnimation : MonoBehaviour
     IEnumerator Time()
     {
         yield return new WaitForSeconds(0f);
-        StartCoroutine(waysOfLaunchingTheAnimations.TaleAnimation(animator, gameObject.tag));
+        StartCoroutine(waysOfLaunchingTheAnimations.Animation(animator, gameObject.tag));
     }
 }

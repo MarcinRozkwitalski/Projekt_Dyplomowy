@@ -10,7 +10,33 @@ public class PreparedStatementAnimations : MonoBehaviour
     RPSAnimations rpsAnimations;
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
+    DoorHandler doorHandler;
 
+    // statement 1
+    public IEnumerator Statement_Yes_1()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            CurtainTransitionIntro();
+            yield return new WaitForSeconds(2.8f);
+            PlayerMovement.canMove = false;
+            Debug.Log("canMove" + PlayerMovement.canMove);
+            playerStatementAnimations.Start_Yes_1();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_1(),
+             "PlayerFrontJump") - 2.0f);
+            CurtainTransitionOutro();
+            yield return new WaitForSeconds(2f);
+            playerDirectionDisplayHandler.StopAnimations();
+            Debug.Log("Skończone");
+            PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
+            PlayerCanInteract.canChangeIndex = true; // musi być pierwsze 
+        }
+    }
+    // statement 1
+
+
+    // statement 11
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
@@ -19,6 +45,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
         rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
+        doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
     }
 
     public IEnumerator Statement_Yes_11()
@@ -61,6 +88,20 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
 
     }
+    public void Start_Yes_11()
+    {
+        playerStatementAnimations.Start_Yes_11();
+        npcStatementAnimations.Start_Yes_11();
+    }
+
+    public float MoveHands_Yes_11()
+    {
+        playerStatementAnimations.MoveHands_Yes_11();
+        npcStatementAnimations.MoveHands_Yes_11();
+        return animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(),
+         "PlayerSideLeftJudoPickingHandsign");
+
+    }
 
     public IEnumerator Statement_No_11()
     {
@@ -92,20 +133,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
     }
 
-    public void Start_Yes_11()
-    {
-        playerStatementAnimations.Start_Yes_11();
-        npcStatementAnimations.Start_Yes_11();
-    }
 
-    public float MoveHands_Yes_11()
-    {
-        playerStatementAnimations.MoveHands_Yes_11();
-        npcStatementAnimations.MoveHands_Yes_11();
-        return animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_11(),
-         "PlayerSideLeftJudoPickingHandsign");
-
-    }
     public void MoveHands_No_11()
     {
         playerStatementAnimations.MoveHands_No_11();
@@ -120,61 +148,66 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         playerStatementAnimations.End_No_11();
     }
+    // statement 11
 
 
-
-
-    public IEnumerator Statement_Yes_1()
+    /// USE CURTAIN
+    void CurtainTransitionIntro()
     {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-            PlayerCanInteract.playerCanDecide = true;
-            TransitionStart();
-            yield return new WaitForSeconds(2.8f);
-            PlayerMovement.canMove = false;
-            Debug.Log("canMove" + PlayerMovement.canMove);
-            Start_Yes_1();
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_1(),
-             "PlayerFrontJump") - 2.0f);
-            TransitionEnd();
-            yield return new WaitForSeconds(2f);
-            PlayerStopAnimations();
-            Debug.Log("Skończone");
-            PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
-            PlayerCanInteract.canChangeIndex = true; // musi być pierwsze 
-        }
-    }
-
-    void Start_Yes_1()
-    {
-        playerStatementAnimations.Start_Yes_1();
-    }
-
-    void TransitionStart()
-    {
-        Debug.Log("Start tranzycji");
+        Debug.Log("Kurtyna Intro");
         GameObject square = GameObject.Find("Square");
         Animator squareAnimator = square.GetComponent<Animator>();
         squareAnimator.SetBool("RunRight", true);
         TriggerAnimation.startTransition = false;
     }
 
-    void TransitionEnd()
+    void CurtainTransitionOutro()
     {
-        Debug.Log("Koniec tranzycji");
+        Debug.Log("Kurtyna Outro");
         GameObject square = GameObject.Find("Square");
         Animator squareAnimator = square.GetComponent<Animator>();
         squareAnimator.SetBool("RunLeft", true);
         squareAnimator.SetBool("RunRight", false);
     }
+    /// USE CURTAIN
 
-    void PlayerStopAnimations()
+    /// USE DOOR 
+    public IEnumerator OpenDoorAnimation(Animator animator)
     {
-        playerDirectionDisplayHandler.StopAnimations();
+        if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
+        {
+            PlayerPathFollowerStatement(AnswerHandler.index);
+
+            TriggerAnimation.runAgain = false;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
+            animator.SetBool("Outro", false);
+            animator.SetBool("Intro", true); // parametr odpalający animacje 
+            Debug.Log("Otwórz Drzwi");
+        }
     }
 
-    float PlayerAnimationTime()
+    public IEnumerator CloseDoorAnimation(Animator animator)
     {
-        return playerDirectionDisplayHandler.AnimationLength();
+        if (TriggerAnimation.runAnimation == false && TriggerAnimation.runAgain == true)
+        {
+            TriggerAnimation.runAgain = false;
+            animator.SetBool("Intro", false);
+            animator.SetBool("Outro", true);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+            doorHandler.CloseDoor();
+            TriggerAnimation.startTransition = true;
+            Debug.Log("Zamnknij Drzwi");
+        }
     }
+
+    public void PlayerPathFollowerStatement(int index)
+    {
+
+        PlayerPathFollower.statementPosition = index; // wybór statement
+        PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+        PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
+    }
+    /// USE DOOR 
+
 }
