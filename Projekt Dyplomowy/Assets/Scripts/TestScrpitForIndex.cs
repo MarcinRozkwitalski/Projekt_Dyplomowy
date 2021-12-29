@@ -15,15 +15,17 @@ public class TestScrpitForIndex : MonoBehaviour
     {
         // indexList.Add(1);
         // indexList.Add(11);
-        //indexList.Add(2);
-        indexList.Add(3);
+        // indexList.Add(2);
+        // indexList.Add(3);
+        indexList.Add(4);
+
     }
 
     public int GetRandomIndex()
     {
         bool status = true;
         Debug.Log("ile = " + indexList.Count);
-        if (usedIndexList.Count == 2) { Debug.Log("KONIEC GRY PANIE"); index = 0; }
+        if (usedIndexList.Count == 4) { Debug.Log("KONIEC GRY PANIE"); index = 0; }
         else
         {
             do
