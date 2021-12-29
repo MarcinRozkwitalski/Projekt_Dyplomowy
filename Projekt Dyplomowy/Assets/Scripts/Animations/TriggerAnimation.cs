@@ -27,6 +27,7 @@ public class TriggerAnimation : MonoBehaviour
         //(AnswerHandler.index != int.Parse(gameObject.name))
         //podmienić to na dole :)
         // PlayerCanInteract.index
+        
         if (AnswerHandler.index != int.Parse(gameObject.name))
         {
             GameObject originalGameObject = GameObject.Find(gameObject.name);

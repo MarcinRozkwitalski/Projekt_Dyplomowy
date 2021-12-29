@@ -35,6 +35,14 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 1
 
+    // statement 3
+    public void Statement_No_Yes_3()
+    {
+        PlayerCanInteract.canChangeIndex = true;
+        PlayerMovement.canMove = true; 
+        PlayerCanInteract.playerCanDecide = true; 
+    }
+    // statement 3
 
     // statement 11
     void Start()
