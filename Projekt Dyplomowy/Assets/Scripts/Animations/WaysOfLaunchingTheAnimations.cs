@@ -18,13 +18,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
     }
 
-
-    // Using Tale Animations
     public IEnumerator Animation(Animator animator, string tag)
     {
-        // odpalenie animacji wybory 
         if (TriggerAnimation.startTale == true && tag != "UseDoor")
         {
+            SetActive_False_Object(AnswerHandler.index); // test
             PlayerMovement.canMove = false;
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
@@ -37,7 +35,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         {
             StartCoroutine(preparedStatementAnimations.OpenDoorAnimation(animator));
         }
-        // Złapanie wyboru i dopalenie poprawnej animacji(+ może gre)
         else
         {
             if (SentenceHandler.hashTableAnswers[AnswerHandler.index] != null)
@@ -56,6 +53,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             PlayerCanInteract.canChangeIndex = true;
                             PlayerMovement.canMove = true;
                             PlayerCanInteract.playerCanDecide = true;
+                            break;
+                        case 3:
+                            GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_Yes_3();
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
@@ -81,6 +83,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             PlayerMovement.canMove = true;
                             PlayerCanInteract.playerCanDecide = true;
                             break;
+                        case 3:
+                            GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_Yes_3();
+                            break;
                         case 11:
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
@@ -95,14 +102,18 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             }
             else
             {
-                Debug.Log("No answer");
             }
         }
 
     }
-
-
-    // Using doors for animation -> przeniesienie do PreparedAnimations 
-
+    // Wyłączania obiektów 
+    public void SetActive_False_Object(int index)
+    {
+        if (index == 3 && GameObject.Find("Computer - Speaker") != null)
+        {
+            GameObject.Find("Computer - Speaker").SetActive(false);
+        }
+    }
 
 }
+
