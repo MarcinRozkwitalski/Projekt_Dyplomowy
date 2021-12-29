@@ -747,7 +747,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0, y: 0.307, z: 0}
+        value: {x: 0, y: 0.331, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -817,7 +817,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -0.118702404, y: -0.6050671, z: 0}
+        value: {x: 0, y: 0, z: 0}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1053,13 +1053,6 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     - serializedVersion: 2
-      path: 81495744
-      attribute: 1
-      script: {fileID: 0}
-      typeID: 4
-      customType: 0
-      isPPtrCurve: 0
-    - serializedVersion: 2
       path: 377759540
       attribute: 4
       script: {fileID: 0}
@@ -1131,6 +1124,13 @@ AnimationClip:
       isPPtrCurve: 0
     - serializedVersion: 2
       path: 4141003389
+      attribute: 1
+      script: {fileID: 0}
+      typeID: 4
+      customType: 0
+      isPPtrCurve: 0
+    - serializedVersion: 2
+      path: 81495744
       attribute: 1
       script: {fileID: 0}
       typeID: 4
@@ -3661,7 +3661,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.307
+        value: 0.331
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3844,7 +3844,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.118702404
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3872,7 +3872,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.6050671
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -3961,7 +3961,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: RightArmSolver/RightArmSolver_Target/AnimatedItems/1False/S1NDrink
+    path: bone_1/bone_2/bone_3/bone_8
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3971,7 +3971,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: RightArmSolver/RightArmSolver_Target/AnimatedItems/1False/S1NDrink
+    path: bone_1/bone_2/bone_3/bone_8
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -3981,7 +3981,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: RightArmSolver/RightArmSolver_Target/AnimatedItems/1False/S1NDrink
+    path: bone_1/bone_2/bone_3/bone_8
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4051,7 +4051,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: bone_1/bone_2/bone_3/bone_8
+    path: RightArmSolver/RightArmSolver_Target/AnimatedItems/1False/S1NDrink
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4061,7 +4061,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: bone_1/bone_2/bone_3/bone_8
+    path: RightArmSolver/RightArmSolver_Target/AnimatedItems/1False/S1NDrink
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -4071,7 +4071,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: bone_1/bone_2/bone_3/bone_8
+    path: RightArmSolver/RightArmSolver_Target/AnimatedItems/1False/S1NDrink
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
