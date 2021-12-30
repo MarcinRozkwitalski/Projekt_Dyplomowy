@@ -20,7 +20,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
     public IEnumerator Animation(Animator animator, string tag)
     {
-        if (TriggerAnimation.startTale == true && tag != "UseDoor")
+        if (TriggerAnimation.startTale == true && tag != "UseDoor" && tag != "WaitForClick")
         {
             SetActive_False_Object(AnswerHandler.index); // test
             PlayerMovement.canMove = false;
@@ -34,6 +34,22 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
             StartCoroutine(preparedStatementAnimations.OpenDoorAnimation(animator));
+        }
+        else if (tag == "WaitForClick" && TriggerAnimation.startTale == true && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
+        {
+            if (PlayerMovement.canMove == true)
+            {
+                PlayerMovement.canMove = false;
+                playerDirectionDisplayHandler.DisablePLayersCollider();
+                animator.SetBool("Intro", true);
+            }
+            if (PlayerCanInteract.playerCanClick == false)
+            {
+                Debug.Log("playerClick = " + PlayerCanInteract.playerCanClick);
+                animator.SetBool("Intro", false);
+                PlayerCanInteract.playerCanClick = true;
+                TriggerAnimation.startTale = false;
+            }
         }
         else
         {
@@ -56,6 +72,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 3:
                             GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_Yes_3();
+                            break;
+                        case 4:
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_No_Yes_3();
                             break;
@@ -87,6 +107,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 3:
                             GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_Yes_3();
+                            break;
+                        case 4:
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_No_Yes_3();
                             break;

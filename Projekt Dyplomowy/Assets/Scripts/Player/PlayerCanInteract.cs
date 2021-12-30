@@ -12,6 +12,7 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool canChangeIndex = true;
     public static bool playerCanPlay = true;
     public static bool playerCanDecide = true;
+    static public bool playerCanClick = true;
 
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
@@ -123,6 +124,11 @@ public class PlayerCanInteract : MonoBehaviour
             Debug.Log("RPS: " + clickedObject);
             playerCanPlay = false;
             StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
+        }
+        else if(tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true){
+            tagName = "";
+            Debug.Log("WaitForClick: " + clickedObject);
+            playerCanClick = false;
         }
 
         else

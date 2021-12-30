@@ -13,6 +13,7 @@ TagManager:
   - Tale
   - RPSButton
   - StatementOnly
+  - WaitForClick
   layers:
   - Default
   - TransparentFX
