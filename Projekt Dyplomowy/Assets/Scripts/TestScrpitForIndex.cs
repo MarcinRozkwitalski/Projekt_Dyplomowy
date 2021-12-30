@@ -16,6 +16,7 @@ public class TestScrpitForIndex : MonoBehaviour
         Debug.Log("Filip test");
         // indexList.Add(1);
         // indexList.Add(11);
+        //filip
         // indexList.Add(2); // halo halo halo test
         // indexList.Add(11); 
         // indexList.Add(2);filip
