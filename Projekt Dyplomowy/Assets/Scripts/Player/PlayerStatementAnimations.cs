@@ -12,6 +12,7 @@ public class PlayerStatementAnimations : MonoBehaviour
     void Start()
     {
         animator_yes_1 = playerFront.GetComponent<Animator>();
+        animator_no_1 = playerBackLeft45.GetComponent<Animator>();
         animator_yes_11 = player_yes_11.GetComponent<Animator>();
         animator_no_11 = playerSideLeft.GetComponent<Animator>();
     }
@@ -28,6 +29,26 @@ public class PlayerStatementAnimations : MonoBehaviour
     public Animator Player_Get_Animator_Yes_1()
     {
         Animator animator = animator_yes_1;
+        return animator;
+    }
+
+    public void Start_No_1()
+    {
+        HideAllPlayerPerspectives();
+        gameObject.transform.position = new Vector3(1.998f, -3.72f, 0);
+        if (playerBackLeft45.transform.eulerAngles.y == 180) playerBackLeft45.transform.Rotate(0, -180, 0);
+        playerBackLeft45.SetActive(true);
+        animator_no_1.SetBool("is1False", true);
+    }
+
+    public void End_No_1()
+    {
+        animator_no_1.SetBool("is1False", false);
+    }
+
+    public Animator Player_Get_Animator_No_1()
+    {
+        Animator animator = animator_no_1;
         return animator;
     }
 

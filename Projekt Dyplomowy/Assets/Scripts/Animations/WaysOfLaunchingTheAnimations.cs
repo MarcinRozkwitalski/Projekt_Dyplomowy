@@ -75,6 +75,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                     switch (AnswerHandler.index)
                     {
                         case 1:
+                            StartCoroutine(preparedStatementAnimations.CloseDoorAnimation(animator));
+                            StartCoroutine(preparedStatementAnimations.Statement_No_1());
                             break;
                         case 2:
                             animator.SetBool("Outro", true);

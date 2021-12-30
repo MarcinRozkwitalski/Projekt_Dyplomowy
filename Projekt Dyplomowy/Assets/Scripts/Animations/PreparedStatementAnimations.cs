@@ -35,6 +35,29 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 1
 
+    public IEnumerator Statement_No_1()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            //Debug.Log(PlayerCanInteract.playerCanDecide + " <- playerCanDecide");
+            CurtainTransitionIntro();
+            yield return new WaitForSeconds(2.4f);
+            PlayerMovement.canMove = false;
+            GameObject.Find("DefaultObjects").transform.Find("Chair").gameObject.SetActive(false);
+            playerStatementAnimations.Start_No_1();
+            yield return new WaitForSeconds(0.2f);
+            playerStatementAnimations.End_No_1();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_No_1(),
+            "PlayerBackLeft45S1N") - 2.0f);
+            CurtainTransitionOutro();
+            yield return new WaitForSeconds(2f);
+            GameObject.Find("DefaultObjects").transform.Find("Chair").gameObject.SetActive(true);
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.canChangeIndex = true;
+        }
+        
+    }
     // statement 3
     public void Statement_No_Yes_3()
     {
