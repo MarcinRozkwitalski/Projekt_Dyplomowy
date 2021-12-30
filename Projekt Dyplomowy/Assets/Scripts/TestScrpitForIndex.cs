@@ -17,6 +17,8 @@ public class TestScrpitForIndex : MonoBehaviour
         // indexList.Add(1);
         // indexList.Add(11);
         // indexList.Add(2); // halo halo halo test
+        // indexList.Add(11); 
+        // indexList.Add(2);filip
         // indexList.Add(3);
         indexList.Add(4);
         // to jest nowy komentarz mecini
