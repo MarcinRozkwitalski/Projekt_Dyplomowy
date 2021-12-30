@@ -18,7 +18,7 @@ public class TestScrpitForIndex : MonoBehaviour
         // indexList.Add(2);
         // indexList.Add(3);
         indexList.Add(4);
-
+        // to jest nowy komentarz mecini
     }
 
     public int GetRandomIndex()
