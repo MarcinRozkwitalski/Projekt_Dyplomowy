@@ -18,7 +18,8 @@ public class AnimationObjectHodler : MonoBehaviour
             }
 
         }
-        else if (AnswerHandler.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null)
+        else if (AnswerHandler.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null
+        && originalGameObject.transform.childCount > 1)
         {
             // czeka na koniec Animacji  tylko raz
             if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)].Equals("true"))
