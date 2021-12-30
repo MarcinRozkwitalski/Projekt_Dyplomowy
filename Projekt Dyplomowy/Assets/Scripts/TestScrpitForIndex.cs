@@ -15,15 +15,11 @@ public class TestScrpitForIndex : MonoBehaviour
     {
         Debug.Log("Filip test");
         // indexList.Add(1);
-        // indexList.Add(11);
-        //filip
-        // indexList.Add(2); // halo halo halo test
-        // indexList.Add(11); 
-        // mecin
-        // indexList.Add(2);filip
+        // indexList.Add(2);
         // indexList.Add(3);
         indexList.Add(4);
-        // to jest nowy komentarz mecini
+        // indexList.Add(11);
+
     }
 
     public int GetRandomIndex()
