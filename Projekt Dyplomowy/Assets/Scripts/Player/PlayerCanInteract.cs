@@ -100,6 +100,8 @@ public class PlayerCanInteract : MonoBehaviour
         {
             // usunąc
             AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
+            TriggerAnimation.playAnimation = true; // ??? reset dla nowych animacji - ponieważ warunki nie działają
+            TriggerAnimation.runAnimation = true; // reset dla nowych animacji - ponieważ warunki nie działają
 
             canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);

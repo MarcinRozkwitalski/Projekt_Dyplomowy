@@ -8,40 +8,41 @@ public class TestScrpitForIndex : MonoBehaviour
 
     public static int index = 0;
     int randomIndex = 0;
-    List<int> indexList = new List<int>();
+    public static List<int> indexList = new List<int>();
+    public static int[] stats = new int[91];
     List<int> usedIndexList = new List<int>();
     public static bool stop = true;
     void Start()
     {
-        Debug.Log("Filip test");
-        // indexList.Add(1);
+        indexList.Add(1);
         //indexList.Add(2);
         //indexList.Add(3);
         indexList.Add(4);
-        // indexList.Add(11);
-
+        indexList.Add(11);
+        for (int i = 1; i <= 90; i++)
+        {
+            stats[i] = 0;
+        }
     }
 
     public int GetRandomIndex()
     {
         bool status = true;
         Debug.Log("ile = " + indexList.Count);
-        if (usedIndexList.Count == 4) { Debug.Log("KONIEC GRY PANIE"); index = 0; }
-        else
+
+        do
         {
-            do
+            randomIndex = Random.Range(0, 3); //  0 
+            if (!usedIndexList.Contains(indexList[randomIndex]))
             {
-                randomIndex = Random.Range(0, 1); //  0 
-                if (!usedIndexList.Contains(indexList[randomIndex]))
-                {
-                    usedIndexList.Add(indexList[randomIndex]);
-                    index = indexList[randomIndex];
-                    Debug.Log("get index = " + index);
-                    status = false;
-                }
-            } while (status);
-        }
-        if (usedIndexList.Count == 2)stop = false;
+                usedIndexList.Add(indexList[randomIndex]);
+                index = indexList[randomIndex];
+                Debug.Log("get index = " + index);
+                status = false;
+            }
+        } while (status);
+        if (usedIndexList.Count == indexList.Count) stop = false;
+        Debug.Log("stop = " + stop);
         return index;
     }
 

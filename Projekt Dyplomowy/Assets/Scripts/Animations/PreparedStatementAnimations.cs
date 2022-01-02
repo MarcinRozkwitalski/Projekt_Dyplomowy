@@ -56,14 +56,17 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerMovement.canMove = true;
             PlayerCanInteract.canChangeIndex = true;
         }
-        
+
     }
     // statement 3
     public void Statement_No_Yes_3()
     {
-        PlayerCanInteract.canChangeIndex = true;
-        PlayerMovement.canMove = true; 
-        PlayerCanInteract.playerCanDecide = true; 
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+        }
     }
     // statement 3
 
@@ -151,6 +154,7 @@ public class PreparedStatementAnimations : MonoBehaviour
                 PlayerCanInteract.playerCanDecide = true; // Gracz może znowu dokonywac wyboru
                 TriggerAnimation.runAnimation = true; // drzwi przypadek 1
                 TriggerAnimation.runAgain = true; // drzwi przypadek 1
+                
             }
             else if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is11False())
             {
