@@ -148,12 +148,12 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         GameObject.Find("Stats").transform.Find("NumbersP").gameObject.SetActive(true);
         GameObject.Find("Stats").transform.Find("NumbersK").gameObject.SetActive(true);
 
-        GameObject.Find("Stats").transform.Find("NumbersR").transform.Find(TestScrpitForIndex.stats[1].ToString()+"-stat").gameObject.SetActive(true);
-        GameObject.Find("Stats").transform.Find("NumbersB").transform.Find(TestScrpitForIndex.stats[2].ToString()+"-stat").gameObject.SetActive(true);
-        GameObject.Find("Stats").transform.Find("NumbersA").transform.Find(TestScrpitForIndex.stats[3].ToString()+"-stat").gameObject.SetActive(true);
-        GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString()+"-stat").gameObject.SetActive(true);
-        GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString()+"-stat").gameObject.SetActive(true);
-        GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString()+"-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersR").transform.Find(TestScrpitForIndex.stats[1].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersB").transform.Find(TestScrpitForIndex.stats[2].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersA").transform.Find(TestScrpitForIndex.stats[3].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(true);
 
         rNumberAnimator.SetInteger("Stats", TestScrpitForIndex.stats[1]);
         bNumberAnimator.SetInteger("Stats", TestScrpitForIndex.stats[2]);
@@ -188,7 +188,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (tag == "WaitForClick" && TriggerAnimation.playAnimation == true && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            // Debug.Log("WAITFORCLICK DZIAŁA");
+            Debug.Log("WAITFORCLICK DZIAŁA");
             if (PlayerMovement.canMove == true)
             {
                 PlayerMovement.canMove = false;
@@ -198,10 +198,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             if (PlayerCanInteract.playerCanClick == false)
             {
                 Debug.Log("playerClick = " + PlayerCanInteract.playerCanClick);
-                animator.SetBool("Intro", false);
+                animator.SetInteger("Decision", 1);
                 PlayerCanInteract.playerCanClick = true;
                 TriggerAnimation.playAnimation = false;
-                playerDirectionDisplayHandler.EnablePLayersCollider(); // ???
             }
         }
         else
@@ -219,24 +218,27 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                         case 2:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
-                            PlayerCanInteract.canChangeIndex = true;
-                            PlayerMovement.canMove = true;
-                            PlayerCanInteract.playerCanDecide = true;
+                            preparedStatementAnimations.Statement_Yes_2();
                             break;
                         case 3:
-                            GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
-                            animator.SetBool("Outro", true);
-                            preparedStatementAnimations.Statement_No_Yes_3();
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_3(animator));
                             break;
                         case 4:
                             animator.SetBool("Outro", true);
-                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
-                            preparedStatementAnimations.Statement_No_Yes_3();
+                            preparedStatementAnimations.Statement_Yes_4();
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
+                            break;
+                        case 24:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_Yes_24();
+                            break;
+                        case 29:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_Yes_29();
                             break;
                         default:
                             Debug.Log("Something went wrong with choosing statement animation");
@@ -255,24 +257,29 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                         case 2:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
-                            PlayerCanInteract.canChangeIndex = true;
-                            PlayerMovement.canMove = true;
-                            PlayerCanInteract.playerCanDecide = true;
+                            preparedStatementAnimations.Statement_No_2();
                             break;
                         case 3:
                             GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
                             animator.SetBool("Outro", true);
-                            preparedStatementAnimations.Statement_No_Yes_3();
+                            StartCoroutine(preparedStatementAnimations.Statement_No_3(animator));
                             break;
                         case 4:
                             animator.SetBool("Outro", true);
-
-                            preparedStatementAnimations.Statement_No_Yes_3();
+                            preparedStatementAnimations.Statement_No_4();
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_No_11());
+                            break;
+                        case 24:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_24();
+                            break;
+                        case 29:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_29();
                             break;
                         default:
                             Debug.Log("Something went wrong with choosing statement animation");
