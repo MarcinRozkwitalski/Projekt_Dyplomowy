@@ -7,6 +7,7 @@ using TMPro;
 
 public class CreatePlayer : MonoBehaviour
 {
+    Visability visability;
     public InputField usernameInput;
     public InputField passwordInput;
     public InputField emailInput;
@@ -14,9 +15,6 @@ public class CreatePlayer : MonoBehaviour
     public Button RegisterButton;
     public Text RegisterButtonText;
 
-    public SceneLoader sceneLoader;
-
-    // Logika GUI
     public void RegisterNewPlayer()
     {
         RegisterButton.interactable = false;
@@ -25,8 +23,6 @@ public class CreatePlayer : MonoBehaviour
         {
             ErrorMessage("Nazwa Użytkownika jest za krótka");
         }
-
-
         else if (passwordInput.text.Length < 5)
         {
             ErrorMessage("Hasło jest za krótkie");
@@ -42,38 +38,28 @@ public class CreatePlayer : MonoBehaviour
         }
     }
 
-    // Czerwony przycisk ( jak coś jest nieprawidłowe )
     public void ErrorMessage(string message)
     {
-        //RegisterButton.GetComponent<Image>().color = Color.red;
         RegisterButtonText.text = message;
-        RegisterButtonText.fontSize = 50;
+        RegisterButtonText.fontSize = 30;
     }
 
-    // Biały przycisk ( jak się jest w trakcie edycji )
     public void ResetRegisterButton()
     {
         RegisterButton.interactable = true;
-        //RegisterButton.GetComponent<Image>().color = Color.white;
         RegisterButtonText.text = "Zarejestruj";
-        RegisterButtonText.fontSize = 50;
+        RegisterButtonText.fontSize = 30;
     }
 
-    // Szary przycisk ( Dane są w trakcie przetwarzania )
     public void SetButtonToSending()
     {
-        //RegisterButton.GetComponent<Image>().color = Color.grey;
         RegisterButtonText.text = "Przetwarzanie...";
-        RegisterButtonText.fontSize = 50;
+        RegisterButtonText.fontSize = 30;
     }
-
-    // Zielony przycisk ( Udało się przesłać )
     public void SetButtonToSucces()
     {
-        //RegisterButton.GetComponent<Image>().color = Color.green;
         RegisterButtonText.text = "Stworzone";
-        RegisterButtonText.fontSize = 50;
-        //sceneLoader.LoadPlayerSceneScene();
+        RegisterButtonText.fontSize = 30;
     }
 
     // Przesyłanie Posta do bazy

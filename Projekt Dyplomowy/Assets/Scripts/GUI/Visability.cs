@@ -9,7 +9,8 @@ public class Visability : MonoBehaviour
         Main,
         Registration,
         Login,
-        Options
+        Options,
+        Profile
     };
     public MenuStates currentState;
 
@@ -17,6 +18,7 @@ public class Visability : MonoBehaviour
     public GameObject registration;
     public GameObject login;
     public GameObject options;
+    public GameObject profile;
 
     public Animator transition;
     public float transitionTime = 1f;
@@ -36,26 +38,36 @@ public class Visability : MonoBehaviour
                 registration.SetActive(false);
                 login.SetActive(false);
                 options.SetActive(false);
+                profile.SetActive(false);
                 break;
             case MenuStates.Registration:
                 mainMenu.SetActive(false);
                 registration.SetActive(true);
                 login.SetActive(false);
                 options.SetActive(false);
+                profile.SetActive(false);
                 break;
             case MenuStates.Login:
                 mainMenu.SetActive(false);
                 registration.SetActive(false);
                 login.SetActive(true);
                 options.SetActive(false);
+                profile.SetActive(false);
                 break;
             case MenuStates.Options:
                 mainMenu.SetActive(false);
                 registration.SetActive(false);
                 login.SetActive(false);
                 options.SetActive(true);
+                profile.SetActive(false);
                 break;
-
+            case MenuStates.Profile:
+                mainMenu.SetActive(false);
+                registration.SetActive(false);
+                login.SetActive(false);
+                options.SetActive(false);
+                profile.SetActive(true);
+                break;
         }
     }
 
@@ -75,5 +87,9 @@ public class Visability : MonoBehaviour
     public void goToOptions()
     {
         currentState = MenuStates.Options;
+    }
+    public void goToProfile()
+    {
+        currentState = MenuStates.Profile;
     }
 }
