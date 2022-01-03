@@ -31,11 +31,11 @@ public class LoginPlayer : MonoBehaviour
 
         if (usernameInput.text.Length < 5)
         {
-            ErrorOnLoginMessage("Sprawdż Nazwę Użytkownika");
+            ErrorOnLoginMessage("Sprawdż nazwę użytkownika");
         }
         else if (passwordInput.text.Length < 5)
         {
-            ErrorOnLoginMessage("Sprawdż Hasło");
+            ErrorOnLoginMessage("Sprawdż hasło");
         }
         else
         {

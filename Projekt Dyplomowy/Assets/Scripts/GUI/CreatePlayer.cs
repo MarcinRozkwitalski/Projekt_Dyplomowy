@@ -25,6 +25,8 @@ public class CreatePlayer : MonoBehaviour
         {
             ErrorMessage("Nazwa Użytkownika jest za krótka");
         }
+
+
         else if (passwordInput.text.Length < 5)
         {
             ErrorMessage("Hasło jest za krótkie");
