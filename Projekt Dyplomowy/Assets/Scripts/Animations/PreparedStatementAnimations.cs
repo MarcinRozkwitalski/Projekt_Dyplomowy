@@ -44,7 +44,6 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true; // musi być pierwsze 
         }
     }
-    // statement 1
 
     public IEnumerator Statement_No_1()
     {
@@ -69,6 +68,30 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
 
     }
+    // statement 1
+
+    // statement 2
+    public void Statement_Yes_2()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+        }
+    }
+
+    public void Statement_No_2()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+        }
+    }
+    // statement 2
+
     // statement 3
     public IEnumerator Statement_Yes_3(Animator animator)
     {
@@ -111,6 +134,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
 
@@ -121,6 +145,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
     // statement 4
@@ -230,6 +255,54 @@ public class PreparedStatementAnimations : MonoBehaviour
         playerStatementAnimations.End_No_11();
     }
     // statement 11
+
+    // statement 24
+    public void Statement_Yes_24()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_24()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 24
+
+    // statement 29
+    public void Statement_Yes_29()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_29()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 29
 
 
     /// USE CURTAIN
