@@ -201,6 +201,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                 animator.SetInteger("Decision", 1);
                 PlayerCanInteract.playerCanClick = true;
                 TriggerAnimation.playAnimation = false;
+                
             }
         }
         else
@@ -238,6 +239,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 29:
                             animator.SetBool("Outro", true);
+                            // czas potrzebny byu użyć playerCanDecide
                             preparedStatementAnimations.Statement_Yes_29();
                             break;
                         default:
