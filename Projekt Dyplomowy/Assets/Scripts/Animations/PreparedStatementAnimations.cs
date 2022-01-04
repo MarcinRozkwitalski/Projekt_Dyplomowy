@@ -39,7 +39,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             CurtainTransitionOutro();
             yield return new WaitForSeconds(2f);
             playerDirectionDisplayHandler.StopAnimations();
-            Debug.Log("Skończone");
+            Debug.Log("Skończone-1-yes");
             PlayerMovement.canMove = true; // skrypt zajmujący się czasem tranzycji po której można przywrócić postać do ruchu
             PlayerCanInteract.canChangeIndex = true; // musi być pierwsze 
         }
@@ -65,6 +65,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             GameObject.Find("DefaultObjects").transform.Find("Chair").gameObject.SetActive(true);
             PlayerMovement.canMove = true;
             PlayerCanInteract.canChangeIndex = true;
+            Debug.Log("1-no");
         }
 
     }
@@ -97,15 +98,15 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
+            PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 2);
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
             animator.SetInteger("Decision", 3);
             GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            Debug.Log("3-yes");
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-
         }
     }
 
@@ -113,15 +114,15 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
+            PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 1);
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
             animator.SetInteger("Decision", 3);
             GameObject.Find("Computer").transform.Find("Computer - Speaker").gameObject.SetActive(true);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
-
+            Debug.Log("3-no");
         }
     }
     // statement 3
@@ -265,6 +266,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
+            Debug.Log("24");
         }
     }
 
@@ -276,6 +278,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
+            Debug.Log("24");
+
         }
     }
     // statement 24
@@ -289,6 +293,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
+            Debug.Log("29");
+
         }
     }
 
@@ -300,6 +306,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
+            Debug.Log("29");
+
         }
     }
     // statement 29

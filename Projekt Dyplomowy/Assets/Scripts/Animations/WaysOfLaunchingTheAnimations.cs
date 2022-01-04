@@ -177,7 +177,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             yield return new WaitForSeconds(1f);
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
-            // Debug.Log("Anim 1 if");
+            Debug.Log("Anim 1 if");
 
         }
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
@@ -188,7 +188,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (tag == "WaitForClick" && TriggerAnimation.playAnimation == true && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            Debug.Log("WAITFORCLICK DZIAŁA");
+            // Debug.Log("WAITFORCLICK DZIAŁA");
             if (PlayerMovement.canMove == true)
             {
                 PlayerMovement.canMove = false;

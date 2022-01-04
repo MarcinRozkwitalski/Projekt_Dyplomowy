@@ -34,7 +34,6 @@ public class TriggerAnimation : MonoBehaviour
             PlayerCanInteract.playerCanDecide == true &&
             something == true)
         {
-            playerDirectionDisplayHandler.DisablePLayersCollider();
             AnswerHandler.index = 91;
             PlayerMovement.canMove = false;
             Debug.Log("koniec");
