@@ -9,6 +9,7 @@ using UnityEngine;
 public class TriggerAnimation : MonoBehaviour
 {
     WaysOfLaunchingTheAnimations waysOfLaunchingTheAnimations;
+    PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
     Animator animator;
     public static bool runAnimation = true;
     public static bool runAgain = true;
@@ -19,6 +20,7 @@ public class TriggerAnimation : MonoBehaviour
 
     void Start()
     {
+        playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
         waysOfLaunchingTheAnimations = GameObject.Find("AnimationHandler").GetComponent<WaysOfLaunchingTheAnimations>();
         animator = GetComponent<Animator>();
     }
@@ -32,6 +34,7 @@ public class TriggerAnimation : MonoBehaviour
             PlayerCanInteract.playerCanDecide == true &&
             something == true)
         {
+            playerDirectionDisplayHandler.DisablePLayersCollider();
             AnswerHandler.index = 91;
             PlayerMovement.canMove = false;
             Debug.Log("koniec");
