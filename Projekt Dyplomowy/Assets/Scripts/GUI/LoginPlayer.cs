@@ -8,12 +8,9 @@ public class LoginPlayer : MonoBehaviour
 {
     public InputField usernameInput;
     public InputField passwordInput;
-
     public Button loginButton;
     public Text loginButtonText;
-
     public GameObject currentPlayerObject;
-    public SceneLoader sceneLoader;
 
     private void Awake()
     {
@@ -31,11 +28,11 @@ public class LoginPlayer : MonoBehaviour
 
         if (usernameInput.text.Length < 5)
         {
-            ErrorOnLoginMessage("Sprawdż Nazwę Użytkownika");
+            ErrorOnLoginMessage("Sprawdż nazwę użytkownika");
         }
         else if (passwordInput.text.Length < 5)
         {
-            ErrorOnLoginMessage("Sprawdż Hasło");
+            ErrorOnLoginMessage("Sprawdż hasło");
         }
         else
         {
@@ -45,14 +42,12 @@ public class LoginPlayer : MonoBehaviour
 
     public void ErrorOnLoginMessage(string message)
     {
-        //loginButton.GetComponent<Image>().color = Color.red;
         loginButtonText.text = message;
         loginButtonText.fontSize = 60;
     }
 
     public void ResetLoginButton()
     {
-        //loginButton.GetComponent<Image>().color = Color.white;
         loginButtonText.text = "Login";
         loginButtonText.fontSize = 60;
         loginButton.interactable = true;
@@ -92,7 +87,6 @@ public class LoginPlayer : MonoBehaviour
                 loginButton.GetComponent<Image>().color = Color.green;
                 loginButtonText.text = "Zalogowano";
                 //sceneLoader.LoadPlayerSceneScene();
-
             }
         }
         else

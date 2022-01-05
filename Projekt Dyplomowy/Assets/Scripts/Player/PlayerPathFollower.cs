@@ -24,8 +24,17 @@ public class PlayerPathFollower : MonoBehaviour
         {
             switch (statementPosition)
             {
+                case 0:
+                    Statement_0_Active();
+                    break;
                 case 1:
                     Statement_1_Active();
+                    break;
+                case 91:
+                    Statement_91_Active();
+                    break;
+                case 92:
+                    Statement_92_Active();
                     break;
                 default:
                     break;
@@ -38,16 +47,54 @@ public class PlayerPathFollower : MonoBehaviour
             // jak się wejdzie w to samo miejsce to nagle ANOMALIA
             updateWalkingAnimation = true;
             playerCanChangePosition = false;
-            PlayerMovement.canMove = true;
+            if(statementPosition == 91)PlayerMovement.canMove = false;
+            else PlayerMovement.canMove = true;
             playerDestination = new Vector2(1, 1); // by żaden if nie działał 
+            Debug.Log("Koniec path + movement = " + PlayerMovement.canMove);
         }
     }
     public void Statement_1_Active()
     {
         playerDestination = new Vector2(2, -6);
-        if(updateWalkingAnimation == true){// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
-        PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
-        updateWalkingAnimation = false;
+        if (updateWalkingAnimation == true)
+        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_0_Active()
+    {
+        playerDestination = new Vector2(1, -3.72f);
+        if (updateWalkingAnimation == true)
+        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_91_Active()
+    {
+        playerDestination = new Vector2(-10, -3.72f);
+        if (updateWalkingAnimation == true)
+        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+    public void Statement_92_Active()
+    {
+        playerDestination = new Vector2(1, -3.72f);
+        if (updateWalkingAnimation == true)
+        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
         }
         Player_Position_Update();
         Player_Moving();

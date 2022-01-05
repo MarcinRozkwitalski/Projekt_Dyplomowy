@@ -9,13 +9,16 @@ public class Visability : MonoBehaviour
         Main,
         Registration,
         Login,
-        Options
+        Options,
+        Profile
     };
     public MenuStates currentState;
 
     public GameObject mainMenu;
     public GameObject registration;
     public GameObject login;
+    public GameObject options;
+    public GameObject profile;
 
     public Animator transition;
     public float transitionTime = 1f;
@@ -23,7 +26,6 @@ public class Visability : MonoBehaviour
     // When script starts
     void Awake()
     {
-        // Always set main menu as active 
         currentState = MenuStates.Main;
     }
 
@@ -35,27 +37,37 @@ public class Visability : MonoBehaviour
                 mainMenu.SetActive(true);
                 registration.SetActive(false);
                 login.SetActive(false);
-                //options.setActive(false);
+                options.SetActive(false);
+                profile.SetActive(false);
                 break;
             case MenuStates.Registration:
                 mainMenu.SetActive(false);
                 registration.SetActive(true);
                 login.SetActive(false);
-                //options.setActive(false);
+                options.SetActive(false);
+                profile.SetActive(false);
                 break;
             case MenuStates.Login:
                 mainMenu.SetActive(false);
                 registration.SetActive(false);
                 login.SetActive(true);
-                //options.setActive(false);
+                options.SetActive(false);
+                profile.SetActive(false);
                 break;
-                //case MenuStates.Options:
-                //mainMenu.setActive(false);
-                //registration.setActive(false);
-                //login.setActive(false);
-                //options.setActive(true);
-                //break;
-
+            case MenuStates.Options:
+                mainMenu.SetActive(false);
+                registration.SetActive(false);
+                login.SetActive(false);
+                options.SetActive(true);
+                profile.SetActive(false);
+                break;
+            case MenuStates.Profile:
+                mainMenu.SetActive(false);
+                registration.SetActive(false);
+                login.SetActive(false);
+                options.SetActive(false);
+                profile.SetActive(true);
+                break;
         }
     }
 
@@ -72,11 +84,12 @@ public class Visability : MonoBehaviour
     {
         currentState = MenuStates.Login;
     }
-    //----------------------------------------------------------------Options-----------------------------------------------------------------//
-    //public void goToOptions()
-    //{
-    //    currentState = MenuStates.Options;
-    //}
-
-
+    public void goToOptions()
+    {
+        currentState = MenuStates.Options;
+    }
+    public void goToProfile()
+    {
+        currentState = MenuStates.Profile;
+    }
 }

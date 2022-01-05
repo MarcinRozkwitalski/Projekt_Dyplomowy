@@ -9,25 +9,37 @@ using UnityEngine;
 public class TriggerAnimation : MonoBehaviour
 {
     WaysOfLaunchingTheAnimations waysOfLaunchingTheAnimations;
+    PlayerDirectionDisplayHandler playerDirectionDisplayHandler;
     Animator animator;
     public static bool runAnimation = true;
     public static bool runAgain = true;
     public static bool startTransition = true;
-    public static bool startTale = true;
-    public static bool sentenceAnswered = false; // czy udzielono odpowiedzi na stwierdzenie
+    public static bool playAnimation = true;
+    public static bool blockAnimation = false;
+    public static bool something = true;
 
     void Start()
     {
+        playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
         waysOfLaunchingTheAnimations = GameObject.Find("AnimationHandler").GetComponent<WaysOfLaunchingTheAnimations>();
         animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        //(AnswerHandler.index != int.Parse(gameObject.name))
-        //podmienić to na dole :)
-        // PlayerCanInteract.index
-        
+
+        if (PlayerCanInteract.canChangeIndex == true &&
+            SentenceHandler.hashTableAnswers.Count == TestScrpitForIndex.indexList.Count &&
+            PlayerMovement.canMove == true &&
+            PlayerCanInteract.playerCanDecide == true &&
+            something == true)
+        {
+            AnswerHandler.index = 91;
+            PlayerMovement.canMove = false;
+            Debug.Log("koniec");
+        }
+
+
         if (AnswerHandler.index != int.Parse(gameObject.name))
         {
             GameObject originalGameObject = GameObject.Find(gameObject.name);
@@ -59,6 +71,9 @@ public class TriggerAnimation : MonoBehaviour
     IEnumerator Time()
     {
         yield return new WaitForSeconds(0f);
-        StartCoroutine(waysOfLaunchingTheAnimations.Animation(animator, gameObject.tag));
+        if (AnswerHandler.index == 0 && AnswerHandler.index == int.Parse(gameObject.name)) StartCoroutine(waysOfLaunchingTheAnimations.StartGame());
+        else if (AnswerHandler.index == 91 && AnswerHandler.index == int.Parse(gameObject.name)) StartCoroutine(waysOfLaunchingTheAnimations.EndGame());
+        else if (AnswerHandler.index != 0 && AnswerHandler.index != 91 && AnswerHandler.index == int.Parse(gameObject.name)) StartCoroutine(waysOfLaunchingTheAnimations.Animation(animator, gameObject.tag));
+
     }
 }

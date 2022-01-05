@@ -12,6 +12,7 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool canChangeIndex = true;
     public static bool playerCanPlay = true;
     public static bool playerCanDecide = true;
+    static public bool playerCanClick = true;
 
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
@@ -99,6 +100,8 @@ public class PlayerCanInteract : MonoBehaviour
         {
             // usunąc
             AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
+            TriggerAnimation.playAnimation = true; // ??? reset dla nowych animacji - ponieważ warunki nie działają
+            TriggerAnimation.runAnimation = true; // reset dla nowych animacji - ponieważ warunki nie działają
 
             canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
             Debug.Log("We used = " + clickedObject);
@@ -123,6 +126,11 @@ public class PlayerCanInteract : MonoBehaviour
             Debug.Log("RPS: " + clickedObject);
             playerCanPlay = false;
             StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
+        }
+        else if(tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true){
+            tagName = "";
+            Debug.Log("WaitForClick: " + clickedObject);
+            playerCanClick = false;
         }
 
         else

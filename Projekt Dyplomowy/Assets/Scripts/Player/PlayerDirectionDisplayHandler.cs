@@ -36,21 +36,6 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         PlayerFront.SetActive(true);
     }
     /// FILIP START IDEA STWORZENIA GLOBALNEGO ANIMATIONCLIP[] ze wszystkimi klipami WYCIĄGANIE ANIMACJI I ANIMATORÓW W PĘTLI
-    public float AnimationLength()
-    {
-        float playerFrontJumpTime = 0.0f;
-        AnimationClip[] clips = PlayerFrontAnim.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
-        {
-            switch (clip.name)
-            {
-                case "PlayerFrontJump":
-                    playerFrontJumpTime = clip.length;
-                    break;
-            }
-        }
-        return playerFrontJumpTime;
-    }
     public void StopAnimations()
     {
         PlayerFrontAnim.SetBool("is1True", false);
@@ -60,6 +45,10 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     public void PlayerSetDeafultPosition()
     {
         gameObject.transform.position = new Vector3(0, -4, 0);
+    }
+    public void PlayerSetStartGame()
+    {
+        gameObject.transform.position = new Vector3(-10, -3.72f, 0);
     }
     //// FILIP END
 
