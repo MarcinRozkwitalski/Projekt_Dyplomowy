@@ -228,6 +228,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_Yes_4();
                             break;
+                        case 7:
+                            break;
                         case 11:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
@@ -269,6 +271,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                         case 4:
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_No_4();
+                            break;
+                        case 7:
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
