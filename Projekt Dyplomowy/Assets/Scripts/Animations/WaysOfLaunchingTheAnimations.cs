@@ -175,9 +175,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
+            if (AnswerHandler.index == 21) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
-            Debug.Log("Anim 1 if");
+            // Debug.Log("Anim 1 if");
+
 
         }
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
@@ -188,21 +190,23 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (tag == "WaitForClick" && TriggerAnimation.playAnimation == true && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            // Debug.Log("WAITFORCLICK DZIAŁA");
+            Debug.Log("WAITFORCLICK DZIAŁA");
             if (PlayerMovement.canMove == true)
             {
                 PlayerMovement.canMove = false;
                 playerDirectionDisplayHandler.DisablePLayersCollider();
                 animator.SetBool("Intro", true);
             }
+
             if (PlayerCanInteract.playerCanClick == false)
             {
                 Debug.Log("playerClick = " + PlayerCanInteract.playerCanClick);
                 animator.SetInteger("Decision", 1);
                 PlayerCanInteract.playerCanClick = true;
                 TriggerAnimation.playAnimation = false;
-                
+
             }
+
         }
         else
         {
@@ -230,10 +234,22 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 7:
                             break;
+                        case 8:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_Yes_8();
+                            break;
+                        case 10:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_10(animator));
+                            break;
                         case 11:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
+                            break;
+                        case 21:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_21(animator));
                             break;
                         case 24:
                             animator.SetBool("Outro", true);
@@ -274,10 +290,22 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 7:
                             break;
+                        case 8:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_8();
+                            break;
+                        case 10:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_10(animator));
+                            break;
                         case 11:
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_No_11());
+                            break;
+                        case 21:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_21(animator));
                             break;
                         case 24:
                             animator.SetBool("Outro", true);

@@ -14,14 +14,18 @@ public class TestScrpitForIndex : MonoBehaviour
     public static bool stop = true;
     void Start()
     {
-        // indexList.Add(1);
+        // indexList.Add(1);// FIN
         // indexList.Add(2);
-        // indexList.Add(3);
-        // indexList.Add(4);
+        // indexList.Add(3);// FIN
+        // indexList.Add(4);// FIN
         // indexList.Add(7);
-        // indexList.Add(11);
-        indexList.Add(24);
-        // indexList.Add(29);
+        // indexList.Add(8); // NOT FINISHED
+        // indexList.Add(10); // NOT FINISHED
+        // indexList.Add(11); // FIN
+        // indexList.Add(21); // NOT FINISHED 
+        // indexList.Add(24); // FIN
+        // indexList.Add(29); // FIN
+        
 
         for (int i = 1; i <= 90; i++)
         {
