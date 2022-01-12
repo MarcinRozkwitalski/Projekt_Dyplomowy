@@ -151,6 +151,60 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
+    // statement 8
+    public void Statement_Yes_8()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_8()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 8
+
+    // statement 10
+    public IEnumerator Statement_Yes_10(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 2);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+            // animator.SetInteger("Decision", 3);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public IEnumerator Statement_No_10(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 1);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+            // animator.SetInteger("Decision", 3);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 10    
+
     // statement 11
 
 
@@ -257,6 +311,38 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 11
 
+    // statement 21
+    public IEnumerator Statement_Yes_21(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 2);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            // animator.SetInteger("Decision", 3);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public IEnumerator Statement_No_21(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 1);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            // animator.SetInteger("Decision", 3);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 21
+
     // statement 24
     public void Statement_Yes_24()
     {
@@ -338,7 +424,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
-            switch(AnswerHandler.index)
+            switch (AnswerHandler.index)
             {
                 case 7:
                     playerDirectionDisplayHandler.DisablePLayersCollider();
@@ -347,13 +433,13 @@ public class PreparedStatementAnimations : MonoBehaviour
                 default:
                     break;
             }
-            
+
             TriggerAnimation.runAgain = false;
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
             PlayerPathFollowerStatement(AnswerHandler.index);
 
-            switch(AnswerHandler.index)
+            switch (AnswerHandler.index)
             {
                 case 1:
                     animator.SetBool("Outro", false);
