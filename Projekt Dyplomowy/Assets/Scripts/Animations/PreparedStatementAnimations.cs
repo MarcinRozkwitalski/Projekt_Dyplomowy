@@ -11,6 +11,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
     DoorHandler doorHandler;
+    Animator playerSideLeftAnim;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
+        playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
     }
 
     // statement 1
@@ -151,6 +153,37 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
+    public void Statement_Yes_7()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            //włączyć sideleft w tym samym miejscu i skierować go w lewo
+            //włączyć RAZ animacje składania
+            //w dobrym momencie schować pudło oraz stare krzesło i podłożyć nowe krzesło
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_7()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            //otworzyć drzwi
+            //osoba z czapką wchodzi do pokoju, podchodzi do pudła
+            //animacja składania
+            //schować pudło i stare krzesło i podłożyć nowe krzesło
+            //osoba wychodzi z pokoju
+            //zamknąć drzwi
+            //koniec
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
     // statement 11
 
 
@@ -338,6 +371,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
+            TriggerAnimation.runAgain = false;
             switch(AnswerHandler.index)
             {
                 case 7:
@@ -348,7 +382,6 @@ public class PreparedStatementAnimations : MonoBehaviour
                     break;
             }
             
-            TriggerAnimation.runAgain = false;
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
             PlayerPathFollowerStatement(AnswerHandler.index);
@@ -361,7 +394,29 @@ public class PreparedStatementAnimations : MonoBehaviour
                     break;
                 case 7:
                     yield return new WaitForSeconds(7f);
+
                     PlayerPathFollowerStatement(701);
+                    yield return new WaitForSeconds(0.35f);
+                    doorHandler.CloseDoor();
+                    yield return new WaitForSeconds(7f);
+                    
+                    playerSideLeftAnim.SetBool("defaultStatement7", false);
+                    GameObject BoxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").gameObject.transform.Find("BoxWithChair").gameObject;
+                    BoxWithChair.SetActive(true);
+
+                    yield return new WaitForSeconds(1f);
+                    PlayerPathFollowerStatement(702);
+                    yield return new WaitForSeconds(0.5f);
+                    PlayerPathFollowerStatement(703);
+                    yield return new WaitForSeconds(1.3f);
+                    playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+                    playerDirectionDisplayHandler.PlayerFront.SetActive(true);
+                    Animator statement7Choice = GameObject.Find("AnimationHandler").transform.Find("7").GetComponent<Animator>();
+                    statement7Choice.SetBool("Intro", true);
+                    Animator playerFrontAnim = GameObject.Find("Player").transform.Find("PlayerFront").GetComponent<Animator>();
+                    playerFrontAnim.SetBool("defaultStatement7", true);
+
+
                     break;
                 default:
                     break;

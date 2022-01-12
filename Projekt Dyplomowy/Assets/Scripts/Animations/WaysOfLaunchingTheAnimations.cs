@@ -229,6 +229,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             preparedStatementAnimations.Statement_Yes_4();
                             break;
                         case 7:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_Yes_7();
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
@@ -273,6 +275,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             preparedStatementAnimations.Statement_No_4();
                             break;
                         case 7:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_7();
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
