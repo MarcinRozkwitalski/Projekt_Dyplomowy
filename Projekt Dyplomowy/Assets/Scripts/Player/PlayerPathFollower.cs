@@ -129,7 +129,7 @@ public class PlayerPathFollower : MonoBehaviour
 
     public void Statement_702_Active()
     {
-        playerDestination = new Vector2(1.60f, -4.44f);
+        playerDestination = new Vector2(1.70f, -4.64f);
         if (updateWalkingAnimation == true)
         {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
@@ -145,7 +145,7 @@ public class PlayerPathFollower : MonoBehaviour
         // Animator statement7Choice = GameObject.Find("AnimationHandler").transform.Find("7").GetComponent<Animator>();
         // statement7Choice.SetBool("Intro", true);
 
-        playerDestination = new Vector2(3.74f, -3.45f);
+        playerDestination = new Vector2(3.64f, -3.4f);
         if (updateWalkingAnimation == true)
         {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;

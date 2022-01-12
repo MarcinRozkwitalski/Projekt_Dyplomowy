@@ -13,6 +13,8 @@ public class PreparedStatementAnimations : MonoBehaviour
     DoorHandler doorHandler;
     Animator playerSideLeftAnim;
 
+    public Sprite newChairSprite;
+
     void Start()
     {
         playerDirectionDisplayHandler = GameObject.Find("Player").GetComponent<PlayerDirectionDisplayHandler>();
@@ -153,16 +155,26 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
-    public void Statement_Yes_7()
+    public IEnumerator Statement_Yes_7()
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
-            //włączyć sideleft w tym samym miejscu i skierować go w lewo
-            //włączyć RAZ animacje składania
-            //w dobrym momencie schować pudło oraz stare krzesło i podłożyć nowe krzesło
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.PlayerFrontAnim.SetBool("defaultStatement7", false);
+            yield return new WaitForSeconds(3.5f);
+            playerStatementAnimations.Start_Yes_7();
+            yield return new WaitForSeconds(
+                    animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_7(),
+                    "PlayerSideCrouchCreateCloud") - 3.5f);
+            playerStatementAnimations.Player_Get_Animator_Yes_7().SetBool("doCCC", false);
+            GameObject boxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").transform.Find("BoxWithChair").gameObject;
+            boxWithChair.SetActive(false);
+            GameObject chair = GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("Chair").gameObject;
+            chair.transform.position = new Vector3(1.562f, -2.403f, 0);
+            chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
+            yield return new WaitForSeconds(1f);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
@@ -171,6 +183,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
+            doorHandler.OpenDoor();
             //otworzyć drzwi
             //osoba z czapką wchodzi do pokoju, podchodzi do pudła
             //animacja składania
@@ -406,7 +419,7 @@ public class PreparedStatementAnimations : MonoBehaviour
 
                     yield return new WaitForSeconds(1f);
                     PlayerPathFollowerStatement(702);
-                    yield return new WaitForSeconds(0.5f);
+                    yield return new WaitForSeconds(0.65f);
                     PlayerPathFollowerStatement(703);
                     yield return new WaitForSeconds(1.3f);
                     playerDirectionDisplayHandler.HideAllPlayerPerspectives();

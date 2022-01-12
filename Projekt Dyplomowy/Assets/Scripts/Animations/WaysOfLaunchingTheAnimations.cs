@@ -230,7 +230,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 7:
                             animator.SetBool("Outro", true);
-                            preparedStatementAnimations.Statement_Yes_7();
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_7());
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
