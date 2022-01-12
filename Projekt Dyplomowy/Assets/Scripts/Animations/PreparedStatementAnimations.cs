@@ -338,13 +338,34 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
-            PlayerPathFollowerStatement(AnswerHandler.index);
-
+            switch(AnswerHandler.index)
+            {
+                case 7:
+                    playerDirectionDisplayHandler.DisablePLayersCollider();
+                    PlayerMovement.canMove = false;
+                    break;
+                default:
+                    break;
+            }
+            
             TriggerAnimation.runAgain = false;
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
-            animator.SetBool("Outro", false);
-            animator.SetBool("Intro", true); // parametr odpalający animacje 
+            PlayerPathFollowerStatement(AnswerHandler.index);
+
+            switch(AnswerHandler.index)
+            {
+                case 1:
+                    animator.SetBool("Outro", false);
+                    animator.SetBool("Intro", true); // parametr odpalający animacje 
+                    break;
+                case 7:
+                    yield return new WaitForSeconds(7f);
+                    PlayerPathFollowerStatement(701);
+                    break;
+                default:
+                    break;
+            }
             Debug.Log("Otwórz Drzwi");
         }
     }
