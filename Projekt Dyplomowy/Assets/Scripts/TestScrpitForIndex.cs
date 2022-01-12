@@ -18,9 +18,9 @@ public class TestScrpitForIndex : MonoBehaviour
         // indexList.Add(2);
         // indexList.Add(3);
         // indexList.Add(4);
-        indexList.Add(7);
+        // indexList.Add(7);
         // indexList.Add(11);
-        // indexList.Add(24);
+        indexList.Add(24);
         // indexList.Add(29);
 
         for (int i = 1; i <= 90; i++)
