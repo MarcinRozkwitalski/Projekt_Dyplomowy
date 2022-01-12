@@ -179,11 +179,40 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
     }
 
-    public void Statement_No_7()
+    public IEnumerator Statement_No_7()
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
+            PlayerCanInteract.playerCanDecide = true;
+            GameObject npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
+            Animator npc7NoAnimator = npc7No.GetComponent<Animator>();
             doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            npc7No.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            npc7No.transform.position = Vector2.MoveTowards(transform.position, new Vector2(-0.47f, -3.47f), 1f * Time.deltaTime);
+            npc7NoAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(6f);
+            npc7NoAnimator.SetBool("isMoving", false);
+            npc7NoAnimator.SetBool("doCCC", true);
+            yield return new WaitForSeconds(
+                    animationtime.GetAnimationTimeFromName(npcStatementAnimations.Npc_Get_Animator_No_7(),
+                    "NPCSideLeftHatCrouchCreateCloud") - 3.5f);
+            npc7NoAnimator.SetBool("doCCC", false);
+            GameObject boxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").transform.Find("BoxWithChair").gameObject;
+            boxWithChair.SetActive(false);
+            GameObject chair = GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("Chair").gameObject;
+            chair.transform.position = new Vector3(1.562f, -2.403f, 0);
+            chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
+            if (npc7No.transform.eulerAngles.y == 180) npc7No.transform.Rotate(0, -180, 0);
+            npc7NoAnimator.SetBool("isMoving", true);
+            npc7No.transform.position = Vector2.MoveTowards(transform.position, new Vector2(-10f, -3.76f), 1f * Time.deltaTime);
+
+            yield return new WaitForSeconds(6f);
+
+
+
+
             //otworzyć drzwi
             //osoba z czapką wchodzi do pokoju, podchodzi do pudła
             //animacja składania
@@ -193,7 +222,6 @@ public class PreparedStatementAnimations : MonoBehaviour
             //koniec
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }

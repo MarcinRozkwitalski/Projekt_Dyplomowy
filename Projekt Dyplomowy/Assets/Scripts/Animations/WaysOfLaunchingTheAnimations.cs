@@ -276,7 +276,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 7:
                             animator.SetBool("Outro", true);
-                            preparedStatementAnimations.Statement_No_7();
+                            StartCoroutine(preparedStatementAnimations.Statement_No_7());
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
