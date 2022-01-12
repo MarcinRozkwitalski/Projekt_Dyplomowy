@@ -127,12 +127,24 @@ public class PlayerCanInteract : MonoBehaviour
             playerCanPlay = false;
             StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
         }
-        else if(tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true){
+        else if (tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true)
+        {
             tagName = "";
             Debug.Log("WaitForClick: " + clickedObject);
             playerCanClick = false;
         }
-
+        else if (tagName == "B" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description B: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 2;
+        }
+        else if (tagName == "R" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description R: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 1;
+        }
         else
         {
             // Debug.Log("We cant use that object");

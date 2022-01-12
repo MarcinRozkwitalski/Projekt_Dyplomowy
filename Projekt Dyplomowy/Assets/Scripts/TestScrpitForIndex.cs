@@ -14,7 +14,7 @@ public class TestScrpitForIndex : MonoBehaviour
     public static bool stop = true;
     void Start()
     {
-        // indexList.Add(1);// FIN
+        indexList.Add(1);// FIN
         // indexList.Add(2);
         // indexList.Add(3);// FIN
         // indexList.Add(4);// FIN
