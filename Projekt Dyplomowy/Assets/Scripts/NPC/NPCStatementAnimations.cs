@@ -5,11 +5,13 @@ using UnityEngine;
 public class NPCStatementAnimations : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject npc_yes_11;
-    Animator animator_yes_11;
+    public GameObject npc_no_7, npc_yes_11;
+    Animator animator_no_7, animator_yes_11;
     void Start()
     {
         animator_yes_11 = npc_yes_11.GetComponent<Animator>();
+        npc_no_7 = GameObject.Find("NPC").transform.Find("7").gameObject;
+        animator_no_7 = npc_no_7.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -17,6 +19,12 @@ public class NPCStatementAnimations : MonoBehaviour
     {
 
     }
+    public Animator Npc_Get_Animator_No_7()
+    {
+        Animator animator = animator_no_7;
+        return animator;
+    }
+
     public void SetActive_False_Object_Yes_11(){
         npc_yes_11.SetActive(false);
     }

@@ -40,7 +40,7 @@ public class TestScrpitForIndex : MonoBehaviour
 
         do
         {
-            randomIndex = Random.Range(0, 1); //  0 
+            randomIndex = Random.Range(0, 5); //  0 
             if (!usedIndexList.Contains(indexList[randomIndex]))
             {
                 usedIndexList.Add(indexList[randomIndex]);

@@ -11,10 +11,21 @@ public class PlayerPathFollower : MonoBehaviour
     public static bool playerCanChangePosition = false;
     public static int statementPosition = 0;
 
+    Animator playerSideLeftAnim, playerFrontAnim;
+    GameObject playerSideLeft, playerFront;
+
     bool updateWalkingAnimation = true;
 
 
     // Nie możemy tu ustawić canMove na true bo gracz będzie mógł sam chodzić po pokoju
+
+    void Start()
+    {
+        playerSideLeft = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject;
+        playerSideLeftAnim = playerSideLeft.GetComponent<Animator>();
+        playerFront = GameObject.Find("Player").transform.Find("PlayerFront").gameObject;
+        playerFrontAnim = playerFront.GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -36,6 +47,12 @@ public class PlayerPathFollower : MonoBehaviour
                 case 701:
                     Statement_701_Active();
                     break;
+                case 702:
+                    Statement_702_Active();
+                    break;
+                case 703:
+                    Statement_703_Active();
+                    break;
                 case 91:
                     Statement_91_Active();
                     break;
@@ -53,7 +70,9 @@ public class PlayerPathFollower : MonoBehaviour
             // jak się wejdzie w to samo miejsce to nagle ANOMALIA
             updateWalkingAnimation = true;
             playerCanChangePosition = false;
-            if(statementPosition == 91 || statementPosition == 7 || statementPosition == 701)PlayerMovement.canMove = false;
+            if(statementPosition == 91 || 
+            statementPosition == 7 || statementPosition == 701 || statementPosition == 702 || statementPosition == 703
+            )PlayerMovement.canMove = false;
             else PlayerMovement.canMove = true;
             playerDestination = new Vector2(1, 1); // by żaden if nie działał 
             Debug.Log("Koniec path + movement = " + PlayerMovement.canMove);
@@ -96,8 +115,37 @@ public class PlayerPathFollower : MonoBehaviour
     }
 
     public void Statement_701_Active()
+    {   
+        playerSideLeftAnim.SetBool("defaultStatement7", true);
+        playerDestination = new Vector2(0.40f, -3.72f);
+        if (updateWalkingAnimation == true)
+        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_702_Active()
     {
-        playerDestination = new Vector2(1, -3.72f);
+        playerDestination = new Vector2(1.70f, -4.64f);
+        if (updateWalkingAnimation == true)
+        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }   
+
+    public void Statement_703_Active()
+    {
+        // playerFrontAnim.SetBool("defaultStatement7", true);
+        // Animator statement7Choice = GameObject.Find("AnimationHandler").transform.Find("7").GetComponent<Animator>();
+        // statement7Choice.SetBool("Intro", true);
+
+        playerDestination = new Vector2(3.64f, -3.4f);
         if (updateWalkingAnimation == true)
         {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
