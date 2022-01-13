@@ -242,6 +242,30 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     // statement 6
 
+    public void Statement_Yes_6()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_6()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    // statement 6
+
     // statement 7
     public IEnumerator Statement_Yes_7()
     {
