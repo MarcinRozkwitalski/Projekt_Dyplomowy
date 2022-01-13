@@ -14,8 +14,8 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool playerCanDecide = true;
     static public bool playerCanClick = true;
 
-    ArrayList usedObjects = new ArrayList();
-    ArrayList interactableObjects = new ArrayList();
+    ArrayList usedObjects = new ArrayList(); // need to be reset for new game
+    ArrayList interactableObjects = new ArrayList(); // need to be reset for new game
     Ray ray;
     RaycastHit2D hit;
     AnswerHandler answerHandler;
@@ -179,7 +179,7 @@ public class PlayerCanInteract : MonoBehaviour
         {
             tagName = "";
             Debug.Log("Description ExitStats: " + clickedObject);
-            WaysOfLaunchingTheAnimations.exitStats = true;
+            WaysOfLaunchingTheAnimations.game = 4;
         }
         else
         {

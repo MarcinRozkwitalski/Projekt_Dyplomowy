@@ -9,7 +9,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     PlayerPathFollower playerPathFollower;
     AnimationTime animationtime;
     DoorHandler doorHandler, doorHandlerStats;
-    public static int game= 1;
+    public static int game = 1;
     public static bool exitStats = false;
     public static int viewStats = 0;
     Animator roomAnimator, rBarAnimator, bBarAnimator, aBarAnimator, sBarAnimator, pBarAnimator, kBarAnimator, rNumberAnimator, bNumberAnimator, aNumberAnimator, sNumberAnimator, pNumberAnimator, kNumberAnimator;
@@ -45,7 +45,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     public IEnumerator StartGame()
     {
 
-        if (game== 1)
+        if (game == 1)
         {
             game++;
             playerDirectionDisplayHandler.PlayerSetStartGame();
@@ -66,7 +66,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     public IEnumerator EndGame()
     {
 
-        if (game== 2)
+        if (game == 2)
         {
             game++;
 
@@ -146,9 +146,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             viewStats = 0;
         }
 
-        if (game== 4)
+        if (game == 4)
         {
+            Debug.Log("Exit");
             game++;
+            PlayerMovement.canMove = false;
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandlerStats.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftOpening"));
@@ -158,6 +160,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             doorHandlerStats.CloseDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
             exitStats = true;
+            PlayerMovement.canMove = true;
         }
     }
 

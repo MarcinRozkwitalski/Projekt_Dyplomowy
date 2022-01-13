@@ -15,6 +15,9 @@ public class SentenceHandler : MonoBehaviour
     {
         StartCoroutine(GetTesting());
     }
+    public void Update(){
+        if(WaysOfLaunchingTheAnimations.game == 5)GameObject.Find("Main Menu").transform.Find("Canvas").transform.Find("Start As Guest").gameObject.SetActive(false);
+    }
 
     IEnumerator GetTesting()
     {

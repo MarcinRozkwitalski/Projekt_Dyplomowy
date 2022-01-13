@@ -8,9 +8,9 @@ public class TestScrpitForIndex : MonoBehaviour
 
     public static int index = 0;
     int randomIndex = 0;
-    public static List<int> indexList = new List<int>();
-    public static int[] stats = new int[91];
-    List<int> usedIndexList = new List<int>();
+    public static List<int> indexList = new List<int>(); // need to be reset for new game
+    public static int[] stats = new int[91]; // need to be reset for new game
+    List<int> usedIndexList = new List<int>(); // need to be reset for new game
     public static bool stop = true;
     void Start()
     {
