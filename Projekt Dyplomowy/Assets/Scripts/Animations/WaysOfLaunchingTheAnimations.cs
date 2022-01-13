@@ -91,32 +91,52 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.EnablePLayersCollider();
             // PlayerMovement.canMove = true;
         }
-
         if (viewStats == 1)
         {
             HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionR").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
         }
         else if (viewStats == 2)
         {
             HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionB").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
         }
         else if (viewStats == 3)
         {
-            
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionA").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
         }
         else if (viewStats == 4)
         {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionS").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
         }
         else if (viewStats == 5)
         {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionP").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
         }
         else if (viewStats == 6)
         {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionK").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
         }
         else if (viewStats == 7)
@@ -215,7 +235,13 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(false);
         GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(false);
 
-        GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("R-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("B-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("A-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("S-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("P-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("K-BackWallBlank").gameObject.SetActive(false);
+
     }
 
     void ShowStats()
@@ -234,7 +260,22 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(true);
         GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(true);
 
+        GameObject.Find("Stats").transform.Find("DescriptionR").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionB").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionA").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionS").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionP").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionK").gameObject.SetActive(false);
+
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("R-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("B-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("A-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("S-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("P-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("K-BackWallBlank").gameObject.SetActive(true);
+
         GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(false);
+
     }
 
 
@@ -348,7 +389,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 2:
                             animator.SetBool("Outro", true);
-                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro")); // inaczej na się odpali PLayerCandecide za szybko 
                             preparedStatementAnimations.Statement_No_2();
                             break;
                         case 3:
