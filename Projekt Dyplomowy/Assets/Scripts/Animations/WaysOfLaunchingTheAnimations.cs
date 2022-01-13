@@ -9,7 +9,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     PlayerPathFollower playerPathFollower;
     AnimationTime animationtime;
     DoorHandler doorHandler, doorHandlerStats;
-    int Game = 1;
+    public static int game= 1;
+    public static bool exitStats = false;
     public static int viewStats = 0;
     Animator roomAnimator, rBarAnimator, bBarAnimator, aBarAnimator, sBarAnimator, pBarAnimator, kBarAnimator, rNumberAnimator, bNumberAnimator, aNumberAnimator, sNumberAnimator, pNumberAnimator, kNumberAnimator;
 
@@ -44,9 +45,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     public IEnumerator StartGame()
     {
 
-        if (Game == 1)
+        if (game== 1)
         {
-            Game++;
+            game++;
             playerDirectionDisplayHandler.PlayerSetStartGame();
             playerDirectionDisplayHandler.DisablePLayersCollider();
             PlayerMovement.canMove = false;
@@ -58,16 +59,16 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.EnablePLayersCollider();
             doorHandler.CloseDoor();
             PlayerMovement.canMove = true;
-            // Debug.Log("Game 1");
+            // Debug.Log("game1");
         }
     }
 
     public IEnumerator EndGame()
     {
 
-        if (Game == 2)
+        if (game== 2)
         {
-            Game++;
+            game++;
 
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandler.OpenDoor();
@@ -143,6 +144,20 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         {
             ShowStats();
             viewStats = 0;
+        }
+
+        if (game== 4)
+        {
+            game++;
+            playerDirectionDisplayHandler.DisablePLayersCollider();
+            doorHandlerStats.OpenDoor();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftOpening"));
+            PlayerPathFollower.statementPosition = 91; // wybór statement
+            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+            yield return new WaitForSeconds(3f);
+            doorHandlerStats.CloseDoor();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
+            exitStats = true;
         }
     }
 

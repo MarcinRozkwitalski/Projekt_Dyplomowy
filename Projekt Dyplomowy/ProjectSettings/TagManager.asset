@@ -21,6 +21,7 @@ TagManager:
   - P
   - K
   - ReturnToStats
+  - ExitStats
   layers:
   - Default
   - TransparentFX
