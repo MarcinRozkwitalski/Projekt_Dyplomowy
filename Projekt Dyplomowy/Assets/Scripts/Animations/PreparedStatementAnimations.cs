@@ -11,10 +11,10 @@ public class PreparedStatementAnimations : MonoBehaviour
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
     DoorHandler doorHandler;
-    GameObject npc7No;
+    public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
     Animator playerSideLeftAnim, npc7NoAnimator;
 
-    public Sprite newChairSprite;
+    public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
     
     private bool doUpdateForNPCWalk;
     private int whichNPCWalkForS7N;
@@ -180,6 +180,32 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
+    // statement 6
+
+    public void Statement_Yes_6()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_6()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    // statement 6
+
     // statement 7
     public IEnumerator Statement_Yes_7()
     {
@@ -198,6 +224,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             GameObject chair = GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("Chair").gameObject;
             chair.transform.position = new Vector3(1.562f, -2.403f, 0);
             chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
+            playerBackLeft45Chair.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45Chair;
+            playerBackLeft45ChairSeat.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45ChairSeat;
             yield return new WaitForSeconds(1f);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
@@ -233,6 +261,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             chair.transform.position = new Vector3(1.562f, -2.403f, 0);
             chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
             yield return new WaitForSeconds(4f);
+            playerBackLeft45Chair.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45Chair;
+            playerBackLeft45ChairSeat.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45ChairSeat;
             if (npc7No.transform.eulerAngles.y == 180) npc7No.transform.Rotate(0, -180, 0);
             yield return new WaitForSeconds(0.5f);
             npc7NoAnimator.SetBool("isMoving", true);
@@ -460,16 +490,13 @@ public class PreparedStatementAnimations : MonoBehaviour
                     break;
                 case 7:
                     yield return new WaitForSeconds(7f);
-
                     PlayerPathFollowerStatement(701);
                     yield return new WaitForSeconds(0.35f);
                     doorHandler.CloseDoor();
                     yield return new WaitForSeconds(7f);
-                    
                     playerSideLeftAnim.SetBool("defaultStatement7", false);
                     GameObject BoxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").gameObject.transform.Find("BoxWithChair").gameObject;
                     BoxWithChair.SetActive(true);
-
                     yield return new WaitForSeconds(1f);
                     PlayerPathFollowerStatement(702);
                     yield return new WaitForSeconds(0.65f);
@@ -481,8 +508,6 @@ public class PreparedStatementAnimations : MonoBehaviour
                     statement7Choice.SetBool("Intro", true);
                     Animator playerFrontAnim = GameObject.Find("Player").transform.Find("PlayerFront").GetComponent<Animator>();
                     playerFrontAnim.SetBool("defaultStatement7", true);
-
-
                     break;
                 default:
                     break;
