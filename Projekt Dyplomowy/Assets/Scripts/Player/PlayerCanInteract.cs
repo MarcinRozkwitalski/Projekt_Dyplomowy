@@ -169,6 +169,12 @@ public class PlayerCanInteract : MonoBehaviour
             Debug.Log("Description K: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 6;
         }
+        else if (tagName == "ReturnToStats" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description ReturnToStats: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 7;
+        }
         else
         {
             // Debug.Log("We cant use that object");

@@ -104,7 +104,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (viewStats == 3)
         {
-            ShowStats();
+            
             viewStats = 0;
         }
         else if (viewStats == 4)
@@ -117,6 +117,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (viewStats == 6)
         {
+            viewStats = 0;
+        }
+        else if (viewStats == 7)
+        {
+            ShowStats();
             viewStats = 0;
         }
     }
@@ -209,6 +214,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(false);
         GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(false);
         GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(false);
+
+        GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
     }
 
     void ShowStats()
@@ -226,6 +233,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(true);
         GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(true);
         GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(true);
+
+        GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(false);
     }
 
 
