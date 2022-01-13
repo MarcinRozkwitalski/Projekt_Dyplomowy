@@ -32,6 +32,11 @@ public class SceneLoader : MonoBehaviour
             GameTimeHandler.nextSceneLoader = false;
             LoadNextSentence();
         }
+
+        if(WaysOfLaunchingTheAnimations.exitStats){
+            WaysOfLaunchingTheAnimations.exitStats = false;
+            LoadStartScene();
+        }
     }
 
     /// <summary>

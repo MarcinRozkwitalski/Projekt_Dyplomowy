@@ -9,7 +9,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     PlayerPathFollower playerPathFollower;
     AnimationTime animationtime;
     DoorHandler doorHandler, doorHandlerStats;
-    int Game = 1;
+    public static int game = 1;
+    public static bool exitStats = false;
+    public static int viewStats = 0;
     Animator roomAnimator, rBarAnimator, bBarAnimator, aBarAnimator, sBarAnimator, pBarAnimator, kBarAnimator, rNumberAnimator, bNumberAnimator, aNumberAnimator, sNumberAnimator, pNumberAnimator, kNumberAnimator;
 
     void Start()
@@ -43,9 +45,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     public IEnumerator StartGame()
     {
 
-        if (Game == 1)
+        if (game == 1)
         {
-            Game++;
+            game++;
             playerDirectionDisplayHandler.PlayerSetStartGame();
             playerDirectionDisplayHandler.DisablePLayersCollider();
             PlayerMovement.canMove = false;
@@ -57,16 +59,16 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.EnablePLayersCollider();
             doorHandler.CloseDoor();
             PlayerMovement.canMove = true;
-            // Debug.Log("Game 1");
+            // Debug.Log("game1");
         }
     }
 
     public IEnumerator EndGame()
     {
 
-        if (Game == 2)
+        if (game == 2)
         {
-            Game++;
+            game++;
 
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandler.OpenDoor();
@@ -87,9 +89,78 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             doorHandlerStats.CloseDoor();
             Debug.Log("PlayerMovement = " + PlayerMovement.canMove);
             Stats();
-
-            // playerDirectionDisplayHandler.EnablePLayersCollider();
+            playerDirectionDisplayHandler.EnablePLayersCollider();
             // PlayerMovement.canMove = true;
+        }
+        if (viewStats == 1)
+        {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionR").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+            viewStats = 0;
+        }
+        else if (viewStats == 2)
+        {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionB").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+            viewStats = 0;
+        }
+        else if (viewStats == 3)
+        {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionA").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+            viewStats = 0;
+        }
+        else if (viewStats == 4)
+        {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionS").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+            viewStats = 0;
+        }
+        else if (viewStats == 5)
+        {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionP").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+            viewStats = 0;
+        }
+        else if (viewStats == 6)
+        {
+            HideStats();
+            // yield return new WaitForSeconds(1f);
+            GameObject.Find("Stats").transform.Find("DescriptionK").gameObject.SetActive(true);
+            GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
+            viewStats = 0;
+        }
+        else if (viewStats == 7)
+        {
+            ShowStats();
+            viewStats = 0;
+        }
+
+        if (game == 4)
+        {
+            Debug.Log("Exit");
+            game++;
+            PlayerMovement.canMove = false;
+            playerDirectionDisplayHandler.DisablePLayersCollider();
+            doorHandlerStats.OpenDoor();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftOpening"));
+            PlayerPathFollower.statementPosition = 91; // wybór statement
+            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+            yield return new WaitForSeconds(3f);
+            doorHandlerStats.CloseDoor();
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
+            exitStats = true;
+            PlayerMovement.canMove = true;
         }
     }
 
@@ -165,6 +236,66 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
     }
 
+    void HideStats()
+    {
+
+        rBarAnimator.SetBool("Hide", true);
+        bBarAnimator.SetBool("Hide", true);
+        aBarAnimator.SetBool("Hide", true);
+        sBarAnimator.SetBool("Hide", true);
+        pBarAnimator.SetBool("Hide", true);
+        kBarAnimator.SetBool("Hide", true);
+
+        GameObject.Find("Stats").transform.Find("NumbersR").transform.Find(TestScrpitForIndex.stats[1].ToString() + "-stat").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("NumbersB").transform.Find(TestScrpitForIndex.stats[2].ToString() + "-stat").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("NumbersA").transform.Find(TestScrpitForIndex.stats[3].ToString() + "-stat").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(false);
+
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("R-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("B-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("A-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("S-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("P-BackWallBlank").gameObject.SetActive(false);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("K-BackWallBlank").gameObject.SetActive(false);
+
+    }
+
+    void ShowStats()
+    {
+        rBarAnimator.SetBool("Hide", false);
+        bBarAnimator.SetBool("Hide", false);
+        aBarAnimator.SetBool("Hide", false);
+        sBarAnimator.SetBool("Hide", false);
+        pBarAnimator.SetBool("Hide", false);
+        kBarAnimator.SetBool("Hide", false);
+
+        GameObject.Find("Stats").transform.Find("NumbersR").transform.Find(TestScrpitForIndex.stats[1].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersB").transform.Find(TestScrpitForIndex.stats[2].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersA").transform.Find(TestScrpitForIndex.stats[3].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(true);
+
+        GameObject.Find("Stats").transform.Find("DescriptionR").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionB").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionA").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionS").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionP").gameObject.SetActive(false);
+        GameObject.Find("Stats").transform.Find("DescriptionK").gameObject.SetActive(false);
+
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("R-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("B-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("A-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("S-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("P-BackWallBlank").gameObject.SetActive(true);
+        GameObject.Find("Walls").transform.Find("RoomTwo").transform.Find("Symbols").transform.Find("K-BackWallBlank").gameObject.SetActive(true);
+
+        GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(false);
+
+    }
+
 
     public IEnumerator Animation(Animator animator, string tag)
     {
@@ -175,9 +306,11 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
+            if (AnswerHandler.index == 21) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
-            Debug.Log("Anim 1 if");
+            // Debug.Log("Anim 1 if");
+
 
         }
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
@@ -188,21 +321,23 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (tag == "WaitForClick" && TriggerAnimation.playAnimation == true && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            // Debug.Log("WAITFORCLICK DZIAŁA");
+            Debug.Log("WAITFORCLICK DZIAŁA");
             if (PlayerMovement.canMove == true)
             {
                 PlayerMovement.canMove = false;
                 playerDirectionDisplayHandler.DisablePLayersCollider();
                 animator.SetBool("Intro", true);
             }
+
             if (PlayerCanInteract.playerCanClick == false)
             {
                 Debug.Log("playerClick = " + PlayerCanInteract.playerCanClick);
                 animator.SetInteger("Decision", 1);
                 PlayerCanInteract.playerCanClick = true;
                 TriggerAnimation.playAnimation = false;
-                
+
             }
+
         }
         else
         {
@@ -228,12 +363,31 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_Yes_4();
                             break;
+                        case 6:
+                            animator.SetBool("Outro", true);
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            preparedStatementAnimations.Statement_Yes_6();
+                            break;
                         case 7:
+                            animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_7());
+                            break;
+                        case 8:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_Yes_8();
+                            break;
+                        case 10:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_10(animator));
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
+                            break;
+                        case 21:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_21(animator));
                             break;
                         case 24:
                             animator.SetBool("Outro", true);
@@ -260,7 +414,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 2:
                             animator.SetBool("Outro", true);
-                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro")); // inaczej na się odpali PLayerCandecide za szybko 
                             preparedStatementAnimations.Statement_No_2();
                             break;
                         case 3:
@@ -272,12 +426,31 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_No_4();
                             break;
+                        case 6:
+                            animator.SetBool("Outro", true);
+                            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
+                            preparedStatementAnimations.Statement_No_6();
+                            break;
                         case 7:
+                            animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_7());
+                            break;
+                        case 8:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_8();
+                            break;
+                        case 10:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_10(animator));
                             break;
                         case 11:
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_No_11());
+                            break;
+                        case 21:
+                            // animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_21(animator));
                             break;
                         case 24:
                             animator.SetBool("Outro", true);

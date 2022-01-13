@@ -14,8 +14,8 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool playerCanDecide = true;
     static public bool playerCanClick = true;
 
-    ArrayList usedObjects = new ArrayList();
-    ArrayList interactableObjects = new ArrayList();
+    ArrayList usedObjects = new ArrayList(); // need to be reset for new game
+    ArrayList interactableObjects = new ArrayList(); // need to be reset for new game
     Ray ray;
     RaycastHit2D hit;
     AnswerHandler answerHandler;
@@ -127,12 +127,60 @@ public class PlayerCanInteract : MonoBehaviour
             playerCanPlay = false;
             StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
         }
-        else if(tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true){
+        else if (tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true)
+        {
             tagName = "";
             Debug.Log("WaitForClick: " + clickedObject);
             playerCanClick = false;
         }
-
+        else if (tagName == "R" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description R: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 1;
+        }
+        else if (tagName == "B" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description B: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 2;
+        }
+        else if (tagName == "A" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description A: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 3;
+        }
+        else if (tagName == "S" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description S: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 4;
+        }
+        else if (tagName == "P" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description P: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 5;
+        }
+        else if (tagName == "K" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description K: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 6;
+        }
+        else if (tagName == "ReturnToStats" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description ReturnToStats: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 7;
+        }
+        else if (tagName == "ExitStats" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description ExitStats: " + clickedObject);
+            WaysOfLaunchingTheAnimations.game = 4;
+        }
         else
         {
             // Debug.Log("We cant use that object");

@@ -14,6 +14,14 @@ TagManager:
   - RPSButton
   - StatementOnly
   - WaitForClick
+  - B
+  - R
+  - S
+  - A
+  - P
+  - K
+  - ReturnToStats
+  - ExitStats
   layers:
   - Default
   - TransparentFX

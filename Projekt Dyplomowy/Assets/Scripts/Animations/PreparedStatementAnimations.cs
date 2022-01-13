@@ -11,6 +11,13 @@ public class PreparedStatementAnimations : MonoBehaviour
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
     DoorHandler doorHandler;
+    public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
+    Animator playerSideLeftAnim, npc7NoAnimator;
+
+    public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
+    
+    private bool doUpdateForNPCWalk;
+    private int whichNPCWalkForS7N;
 
     void Start()
     {
@@ -21,6 +28,28 @@ public class PreparedStatementAnimations : MonoBehaviour
         rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
+        playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
+        npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
+        npc7NoAnimator = npc7No.GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        float step = 3f * Time.deltaTime;
+        if (doUpdateForNPCWalk)
+        {
+            switch(whichNPCWalkForS7N){
+                case 1:
+                    StartCoroutine(MoveNPC(npc7No.transform, new Vector3(-0.47f, -3.47f, 0f), step));
+                    break;
+                case 2:
+                    StartCoroutine(MoveNPC(npc7No.transform, new Vector3(-10f, -3.76f, 0f), step));
+                    break;
+                default:
+                    Debug.Log("Missing number for which NPC walk S7N!");
+                    break;
+            }
+        }
     }
 
     // statement 1
@@ -79,6 +108,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+
         }
     }
 
@@ -89,6 +120,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+
         }
     }
     // statement 2
@@ -151,8 +184,164 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
+    // statement 8
+    public void Statement_Yes_8()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_8()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 8
+
+    // statement 10
+    public IEnumerator Statement_Yes_10(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 2);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+            // animator.SetInteger("Decision", 3);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public IEnumerator Statement_No_10(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 1);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+            // animator.SetInteger("Decision", 3);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 10    
+
     // statement 11
 
+    // statement 6
+
+    public void Statement_Yes_6()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_6()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    // statement 6
+
+    // statement 7
+    public IEnumerator Statement_Yes_7()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.PlayerFrontAnim.SetBool("defaultStatement7", false);
+            yield return new WaitForSeconds(3.5f);
+            playerStatementAnimations.Start_Yes_7();
+            yield return new WaitForSeconds(
+                    animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_Yes_7(),
+                    "PlayerSideCrouchCreateCloud") - 3.5f);
+            playerStatementAnimations.Player_Get_Animator_Yes_7().SetBool("doCCC", false);
+            GameObject boxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").transform.Find("BoxWithChair").gameObject;
+            boxWithChair.SetActive(false);
+            GameObject chair = GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("Chair").gameObject;
+            chair.transform.position = new Vector3(1.562f, -2.403f, 0);
+            chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
+            playerBackLeft45Chair.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45Chair;
+            playerBackLeft45ChairSeat.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45ChairSeat;
+            yield return new WaitForSeconds(1f);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public IEnumerator Statement_No_7()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.PlayerFrontAnim.SetBool("defaultStatement7", false);
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            npc7No.SetActive(true);
+            npc7NoAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(0.5f);
+            whichNPCWalkForS7N = 1;
+            doUpdateForNPCWalk = true;
+            yield return new WaitForSeconds(2.3f);
+            doUpdateForNPCWalk = false;
+            npc7NoAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            npc7NoAnimator.SetBool("doCCC", true);
+            yield return new WaitForSeconds(
+                    animationtime.GetAnimationTimeFromName(npcStatementAnimations.Npc_Get_Animator_No_7(),
+                    "NPCSideLeftHatCrouchCreateCloud") - 3.5f);
+            npc7NoAnimator.SetBool("doCCC", false);
+            GameObject boxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").transform.Find("BoxWithChair").gameObject;
+            boxWithChair.SetActive(false);
+            GameObject chair = GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("Chair").gameObject;
+            chair.transform.position = new Vector3(1.562f, -2.403f, 0);
+            chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
+            yield return new WaitForSeconds(4f);
+            playerBackLeft45Chair.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45Chair;
+            playerBackLeft45ChairSeat.GetComponent<SpriteRenderer>().sprite = newPlayerBackLeft45ChairSeat;
+            if (npc7No.transform.eulerAngles.y == 180) npc7No.transform.Rotate(0, -180, 0);
+            yield return new WaitForSeconds(0.5f);
+            npc7NoAnimator.SetBool("isMoving", true);
+            whichNPCWalkForS7N = 2;
+            doUpdateForNPCWalk = true;
+            yield return new WaitForSeconds(3f);
+            doUpdateForNPCWalk = false;
+            npc7NoAnimator.SetBool("isMoving", false);
+            doorHandler.CloseDoor();
+            npc7No.SetActive(false);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    // statement 7
+
+    // statement 11
 
     public IEnumerator Statement_Yes_11()
     {
@@ -257,6 +446,38 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 11
 
+    // statement 21
+    public IEnumerator Statement_Yes_21(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 2);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            // animator.SetInteger("Decision", 3);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public IEnumerator Statement_No_21(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 1);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            // animator.SetInteger("Decision", 3);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 21
+
     // statement 24
     public void Statement_Yes_24()
     {
@@ -338,7 +559,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (TriggerAnimation.runAnimation == true && TriggerAnimation.runAgain == true)
         {
-            switch(AnswerHandler.index)
+            switch (AnswerHandler.index)
             {
                 case 7:
                     playerDirectionDisplayHandler.DisablePLayersCollider();
@@ -347,13 +568,13 @@ public class PreparedStatementAnimations : MonoBehaviour
                 default:
                     break;
             }
-            
+
             TriggerAnimation.runAgain = false;
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
             PlayerPathFollowerStatement(AnswerHandler.index);
 
-            switch(AnswerHandler.index)
+            switch (AnswerHandler.index)
             {
                 case 1:
                     animator.SetBool("Outro", false);
@@ -362,6 +583,23 @@ public class PreparedStatementAnimations : MonoBehaviour
                 case 7:
                     yield return new WaitForSeconds(7f);
                     PlayerPathFollowerStatement(701);
+                    yield return new WaitForSeconds(0.35f);
+                    doorHandler.CloseDoor();
+                    yield return new WaitForSeconds(7f);
+                    playerSideLeftAnim.SetBool("defaultStatement7", false);
+                    GameObject BoxWithChair = GameObject.Find("ObjectsBeforeChoiceHandler").transform.Find("7").gameObject.transform.Find("BoxWithChair").gameObject;
+                    BoxWithChair.SetActive(true);
+                    yield return new WaitForSeconds(1f);
+                    PlayerPathFollowerStatement(702);
+                    yield return new WaitForSeconds(0.65f);
+                    PlayerPathFollowerStatement(703);
+                    yield return new WaitForSeconds(1.3f);
+                    playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+                    playerDirectionDisplayHandler.PlayerFront.SetActive(true);
+                    Animator statement7Choice = GameObject.Find("AnimationHandler").transform.Find("7").GetComponent<Animator>();
+                    statement7Choice.SetBool("Intro", true);
+                    Animator playerFrontAnim = GameObject.Find("Player").transform.Find("PlayerFront").GetComponent<Animator>();
+                    playerFrontAnim.SetBool("defaultStatement7", true);
                     break;
                 default:
                     break;
@@ -392,5 +630,12 @@ public class PreparedStatementAnimations : MonoBehaviour
         PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
     }
     /// USE DOOR 
+    public IEnumerator MoveNPC(Transform NPC, Vector3 endPosition, float time)
+    {
+        while (NPC.position != endPosition){
+            NPC.position = Vector2.MoveTowards(NPC.position, endPosition, time * Time.deltaTime);
+            yield return null;
+        }
+    }
 
 }
