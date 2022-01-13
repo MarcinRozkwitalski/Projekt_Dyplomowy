@@ -11,9 +11,13 @@ public class PreparedStatementAnimations : MonoBehaviour
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
     DoorHandler doorHandler;
-    Animator playerSideLeftAnim;
+    GameObject npc7No;
+    Animator playerSideLeftAnim, npc7NoAnimator;
 
     public Sprite newChairSprite;
+    
+    private bool doUpdateForNPCWalk;
+    private int whichNPCWalkForS7N;
 
     void Start()
     {
@@ -25,6 +29,27 @@ public class PreparedStatementAnimations : MonoBehaviour
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
+        npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
+        npc7NoAnimator = npc7No.GetComponent<Animator>();
+    }
+
+    void Update()
+    {
+        float step = 3f * Time.deltaTime;
+        if (doUpdateForNPCWalk)
+        {
+            switch(whichNPCWalkForS7N){
+                case 1:
+                    StartCoroutine(MoveNPC(npc7No.transform, new Vector3(-0.47f, -3.47f, 0f), step));
+                    break;
+                case 2:
+                    StartCoroutine(MoveNPC(npc7No.transform, new Vector3(-10f, -3.76f, 0f), step));
+                    break;
+                default:
+                    Debug.Log("Missing number for which NPC walk S7N!");
+                    break;
+            }
+        }
     }
 
     // statement 1
@@ -155,6 +180,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
+    // statement 7
     public IEnumerator Statement_Yes_7()
     {
         if (PlayerCanInteract.playerCanDecide == false)
@@ -184,16 +210,18 @@ public class PreparedStatementAnimations : MonoBehaviour
         if (PlayerCanInteract.playerCanDecide == false)
         {
             PlayerCanInteract.playerCanDecide = true;
-            GameObject npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
-            Animator npc7NoAnimator = npc7No.GetComponent<Animator>();
+            playerDirectionDisplayHandler.PlayerFrontAnim.SetBool("defaultStatement7", false);
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(2f);
             npc7No.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            npc7No.transform.position = Vector2.MoveTowards(transform.position, new Vector2(-0.47f, -3.47f), 1f * Time.deltaTime);
             npc7NoAnimator.SetBool("isMoving", true);
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(0.5f);
+            whichNPCWalkForS7N = 1;
+            doUpdateForNPCWalk = true;
+            yield return new WaitForSeconds(2.3f);
+            doUpdateForNPCWalk = false;
             npc7NoAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
             npc7NoAnimator.SetBool("doCCC", true);
             yield return new WaitForSeconds(
                     animationtime.GetAnimationTimeFromName(npcStatementAnimations.Npc_Get_Animator_No_7(),
@@ -204,29 +232,26 @@ public class PreparedStatementAnimations : MonoBehaviour
             GameObject chair = GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("Chair").gameObject;
             chair.transform.position = new Vector3(1.562f, -2.403f, 0);
             chair.GetComponent<SpriteRenderer>().sprite = newChairSprite;
+            yield return new WaitForSeconds(4f);
             if (npc7No.transform.eulerAngles.y == 180) npc7No.transform.Rotate(0, -180, 0);
+            yield return new WaitForSeconds(0.5f);
             npc7NoAnimator.SetBool("isMoving", true);
-            npc7No.transform.position = Vector2.MoveTowards(transform.position, new Vector2(-10f, -3.76f), 1f * Time.deltaTime);
-
-            yield return new WaitForSeconds(6f);
-
-
-
-
-            //otworzyć drzwi
-            //osoba z czapką wchodzi do pokoju, podchodzi do pudła
-            //animacja składania
-            //schować pudło i stare krzesło i podłożyć nowe krzesło
-            //osoba wychodzi z pokoju
-            //zamknąć drzwi
-            //koniec
+            whichNPCWalkForS7N = 2;
+            doUpdateForNPCWalk = true;
+            yield return new WaitForSeconds(3f);
+            doUpdateForNPCWalk = false;
+            npc7NoAnimator.SetBool("isMoving", false);
+            doorHandler.CloseDoor();
+            npc7No.SetActive(false);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
-    // statement 11
 
+    // statement 7
+
+    // statement 11
 
     public IEnumerator Statement_Yes_11()
     {
@@ -488,5 +513,12 @@ public class PreparedStatementAnimations : MonoBehaviour
         PlayerMovement.canMove = false; // wyłączenie chodzenia gracza
     }
     /// USE DOOR 
+    public IEnumerator MoveNPC(Transform NPC, Vector3 endPosition, float time)
+    {
+        while (NPC.position != endPosition){
+            NPC.position = Vector2.MoveTowards(NPC.position, endPosition, time * Time.deltaTime);
+            yield return null;
+        }
+    }
 
 }
