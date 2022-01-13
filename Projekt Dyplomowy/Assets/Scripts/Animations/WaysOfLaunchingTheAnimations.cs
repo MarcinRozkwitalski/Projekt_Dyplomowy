@@ -88,8 +88,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             doorHandlerStats.CloseDoor();
             Debug.Log("PlayerMovement = " + PlayerMovement.canMove);
             Stats();
-
-            // playerDirectionDisplayHandler.EnablePLayersCollider();
+            playerDirectionDisplayHandler.EnablePLayersCollider();
             // PlayerMovement.canMove = true;
         }
 
@@ -105,19 +104,20 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
         else if (viewStats == 3)
         {
-
+            ShowStats();
+            viewStats = 0;
         }
         else if (viewStats == 4)
         {
-
+            viewStats = 0;
         }
         else if (viewStats == 5)
         {
-
+            viewStats = 0;
         }
         else if (viewStats == 6)
         {
-
+            viewStats = 0;
         }
     }
 
@@ -209,6 +209,23 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(false);
         GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(false);
         GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(false);
+    }
+
+    void ShowStats()
+    {
+        rBarAnimator.SetBool("Hide", false);
+        bBarAnimator.SetBool("Hide", false);
+        aBarAnimator.SetBool("Hide", false);
+        sBarAnimator.SetBool("Hide", false);
+        pBarAnimator.SetBool("Hide", false);
+        kBarAnimator.SetBool("Hide", false);
+
+        GameObject.Find("Stats").transform.Find("NumbersR").transform.Find(TestScrpitForIndex.stats[1].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersB").transform.Find(TestScrpitForIndex.stats[2].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersA").transform.Find(TestScrpitForIndex.stats[3].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersS").transform.Find(TestScrpitForIndex.stats[4].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersP").transform.Find(TestScrpitForIndex.stats[5].ToString() + "-stat").gameObject.SetActive(true);
+        GameObject.Find("Stats").transform.Find("NumbersK").transform.Find(TestScrpitForIndex.stats[6].ToString() + "-stat").gameObject.SetActive(true);
     }
 
 

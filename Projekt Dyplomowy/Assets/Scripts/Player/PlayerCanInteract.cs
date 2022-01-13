@@ -133,17 +133,41 @@ public class PlayerCanInteract : MonoBehaviour
             Debug.Log("WaitForClick: " + clickedObject);
             playerCanClick = false;
         }
+        else if (tagName == "R" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description R: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 1;
+        }
         else if (tagName == "B" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
             Debug.Log("Description B: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 2;
         }
-        else if (tagName == "R" && Input.GetMouseButtonDown(0))
+        else if (tagName == "A" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description R: " + clickedObject);
-            WaysOfLaunchingTheAnimations.viewStats = 1;
+            Debug.Log("Description A: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 3;
+        }
+        else if (tagName == "S" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description S: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 4;
+        }
+        else if (tagName == "P" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description P: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 5;
+        }
+        else if (tagName == "K" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            Debug.Log("Description K: " + clickedObject);
+            WaysOfLaunchingTheAnimations.viewStats = 6;
         }
         else
         {

@@ -15,7 +15,7 @@ public class TestScrpitForIndex : MonoBehaviour
     void Start()
     {
         indexList.Add(1);// FIN
-        // indexList.Add(2);
+        indexList.Add(2);
         // indexList.Add(3);// FIN
         // indexList.Add(4);// FIN
         // indexList.Add(7);
@@ -40,7 +40,7 @@ public class TestScrpitForIndex : MonoBehaviour
 
         do
         {
-            randomIndex = Random.Range(0, 1); //  0 
+            randomIndex = Random.Range(0, 2); //  0 
             if (!usedIndexList.Contains(indexList[randomIndex]))
             {
                 usedIndexList.Add(indexList[randomIndex]);

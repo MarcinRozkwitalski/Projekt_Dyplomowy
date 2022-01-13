@@ -79,6 +79,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+
         }
     }
 
@@ -89,6 +91,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+
         }
     }
     // statement 2
