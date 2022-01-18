@@ -6,13 +6,11 @@ using UnityEngine.Networking;
 
 public class AnswerHandler : MonoBehaviour
 {
-    public string getSentence = "Null";
     public Text text;
-    public static int index = 0; // need to be reset for new game
+    public static int index = 0;
 
    public void LoadNewSentence()
     {
-        Debug.Log("Category = " + (SentenceHandler.number % 6 + 1));
         GettingRandomStatement(SentenceHandler.number);
         SentenceHandler.number++;
     }
@@ -26,7 +24,6 @@ public class AnswerHandler : MonoBehaviour
             random = Random.Range(0, 15);
             index = category % 6 + 1 + random * 6;
             status = ReturningStatement(index);
-            Debug.Log("index = " + index);
         } while (status);
     }
 
@@ -34,21 +31,17 @@ public class AnswerHandler : MonoBehaviour
     {
         if ((string)SentenceHandler.hashTableStatements[index] != null)
         {
-            text.text = (string)SentenceHandler.hashTableStatements[index];
+          //  text.text = (string)SentenceHandler.hashTableStatements[index];
             SentenceHandler.hashTableStatements.Remove(index);
 
-            // information about hashTableAnswers
-            Debug.Log("Number of answers = " + SentenceHandler.hashTableAnswers.Count);
             foreach (DictionaryEntry entry in SentenceHandler.hashTableAnswers)
             {
                 Debug.Log(" [" + entry.Key + "] = " + entry.Value);
             }
-            // Debug.Log("Yes");
             return false;
         }
         else
         {
-            // Debug.Log("None");
             return true;
         }
     }

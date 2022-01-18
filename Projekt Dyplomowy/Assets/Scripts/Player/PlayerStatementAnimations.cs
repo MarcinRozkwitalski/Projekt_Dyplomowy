@@ -8,7 +8,7 @@ public class PlayerStatementAnimations : MonoBehaviour
     public GameObject playerFront, playerFrontLeft45, playerSideLeft, playerBackLeft45, playerBack, player_yes_11;
     Animator animator_no_1, animator_yes_1, animator_yes_7, animator_no_11, animator_yes_11;
     public bool No_11_Helper = false;
-    // Start is called before the first frame update
+
     void Start()
     {
         animator_yes_1 = playerFront.GetComponent<Animator>();
@@ -24,7 +24,6 @@ public class PlayerStatementAnimations : MonoBehaviour
         gameObject.transform.position = new Vector3(0, -4, 0);
         playerFront.SetActive(true);
         animator_yes_1.SetBool("is1True", true);
-        //playerFrontAnimator.SetBool("is" + AnswerHandler.index.ToString() + "True", true);
     }
 
     public Animator Player_Get_Animator_Yes_1()
@@ -59,7 +58,6 @@ public class PlayerStatementAnimations : MonoBehaviour
         if (playerSideLeft.transform.eulerAngles.y == 180) playerSideLeft.transform.Rotate(0, -180, 0);
         playerSideLeft.SetActive(true);
         animator_yes_7.SetBool("doCCC", true);
-        //włącz warunek dla odtworzenia animacji składania
     }
 
     public void Start_No_7()

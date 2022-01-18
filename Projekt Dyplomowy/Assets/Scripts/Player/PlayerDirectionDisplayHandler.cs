@@ -10,7 +10,6 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     public GameObject Player, PlayerFront, PlayerFrontLeft45, PlayerSideLeft, PlayerBackLeft45, PlayerBack;
 
     public Animator PlayerFrontAnim, PlayerFrontLeft45Anim, PlayerSideLeftAnim, PlayerBackLeft45Anim, PlayerBackAnim;
-    public AnimationClip clip;
     Collider2D collider2d;
     public static bool activeAnimationForPlayerPathFollower = false;
     public void HideAllPlayerPerspectives()
@@ -35,7 +34,7 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     {
         PlayerFront.SetActive(true);
     }
-    /// FILIP START IDEA STWORZENIA GLOBALNEGO ANIMATIONCLIP[] ze wszystkimi klipami WYCIĄGANIE ANIMACJI I ANIMATORÓW W PĘTLI
+
     public void StopAnimations()
     {
         PlayerFrontAnim.SetBool("is1True", false);
@@ -50,22 +49,18 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
     {
         gameObject.transform.position = new Vector3(-10, -3.72f, 0);
     }
-    //// FILIP END
 
     void Start()
     {
         HideAllPlayerPerspectives();
         PlayerFront.SetActive(true);
 
-        PlayerFrontAnim = PlayerFront.GetComponent<Animator>(); // Filip
-        PlayerFrontLeft45Anim = PlayerFrontLeft45.GetComponent<Animator>(); // Filip
-        PlayerBackLeft45Anim = PlayerBackLeft45.GetComponent<Animator>(); // Filip
-        PlayerSideLeftAnim = PlayerSideLeft.GetComponent<Animator>(); // Filip
-        PlayerBackAnim = PlayerBack.GetComponent<Animator>(); // Filip
-        collider2d = gameObject.GetComponent<Collider2D>(); // Filip
-
-        // do czas animacji 
-
+        PlayerFrontAnim = PlayerFront.GetComponent<Animator>();
+        PlayerFrontLeft45Anim = PlayerFrontLeft45.GetComponent<Animator>();
+        PlayerBackLeft45Anim = PlayerBackLeft45.GetComponent<Animator>();
+        PlayerSideLeftAnim = PlayerSideLeft.GetComponent<Animator>();
+        PlayerBackAnim = PlayerBack.GetComponent<Animator>();
+        collider2d = gameObject.GetComponent<Collider2D>();
     }
 
     void Update()
@@ -75,7 +70,6 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
             DisplayProperAnimation();
         }
 
-        // FILIP dodałem warunek by animować chodzenie dla gotowych ścieżek dla PlayerPathFollower
         else if (activeAnimationForPlayerPathFollower)
         {
             DisplayProperAnimation();
@@ -83,21 +77,23 @@ public class PlayerDirectionDisplayHandler : MonoBehaviour
         }
     }
 
-    void HandleSpecificCase(GameObject nameOfGameObject, int currentRotation, int finalRotation){
+    void HandleSpecificCase(GameObject nameOfGameObject, int currentRotation, int finalRotation)
+    {
         HideAllPlayerPerspectives();
         nameOfGameObject.SetActive(true);
         RotateGameObject(nameOfGameObject, currentRotation, finalRotation);
     }
 
-    void RotateGameObject(GameObject nameOfGameObject, int currentRotation, int finalRotation){
+    void RotateGameObject(GameObject nameOfGameObject, int currentRotation, int finalRotation)
+    {
         if (nameOfGameObject.transform.eulerAngles.y == currentRotation) nameOfGameObject.transform.Rotate(0, finalRotation, 0);
     }
 
     void DisplayProperAnimation()
     {
         CurrentPosition = transform.position;
-        if(activeAnimationForPlayerPathFollower) NewPosition = PlayerPathFollower.playerDestination; //pathfollower
-        else NewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition); //punkt myszki gracza
+        if (activeAnimationForPlayerPathFollower) NewPosition = PlayerPathFollower.playerDestination;
+        else NewPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         PlayerDirection = (NewPosition - CurrentPosition);
         NormalizedPlayerDirection = PlayerDirection.normalized;
         x_dir = NormalizedPlayerDirection.x;

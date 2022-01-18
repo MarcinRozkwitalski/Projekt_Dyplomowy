@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//sources
-//https://stackoverflow.com/questions/40752083/how-to-find-child-of-a-gameobject-or-the-script-attached-to-child-gameobject-via
-
 public class TriggerAnimation : MonoBehaviour
 {
     WaysOfLaunchingTheAnimations waysOfLaunchingTheAnimations;
@@ -35,7 +31,6 @@ public class TriggerAnimation : MonoBehaviour
         {
             AnswerHandler.index = 91;
             PlayerMovement.canMove = false;
-            Debug.Log("koniec");
         }
 
 
@@ -44,8 +39,7 @@ public class TriggerAnimation : MonoBehaviour
             GameObject originalGameObject = GameObject.Find(gameObject.name);
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
             {
-                GameObject child = originalGameObject.transform.GetChild(i).gameObject; // dziecko
-                //Debug.Log("Rodzic " + originalGameObject.name + " Dziecko " + child.name);
+                GameObject child = originalGameObject.transform.GetChild(i).gameObject;
                 child.SetActive(false);
             }
 
@@ -55,8 +49,7 @@ public class TriggerAnimation : MonoBehaviour
             GameObject originalGameObject = GameObject.Find(gameObject.name);
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
             {
-                GameObject child = originalGameObject.transform.GetChild(i).gameObject; // dziecko
-                //Debug.Log("Rodzic " + originalGameObject.name + " Dziecko " + child.name);
+                GameObject child = originalGameObject.transform.GetChild(i).gameObject;
                 child.SetActive(true);
             }
             StartCoroutine(Time());

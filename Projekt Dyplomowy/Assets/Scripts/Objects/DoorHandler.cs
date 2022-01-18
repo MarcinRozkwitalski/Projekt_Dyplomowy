@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DoorHandler : MonoBehaviour
 {
-    public static float doorStatus = 1; // 0 door opening - 1 door open - 2 door closing - 3 door closed
+    public static float doorStatus = 1;
     Animator animator;
     void Start()
     {

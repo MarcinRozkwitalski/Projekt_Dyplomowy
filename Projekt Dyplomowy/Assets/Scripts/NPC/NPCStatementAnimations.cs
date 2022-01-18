@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class NPCStatementAnimations : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject npc_no_7, npc_yes_11;
     Animator animator_no_7, animator_yes_11;
     void Start()
@@ -14,7 +13,6 @@ public class NPCStatementAnimations : MonoBehaviour
         animator_no_7 = npc_no_7.GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -25,7 +23,8 @@ public class NPCStatementAnimations : MonoBehaviour
         return animator;
     }
 
-    public void SetActive_False_Object_Yes_11(){
+    public void SetActive_False_Object_Yes_11()
+    {
         npc_yes_11.SetActive(false);
     }
     public void Start_Yes_11()

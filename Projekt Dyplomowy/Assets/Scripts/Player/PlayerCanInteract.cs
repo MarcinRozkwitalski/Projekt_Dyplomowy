@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 public class PlayerCanInteract : MonoBehaviour
 {
-    // Start is called before the first frame update
     string clickedObject = "nothing has been clicked";
     string tagName = "";
     string tagAnswer = "";
@@ -14,13 +13,12 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool playerCanDecide = true;
     static public bool playerCanClick = true;
 
-    ArrayList usedObjects = new ArrayList(); // need to be reset for new game
-    ArrayList interactableObjects = new ArrayList(); // need to be reset for new game
+    ArrayList usedObjects = new ArrayList(); 
+    ArrayList interactableObjects = new ArrayList();
     Ray ray;
     RaycastHit2D hit;
     AnswerHandler answerHandler;
     RockPaperScissors rockPaperScissors;
-    // do usunięcia
     TestScrpitForIndex testScrpitForIndex;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -34,7 +32,6 @@ public class PlayerCanInteract : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("I cant see you");
         interactableObjects.Remove(other.name);
     }
 
@@ -51,7 +48,6 @@ public class PlayerCanInteract : MonoBehaviour
     {
         answerHandler = GameObject.Find("IndexHandler").GetComponent<AnswerHandler>();
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
-        // do usunięcia
         testScrpitForIndex = GameObject.Find("IndexHandler").GetComponent<TestScrpitForIndex>();
     }
 
@@ -63,7 +59,6 @@ public class PlayerCanInteract : MonoBehaviour
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             hit = Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity);
 
-            // https://answers.unity.com/questions/464954/raycast-tag-null-reference-exception.html - problem null 
             if (Physics2D.Raycast(ray.origin, ray.direction, Mathf.Infinity))
             {
                 if (hit.collider.name == "Player")
@@ -83,14 +78,12 @@ public class PlayerCanInteract : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("No interaction");
                     clickedObject = "";
                     tagName = "";
                 }
             }
             else
             {
-                Debug.Log("No interaction");
                 clickedObject = "";
                 tagName = "";
             }
@@ -98,24 +91,20 @@ public class PlayerCanInteract : MonoBehaviour
         }
         if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true && TestScrpitForIndex.stop == true)
         {
-            // usunąc
+            
             AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
-            TriggerAnimation.playAnimation = true; // ??? reset dla nowych animacji - ponieważ warunki nie działają
-            TriggerAnimation.runAnimation = true; // reset dla nowych animacji - ponieważ warunki nie działają
+            TriggerAnimation.playAnimation = true; 
+            TriggerAnimation.runAnimation = true; 
 
-            canChangeIndex = false; // zapobiega ładowaniu nowych indeksów w czasie decyzji 
-            Debug.Log("We used = " + clickedObject);
-            Debug.Log("RUN ANIMATION ");
+            canChangeIndex = false; 
             usedObjects.Add(clickedObject);
-            // answerHandler.LoadNewSentence();
         }
         else if (tagName == "Decision" && Input.GetMouseButtonDown(0) && playerCanDecide == true)
         {
-            playerCanDecide = false; // kontrola by nie odpowiadać wiele razy na jedno pytanie
+            playerCanDecide = false; 
             tagName = "";
-            TriggerAnimation.runAnimation = false; // dla drzwi
-            TriggerAnimation.runAgain = true; // dla drzwi
-            Debug.Log("TAG = " + tagAnswer + ",  Index =" + AnswerHandler.index);
+            TriggerAnimation.runAnimation = false; 
+            TriggerAnimation.runAgain = true;
             if (tagAnswer == "True") answerHandler.AnswerYes();
             if (tagAnswer == "False") answerHandler.AnswerNo();
             answerHandler.ReturningStatement(AnswerHandler.index);// test
@@ -123,67 +112,56 @@ public class PlayerCanInteract : MonoBehaviour
         else if (tagName == "RPSButton" && Input.GetMouseButtonDown(0) && playerCanPlay == true)
         {
             tagName = "";
-            Debug.Log("RPS: " + clickedObject);
             playerCanPlay = false;
             StartCoroutine(rockPaperScissors.PlayRound(clickedObject));
         }
         else if (tagName == "WaitForClick" && Input.GetMouseButtonDown(0) && playerCanClick == true)
         {
             tagName = "";
-            Debug.Log("WaitForClick: " + clickedObject);
             playerCanClick = false;
         }
         else if (tagName == "R" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description R: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 1;
         }
         else if (tagName == "B" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description B: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 2;
         }
         else if (tagName == "A" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description A: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 3;
         }
         else if (tagName == "S" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description S: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 4;
         }
         else if (tagName == "P" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description P: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 5;
         }
         else if (tagName == "K" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description K: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 6;
         }
         else if (tagName == "ReturnToStats" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description ReturnToStats: " + clickedObject);
             WaysOfLaunchingTheAnimations.viewStats = 7;
         }
         else if (tagName == "ExitStats" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
-            Debug.Log("Description ExitStats: " + clickedObject);
             WaysOfLaunchingTheAnimations.game = 4;
         }
         else
         {
-            // Debug.Log("We cant use that object");
         }
         moveSpace = true;
     }

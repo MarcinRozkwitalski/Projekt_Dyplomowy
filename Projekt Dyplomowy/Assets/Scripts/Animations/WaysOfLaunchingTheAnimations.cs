@@ -53,13 +53,12 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             PlayerMovement.canMove = false;
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
-            PlayerPathFollower.statementPosition = AnswerHandler.index; // wybór statement
-            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+            PlayerPathFollower.statementPosition = AnswerHandler.index;
+            PlayerPathFollower.playerCanChangePosition = true;
             yield return new WaitForSeconds(4f);
             playerDirectionDisplayHandler.EnablePLayersCollider();
             doorHandler.CloseDoor();
             PlayerMovement.canMove = true;
-            // Debug.Log("game1");
         }
     }
 
@@ -73,8 +72,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
-            PlayerPathFollower.statementPosition = AnswerHandler.index; // wybór statement
-            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+            PlayerPathFollower.statementPosition = AnswerHandler.index; 
+            PlayerPathFollower.playerCanChangePosition = true; 
             yield return new WaitForSeconds(3f);
             doorHandler.CloseDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftClosing"));
@@ -82,20 +81,17 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(roomAnimator, "Intro") + 3f);
             doorHandlerStats.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
-            TriggerAnimation.blockPlayerMovement = false; // allows player to move
+            TriggerAnimation.blockPlayerMovement = false;
             PlayerPathFollower.statementPosition = 92;
             PlayerPathFollower.playerCanChangePosition = true;
             yield return new WaitForSeconds(4f);
             doorHandlerStats.CloseDoor();
-            Debug.Log("PlayerMovement = " + PlayerMovement.canMove);
             Stats();
             playerDirectionDisplayHandler.EnablePLayersCollider();
-            // PlayerMovement.canMove = true;
         }
         if (viewStats == 1)
         {
             HideStats();
-            // yield return new WaitForSeconds(1f);
             GameObject.Find("Stats").transform.Find("DescriptionR").gameObject.SetActive(true);
             GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
@@ -103,7 +99,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         else if (viewStats == 2)
         {
             HideStats();
-            // yield return new WaitForSeconds(1f);
             GameObject.Find("Stats").transform.Find("DescriptionB").gameObject.SetActive(true);
             GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
@@ -111,7 +106,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         else if (viewStats == 3)
         {
             HideStats();
-            // yield return new WaitForSeconds(1f);
             GameObject.Find("Stats").transform.Find("DescriptionA").gameObject.SetActive(true);
             GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
@@ -119,7 +113,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         else if (viewStats == 4)
         {
             HideStats();
-            // yield return new WaitForSeconds(1f);
             GameObject.Find("Stats").transform.Find("DescriptionS").gameObject.SetActive(true);
             GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
@@ -127,7 +120,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         else if (viewStats == 5)
         {
             HideStats();
-            // yield return new WaitForSeconds(1f);
             GameObject.Find("Stats").transform.Find("DescriptionP").gameObject.SetActive(true);
             GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
@@ -135,7 +127,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         else if (viewStats == 6)
         {
             HideStats();
-            // yield return new WaitForSeconds(1f);
             GameObject.Find("Stats").transform.Find("DescriptionK").gameObject.SetActive(true);
             GameObject.Find("Stats").transform.Find("ReturnToStats").gameObject.SetActive(true);
             viewStats = 0;
@@ -148,14 +139,13 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
 
         if (game == 4)
         {
-            Debug.Log("Exit");
             game++;
             PlayerMovement.canMove = false;
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandlerStats.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftOpening"));
-            PlayerPathFollower.statementPosition = 91; // wybór statement
-            PlayerPathFollower.playerCanChangePosition = true; // podążanie po wyznaczonej ścieżce
+            PlayerPathFollower.statementPosition = 91; 
+            PlayerPathFollower.playerCanChangePosition = true; 
             yield return new WaitForSeconds(3f);
             doorHandlerStats.CloseDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
@@ -301,7 +291,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     {
         if (TriggerAnimation.playAnimation == true && tag != "UseDoor" && tag != "WaitForClick")
         {
-            SetActive_False_Object(AnswerHandler.index); // test - wyłączenie obiektów
+            SetActive_False_Object(AnswerHandler.index);
             PlayerMovement.canMove = false;
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
@@ -309,19 +299,14 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             if (AnswerHandler.index == 21) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
-            // Debug.Log("Anim 1 if");
-
 
         }
         else if (tag == "UseDoor" && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
             StartCoroutine(preparedStatementAnimations.OpenDoorAnimation(animator));
-            // Debug.Log("run anim = " + TriggerAnimation.runAnimation + "   runAgain = " + TriggerAnimation.runAgain);
-            // Debug.Log("Anim UseDoor");
         }
         else if (tag == "WaitForClick" && TriggerAnimation.playAnimation == true && SentenceHandler.hashTableAnswers[AnswerHandler.index] == null)
         {
-            Debug.Log("WAITFORCLICK DZIAŁA");
             if (PlayerMovement.canMove == true)
             {
                 PlayerMovement.canMove = false;
@@ -377,7 +362,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             preparedStatementAnimations.Statement_Yes_8();
                             break;
                         case 10:
-                            // animator.SetBool("Outro", true);
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_10(animator));
                             break;
                         case 11:
@@ -386,7 +370,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
                             break;
                         case 21:
-                            // animator.SetBool("Outro", true);
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_21(animator));
                             break;
                         case 24:
@@ -395,7 +378,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             break;
                         case 29:
                             animator.SetBool("Outro", true);
-                            // czas potrzebny byu użyć playerCanDecide
                             preparedStatementAnimations.Statement_Yes_29();
                             break;
                         default:

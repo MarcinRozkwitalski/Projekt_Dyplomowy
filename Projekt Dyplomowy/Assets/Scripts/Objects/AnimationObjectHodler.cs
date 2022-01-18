@@ -8,7 +8,6 @@ public class AnimationObjectHodler : MonoBehaviour
     void Update()
     {
         GameObject originalGameObject = gameObject;
-        // AnswerHandler.index == int.Parse(gameObject.name) &&
         if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] == null)
         {
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
@@ -21,7 +20,6 @@ public class AnimationObjectHodler : MonoBehaviour
         else if (AnswerHandler.index == int.Parse(gameObject.name) && SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)] != null
         && originalGameObject.transform.childCount > 1)
         {
-            // czeka na koniec Animacji  tylko raz
             if (SentenceHandler.hashTableAnswers[int.Parse(gameObject.name)].Equals("true"))
             {
                 GameObject child = originalGameObject.transform.GetChild(0).gameObject;

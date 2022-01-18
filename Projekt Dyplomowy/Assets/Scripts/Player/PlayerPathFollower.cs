@@ -10,14 +10,10 @@ public class PlayerPathFollower : MonoBehaviour
     public Vector2 currentPlayerPosition;
     public static bool playerCanChangePosition = false;
     public static int statementPosition = 0;
-
     Animator playerSideLeftAnim, playerFrontAnim;
     GameObject playerSideLeft, playerFront;
 
     bool updateWalkingAnimation = true;
-
-
-    // Nie możemy tu ustawić canMove na true bo gracz będzie mógł sam chodzić po pokoju
 
     void Start()
     {
@@ -30,7 +26,6 @@ public class PlayerPathFollower : MonoBehaviour
     void Update()
     {
 
-        // aktywacja zmiany pozycji gracza 
         if (playerCanChangePosition)
         {
             switch (statementPosition)
@@ -64,25 +59,23 @@ public class PlayerPathFollower : MonoBehaviour
 
             }
         }
-        // wyłaczenie jeśli dotarł do pozycji
+
         if (playerDestination == currentPlayerPosition)
         {
-            // jak się wejdzie w to samo miejsce to nagle ANOMALIA
             updateWalkingAnimation = true;
             playerCanChangePosition = false;
-            if(statementPosition == 91 || 
+            if (statementPosition == 91 ||
             statementPosition == 7 || statementPosition == 701 || statementPosition == 702 || statementPosition == 703
-            )PlayerMovement.canMove = false;
+            ) PlayerMovement.canMove = false;
             else PlayerMovement.canMove = true;
-            playerDestination = new Vector2(1, 1); // by żaden if nie działał 
-            Debug.Log("Koniec path + movement = " + PlayerMovement.canMove);
+            playerDestination = new Vector2(1, 1);
         }
     }
     public void Statement_1_Active()
     {
         playerDestination = new Vector2(2, -6);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -94,7 +87,7 @@ public class PlayerPathFollower : MonoBehaviour
     {
         playerDestination = new Vector2(1, -3.72f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -106,7 +99,7 @@ public class PlayerPathFollower : MonoBehaviour
     {
         playerDestination = new Vector2(-10, -3.72f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -115,11 +108,11 @@ public class PlayerPathFollower : MonoBehaviour
     }
 
     public void Statement_701_Active()
-    {   
+    {
         playerSideLeftAnim.SetBool("defaultStatement7", true);
         playerDestination = new Vector2(0.40f, -3.72f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -131,23 +124,19 @@ public class PlayerPathFollower : MonoBehaviour
     {
         playerDestination = new Vector2(1.70f, -4.64f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
         Player_Position_Update();
         Player_Moving();
-    }   
+    }
 
     public void Statement_703_Active()
     {
-        // playerFrontAnim.SetBool("defaultStatement7", true);
-        // Animator statement7Choice = GameObject.Find("AnimationHandler").transform.Find("7").GetComponent<Animator>();
-        // statement7Choice.SetBool("Intro", true);
-
         playerDestination = new Vector2(3.64f, -3.4f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -159,7 +148,7 @@ public class PlayerPathFollower : MonoBehaviour
     {
         playerDestination = new Vector2(-10, -3.72f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -170,7 +159,7 @@ public class PlayerPathFollower : MonoBehaviour
     {
         playerDestination = new Vector2(1, -3.72f);
         if (updateWalkingAnimation == true)
-        {// Potrzeba zmiennej która raz uruchomi update chodzenia w else if PlayerDirectionDisplayHandler
+        {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
             updateWalkingAnimation = false;
         }
@@ -181,9 +170,8 @@ public class PlayerPathFollower : MonoBehaviour
     public void Player_Position_Update()
     {
         currentPlayerPosition = gameObject.transform.position;
-        PlayerMovement.lastClickedPos = currentPlayerPosition; // ustawia nam pozycje lastClickedPos po to by po zakonczeniu przmieszczania nie potrzebnie znowu się nam pozycja zmieniła
-        // Debug.Log("current position" + currentPlayerPosition);
-        PlayerMovement.moving = true; // zmienna aktywacji animacji chodzenia
+        PlayerMovement.lastClickedPos = currentPlayerPosition;
+        PlayerMovement.moving = true;
     }
 
     public void Player_Moving()
