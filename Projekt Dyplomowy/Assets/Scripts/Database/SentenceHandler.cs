@@ -10,6 +10,7 @@ public class SentenceHandler : MonoBehaviour
     public static int number;
     public static Hashtable hashTableStatements;
     public static Hashtable hashTableAnswers;
+    public static bool test = false;
 
     public void Button()
     {
@@ -27,8 +28,22 @@ public class SentenceHandler : MonoBehaviour
     IEnumerator GetTesting()
     {
         UnityWebRequest webRequest = UnityWebRequest.Get("http://localhost/test.php");
-        yield return webRequest.SendWebRequest();
-        GetDescription(webRequest.downloadHandler.text);
+
+        if (test)
+        {
+            yield return webRequest.SendWebRequest();
+            GetDescription(webRequest.downloadHandler.text);
+        }
+        else
+        {
+            hashTableStatements = new Hashtable();
+            hashTableAnswers = new Hashtable();
+            for (int i = 1; i <= 90; i++)
+            {
+                hashTableStatements.Add(i, "test");
+            }
+        }
+
         number = Random.Range(0, 6);
     }
 
