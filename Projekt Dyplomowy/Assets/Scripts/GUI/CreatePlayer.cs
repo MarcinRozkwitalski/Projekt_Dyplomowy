@@ -82,11 +82,11 @@ public class CreatePlayer : MonoBehaviour
             Debug.Log(response);
             if (response == "1" || response == "2" || response == "4" || response == "6")
             {
-                ErrorMessage("Error w Serwerze, spróbuje ponownie! ");
+                ErrorMessage("Error w Serwerze ");
             }
             else if (response == "3")
             {
-                ErrorMessage("Nazwa Użytkownika już istnieje, proszę wybrać inną");
+                ErrorMessage("Nazwa Użytkownika istnieje");
             }
             else if (response == "5")
             {
@@ -95,6 +95,7 @@ public class CreatePlayer : MonoBehaviour
             else
             {
                 SetButtonToSucces();
+
             }
         }
         else

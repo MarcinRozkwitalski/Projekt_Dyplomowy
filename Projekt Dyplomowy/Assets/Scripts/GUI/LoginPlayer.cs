@@ -43,13 +43,13 @@ public class LoginPlayer : MonoBehaviour
     public void ErrorOnLoginMessage(string message)
     {
         loginButtonText.text = message;
-        loginButtonText.fontSize = 60;
+        loginButtonText.fontSize = 30;
     }
 
     public void ResetLoginButton()
     {
         loginButtonText.text = "Login";
-        loginButtonText.fontSize = 60;
+        loginButtonText.fontSize = 30;
         loginButton.interactable = true;
     }
 
