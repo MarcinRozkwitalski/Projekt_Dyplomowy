@@ -82,7 +82,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(roomAnimator, "Intro") + 3f);
             doorHandlerStats.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
-            TriggerAnimation.something = false; // allows player to move
+            TriggerAnimation.blockPlayerMovement = false; // allows player to move
             PlayerPathFollower.statementPosition = 92;
             PlayerPathFollower.playerCanChangePosition = true;
             yield return new WaitForSeconds(4f);

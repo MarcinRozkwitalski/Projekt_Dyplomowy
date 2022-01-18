@@ -14,18 +14,18 @@ public class TestScrpitForIndex : MonoBehaviour
     public static bool stop = true;
     void Start()
     {
-        // indexList.Add(1);// FIN
-        // indexList.Add(2);
-        // indexList.Add(3);// FIN
-        // indexList.Add(4);// FIN
-        // indexList.Add(6); // FIN
+        indexList.Add(1);// FIN
+        indexList.Add(2);// FIN
+        indexList.Add(3);// FIN
+        indexList.Add(4);// FIN
+        indexList.Add(6); // FIN
         indexList.Add(7); // FIN
-        // indexList.Add(8); // NOT FINISHED
-        // indexList.Add(10); // NOT FINISHED
-        // indexList.Add(11); // FIN
-        // indexList.Add(21); // NOT FINISHED 
-        // indexList.Add(24); // FIN
-        // indexList.Add(29); // FIN
+        indexList.Add(8); // FIN
+        indexList.Add(10); // FIN
+        indexList.Add(11); // FIN
+        indexList.Add(21); // FIN
+        indexList.Add(24); // FIN
+        indexList.Add(29); // FIN
         
 
         for (int i = 1; i <= 90; i++)
@@ -41,7 +41,7 @@ public class TestScrpitForIndex : MonoBehaviour
 
         do
         {
-            randomIndex = Random.Range(0, 1); //  0 
+            randomIndex = Random.Range(0, 12);
             if (!usedIndexList.Contains(indexList[randomIndex]))
             {
                 usedIndexList.Add(indexList[randomIndex]);

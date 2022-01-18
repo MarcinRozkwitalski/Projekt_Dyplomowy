@@ -15,8 +15,7 @@ public class TriggerAnimation : MonoBehaviour
     public static bool runAgain = true;
     public static bool startTransition = true;
     public static bool playAnimation = true;
-    public static bool blockAnimation = false;
-    public static bool something = true;
+    public static bool blockPlayerMovement = true;
 
     void Start()
     {
@@ -32,7 +31,7 @@ public class TriggerAnimation : MonoBehaviour
             SentenceHandler.hashTableAnswers.Count == TestScrpitForIndex.indexList.Count &&
             PlayerMovement.canMove == true &&
             PlayerCanInteract.playerCanDecide == true &&
-            something == true)
+            blockPlayerMovement == true)
         {
             AnswerHandler.index = 91;
             PlayerMovement.canMove = false;
@@ -43,8 +42,6 @@ public class TriggerAnimation : MonoBehaviour
         if (AnswerHandler.index != int.Parse(gameObject.name))
         {
             GameObject originalGameObject = GameObject.Find(gameObject.name);
-            if (originalGameObject.GetComponent<Renderer>().enabled) originalGameObject.GetComponent<Renderer>().enabled = !originalGameObject.GetComponent<Renderer>().enabled;
-
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
             {
                 GameObject child = originalGameObject.transform.GetChild(i).gameObject; // dziecko
@@ -56,8 +53,6 @@ public class TriggerAnimation : MonoBehaviour
         else
         {
             GameObject originalGameObject = GameObject.Find(gameObject.name);
-            if (originalGameObject.GetComponent<Renderer>().enabled == false) originalGameObject.GetComponent<Renderer>().enabled = !originalGameObject.GetComponent<Renderer>().enabled;
-
             for (int i = 0; i < originalGameObject.transform.childCount; i++)
             {
                 GameObject child = originalGameObject.transform.GetChild(i).gameObject; // dziecko
