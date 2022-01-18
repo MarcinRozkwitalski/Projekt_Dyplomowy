@@ -216,7 +216,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 2);
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
-            // animator.SetInteger("Decision", 3);
+            animator.SetInteger("Decision", 3);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "OutroYes"));
             playerDirectionDisplayHandler.EnablePLayersCollider();
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
@@ -230,7 +231,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 1);
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
-            // animator.SetInteger("Decision", 3);
+            animator.SetInteger("Decision", 3);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "OutroNo"));
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
@@ -453,12 +455,12 @@ public class PreparedStatementAnimations : MonoBehaviour
         {
             PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 2);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes") + 2.5f);
+            Debug.Log("Za szybko");
             GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-            // animator.SetInteger("Decision", 3);
-            playerDirectionDisplayHandler.EnablePLayersCollider();
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
 
@@ -468,9 +470,8 @@ public class PreparedStatementAnimations : MonoBehaviour
         {
             PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 1);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo")+ 2.5f);
             GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-            // animator.SetInteger("Decision", 3);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
@@ -537,7 +538,6 @@ public class PreparedStatementAnimations : MonoBehaviour
     /// USE CURTAIN
     void CurtainTransitionIntro()
     {
-        Debug.Log("Kurtyna Intro");
         GameObject square = GameObject.Find("Square");
         Animator squareAnimator = square.GetComponent<Animator>();
         squareAnimator.SetBool("RunRight", true);
@@ -546,7 +546,6 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     void CurtainTransitionOutro()
     {
-        Debug.Log("Kurtyna Outro");
         GameObject square = GameObject.Find("Square");
         Animator squareAnimator = square.GetComponent<Animator>();
         squareAnimator.SetBool("RunLeft", true);
