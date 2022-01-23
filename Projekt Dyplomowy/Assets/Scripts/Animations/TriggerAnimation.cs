@@ -24,7 +24,7 @@ public class TriggerAnimation : MonoBehaviour
     {
 
         if (PlayerCanInteract.canChangeIndex == true &&
-            SentenceHandler.hashTableAnswers.Count == TestScrpitForIndex.indexList.Count &&
+            SentenceHandler.hashTableAnswers.Count == TestScriptForIndex.indexList.Count &&
             PlayerMovement.canMove == true &&
             PlayerCanInteract.playerCanDecide == true &&
             blockPlayerMovement == true)

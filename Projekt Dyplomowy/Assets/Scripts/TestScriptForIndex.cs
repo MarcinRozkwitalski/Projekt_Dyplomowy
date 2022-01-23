@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class TestScrpitForIndex : MonoBehaviour
+public class TestScriptForIndex : MonoBehaviour
 {
 
     public static int index = 0;

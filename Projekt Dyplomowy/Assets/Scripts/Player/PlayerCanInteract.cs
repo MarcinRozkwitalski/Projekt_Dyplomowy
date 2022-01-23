@@ -19,7 +19,7 @@ public class PlayerCanInteract : MonoBehaviour
     RaycastHit2D hit;
     AnswerHandler answerHandler;
     RockPaperScissors rockPaperScissors;
-    TestScrpitForIndex testScrpitForIndex;
+    TestScriptForIndex testScriptForIndex;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -48,7 +48,7 @@ public class PlayerCanInteract : MonoBehaviour
     {
         answerHandler = GameObject.Find("IndexHandler").GetComponent<AnswerHandler>();
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
-        testScrpitForIndex = GameObject.Find("IndexHandler").GetComponent<TestScrpitForIndex>();
+        testScriptForIndex = GameObject.Find("IndexHandler").GetComponent<TestScriptForIndex>();
     }
 
     void Update()
@@ -89,10 +89,10 @@ public class PlayerCanInteract : MonoBehaviour
             }
 
         }
-        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true && TestScrpitForIndex.stop == true)
+        if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true && TestScriptForIndex.stop == true)
         {
             
-            AnswerHandler.index = testScrpitForIndex.GetRandomIndex();
+            AnswerHandler.index = testScriptForIndex.GetRandomIndex();
             TriggerAnimation.playAnimation = true; 
             TriggerAnimation.runAnimation = true; 
 
