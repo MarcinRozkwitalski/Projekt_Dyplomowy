@@ -455,7 +455,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         }
 
     }
-    // Wyłączania obiektów 
+
     public void SetActive_False_Object(int index)
     {
         if (index == 3 && GameObject.Find("Computer - Speaker") != null)

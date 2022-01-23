@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class RPSHoverButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void OnMouseEnter()
     {
         gameObject.transform.GetChild(0).gameObject.SetActive(false);

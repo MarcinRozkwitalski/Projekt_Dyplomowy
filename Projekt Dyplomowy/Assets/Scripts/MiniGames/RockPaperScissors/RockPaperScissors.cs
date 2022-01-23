@@ -82,7 +82,6 @@ public class RockPaperScissors : MonoBehaviour
                 }
                 break;
         }
-        //time of viewing result of one round
         yield return new WaitForSeconds(2.0f);
         PlayerCanInteract.playerCanPlay = true;
         stopRandomisingPlayerChoice = false;

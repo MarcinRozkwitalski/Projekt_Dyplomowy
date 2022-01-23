@@ -62,7 +62,6 @@ public class CreatePlayer : MonoBehaviour
         RegisterButtonText.fontSize = 30;
     }
 
-    // Przesyłanie Posta do bazy
     IEnumerator CreatePlayerPostRequest()
     {
         WWWForm newPlayerInfo = new WWWForm();
