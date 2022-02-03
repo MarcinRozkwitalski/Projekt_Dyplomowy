@@ -20,8 +20,8 @@ public class TestScriptForIndex : MonoBehaviour
         //    indexList.Add(4);
         //    indexList.Add(6);
         //    indexList.Add(7);
-        //    indexList.Add(8);
-        indexList.Add(10);
+        indexList.Add(8);
+        //    indexList.Add(10);
         //    indexList.Add(11);
         //    indexList.Add(21);
         //    indexList.Add(24);
