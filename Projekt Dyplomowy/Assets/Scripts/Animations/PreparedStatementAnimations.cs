@@ -480,7 +480,15 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     // statement 23
 
-    
+    public IEnumerator Statement_Yes_23(Animator animator)
+    {
+        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+    }
+
+    public IEnumerator Statement_No_23(Animator animator)
+    {
+        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+    }
 
     // statement 23
 
