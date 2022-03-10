@@ -19,11 +19,12 @@ public class TestScrpitForIndex : MonoBehaviour
         // indexList.Add(3);// FIN
         // indexList.Add(4);// FIN
         // indexList.Add(6); // FIN
-        indexList.Add(7); // FIN
+        // indexList.Add(7); // FIN
         // indexList.Add(8); // NOT FINISHED
         // indexList.Add(10); // NOT FINISHED
         // indexList.Add(11); // FIN
         // indexList.Add(21); // NOT FINISHED 
+        indexList.Add(23); // NOT FINISHED
         // indexList.Add(24); // FIN
         // indexList.Add(29); // FIN
         

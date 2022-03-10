@@ -478,6 +478,12 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 21
 
+    // statement 23
+
+    
+
+    // statement 23
+
     // statement 24
     public void Statement_Yes_24()
     {
