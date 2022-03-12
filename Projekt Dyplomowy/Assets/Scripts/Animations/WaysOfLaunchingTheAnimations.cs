@@ -372,6 +372,9 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                         case 21:
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_21(animator));
                             break;
+                        case 23:
+                            animator.SetBool("Outro", true);
+                            break;
                         case 24:
                             animator.SetBool("Outro", true);
                             preparedStatementAnimations.Statement_Yes_24();
@@ -433,6 +436,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                         case 21:
                             // animator.SetBool("Outro", true);
                             StartCoroutine(preparedStatementAnimations.Statement_No_21(animator));
+                            break;
+                        case 23:
+                            animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_23(animator));
                             break;
                         case 24:
                             animator.SetBool("Outro", true);
