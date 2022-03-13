@@ -12,7 +12,9 @@ public class PreparedStatementAnimations : MonoBehaviour
     AnimationTime animationtime;
     DoorHandler doorHandler;
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
-    Animator playerSideLeftAnim, npc7NoAnimator;
+
+    GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon;
+    Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23, AdditionalPlayerAnimator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
 
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
     
@@ -31,6 +33,21 @@ public class PreparedStatementAnimations : MonoBehaviour
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
+        NPCSideLeftFrenchSoldierAnimator = GameObject.Find("NPCSideLeftFrenchSoldier1").GetComponent<Animator>();
+        NPC23 = GameObject.Find("NPC").transform.Find("NPC23").GetComponent<Animator>();
+        NPCFrontFrenchSoldier1 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_1").transform.Find("NPCFrontFrenchSoldier1").gameObject;
+        NPCFrontFrenchSoldier2 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_2").transform.Find("NPCFrontFrenchSoldier2").gameObject;
+        NPCFrontFrenchSoldier3 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_3").transform.Find("NPCFrontFrenchSoldier3").gameObject;
+        NPCSideLeftFrenchSoldier1 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_1").transform.Find("NPCSideLeftFrenchSoldier1").gameObject;
+        NPCSideLeftFrenchSoldier2 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_2").transform.Find("NPCSideLeftFrenchSoldier2").gameObject;
+        NPCSideLeftFrenchSoldier3 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_3").transform.Find("NPCSideLeftFrenchSoldier3").gameObject;
+        NPCSideLeftFrenchSoldier1Animator = NPCSideLeftFrenchSoldier1.GetComponent<Animator>();
+        NPCSideLeftFrenchSoldier2Animator = NPCSideLeftFrenchSoldier2.GetComponent<Animator>();
+        NPCSideLeftFrenchSoldier3Animator = NPCSideLeftFrenchSoldier3.GetComponent<Animator>();
+        AdditionalPlayerAnimator = GameObject.Find("AdditionalPlayer").GetComponent<Animator>();
+        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer").transform.Find("PlayerSideLeftNapoleon").gameObject;
+        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer").transform.Find("PlayerFrontNapoleon").gameObject;
+        PlayerSideLeftNapoleonAnimator = PlayerSideLeftNapoleon.GetComponent<Animator>();
     }
 
     void Update()
@@ -184,62 +201,6 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 4
 
-    // statement 8
-    public void Statement_Yes_8()
-    {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-        }
-    }
-
-    public void Statement_No_8()
-    {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-        }
-    }
-    // statement 8
-
-    // statement 10
-    public IEnumerator Statement_Yes_10(Animator animator)
-    {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-            PlayerCanInteract.playerCanDecide = true;
-            animator.SetInteger("Decision", 2);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
-            // animator.SetInteger("Decision", 3);
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-        }
-    }
-
-    public IEnumerator Statement_No_10(Animator animator)
-    {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-            PlayerCanInteract.playerCanDecide = true;
-            animator.SetInteger("Decision", 1);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
-            // animator.SetInteger("Decision", 3);
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-        }
-    }
-    // statement 10    
-
-    // statement 11
-
     // statement 6
 
     public void Statement_Yes_6()
@@ -340,6 +301,60 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
 
     // statement 7
+
+    // statement 8
+    public void Statement_Yes_8()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_8()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 8
+
+    // statement 10
+    public IEnumerator Statement_Yes_10(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 2);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+            // animator.SetInteger("Decision", 3);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public IEnumerator Statement_No_10(Animator animator)
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 1);
+            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+            // animator.SetInteger("Decision", 3);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 10    
 
     // statement 11
 
@@ -480,14 +495,72 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     // statement 23
 
-    public IEnumerator Statement_Yes_23(Animator animator)
+    public IEnumerator Statement_Yes_23()
     {
-        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+        //NPC23 - zawiera animator przeniesienia trzech NPC
+        //AdditionalPlayer - zawiera animator przeniesienia playera Napoleona
+
+        //otwórz drzwi
+        doorHandler.OpenDoor();
+        //przenieś gracza na lewą stronę
+        yield return new WaitForSeconds(1f);
+        PlayerPathFollowerStatement(23);
+        yield return new WaitForSeconds(7f);
+        //wpuść Napoleona
+        AdditionalPlayerAnimator.SetBool("Start", true);
+        PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
+        yield return new WaitForSeconds(2f);
+        PlayerSideLeftNapoleonAnimator.SetBool("isMoving", false);
+        yield return new WaitForSeconds(1f);
+        PlayerSideLeftNapoleon.SetActive(false);
+        PlayerFrontNapoleon.SetActive(true);
+
+
+
+
+        
+        //SIDEPLAYER AdditionalPlayer.SetBool("isMoving", true);
+        //niech wejdzie gracz przed "szafke"
+        //zamknij drzwi
+        
+        NPCSideLeftFrenchSoldierAnimator.SetBool("isMoving", true);
+        NPC23.SetBool("Start", true);
+        yield return new WaitForSeconds(6f);
+        NPCSideLeftFrenchSoldierAnimator.SetBool("isMoving", false);
+        yield return new WaitForSeconds(2f);
+        doorHandler.CloseDoor();
+
+        //uruchomi się wizja frontalna
+        //przechodzą jego zolnierze do prawej
+        //gdy stoja na sekunde, zamien pozycje na frontalna
+        //gdy stoja na sekunde, zamien pozycje na boczną w lewo
+        //niech zaczną maszerować do wyjścia
+        //gracz musi wstąpić "idealnie" za nich i wyjść razem z nimi
+        //gracz wracza z domyślną skórką przed drzwi
+        //swodobny ruch itd itp
+        yield return new WaitForSeconds(10f);
+        Debug.Log("test nowy");
+        
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
     }
 
-    public IEnumerator Statement_No_23(Animator animator)
+    public IEnumerator Statement_No_23()
     {
-        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
+        yield return new WaitForSeconds(2f);
+
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
     }
 
     // statement 23
