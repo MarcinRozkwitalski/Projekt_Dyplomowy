@@ -14,18 +14,20 @@ public class TestScriptForIndex : MonoBehaviour
     public static bool stop = true;
     void Start()
     {
-        indexList.Add(1);
-        indexList.Add(2);
-        indexList.Add(3);
-        indexList.Add(4);
-        indexList.Add(6);
-        indexList.Add(7);
-        indexList.Add(8);
-        indexList.Add(10);
-        indexList.Add(11);
-        indexList.Add(21);
-        indexList.Add(24);
-        indexList.Add(29);
+
+    //     indexList.Add(1);
+    //     indexList.Add(2);
+    //     indexList.Add(3);
+    //     indexList.Add(4);
+    //     indexList.Add(6);
+    //     indexList.Add(7);
+    //     indexList.Add(8);
+    //     indexList.Add(10);
+    //     indexList.Add(11);
+    //     indexList.Add(21);
+    indexList.Add(23);
+    //     indexList.Add(24);
+    //     indexList.Add(29);
 
 
         for (int i = 1; i <= 90; i++)
@@ -39,7 +41,7 @@ public class TestScriptForIndex : MonoBehaviour
         bool status = true;
         do
         {
-            randomIndex = Random.Range(0, 12);
+            randomIndex = Random.Range(0, 1);
             if (!usedIndexList.Contains(indexList[randomIndex]))
             {
                 usedIndexList.Add(indexList[randomIndex]);
