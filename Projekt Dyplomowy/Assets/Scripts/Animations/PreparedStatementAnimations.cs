@@ -463,6 +463,16 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 11
 
+    public IEnumerator Statement_Yes_18()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
+    public IEnumerator Statement_No_18()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
     // statement 21
     public IEnumerator Statement_Yes_21(Animator animator)
     {

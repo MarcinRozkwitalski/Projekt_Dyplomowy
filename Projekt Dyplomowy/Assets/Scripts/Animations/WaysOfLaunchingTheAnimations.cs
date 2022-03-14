@@ -369,6 +369,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
                             break;
+                        case 18:
+                            animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_18());
+                            break;
                         case 21:
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_21(animator));
                             break;
@@ -434,6 +438,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_No_11());
+                            break;
+                        case 18:
+                            animator.SetBool("Outro", true);
+                            StartCoroutine(preparedStatementAnimations.Statement_No_18());
                             break;
                         case 21:
                             // animator.SetBool("Outro", true);
