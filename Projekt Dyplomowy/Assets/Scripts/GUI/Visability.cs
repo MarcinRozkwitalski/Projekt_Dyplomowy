@@ -16,7 +16,9 @@ public class Visability : MonoBehaviour
         Tutorial3,
         Tutorial4
     };
+
     public MenuStates currentState;
+
     public GameObject mainMenu;
     public GameObject registration;
     public GameObject login;
