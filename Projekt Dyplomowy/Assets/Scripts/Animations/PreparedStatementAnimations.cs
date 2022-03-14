@@ -13,8 +13,8 @@ public class PreparedStatementAnimations : MonoBehaviour
     DoorHandler doorHandler;
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
 
-    GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon;
-    Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23, AdditionalPlayerAnimator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
+    GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon, AdditionalPlayer23, NPC23;
+    Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23Animator, AdditionalPlayer23Animator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
 
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
     
@@ -34,7 +34,8 @@ public class PreparedStatementAnimations : MonoBehaviour
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
         NPCSideLeftFrenchSoldierAnimator = GameObject.Find("NPCSideLeftFrenchSoldier1").GetComponent<Animator>();
-        NPC23 = GameObject.Find("NPC").transform.Find("NPC23").GetComponent<Animator>();
+        NPC23Animator = GameObject.Find("NPC").transform.Find("NPC23").GetComponent<Animator>();
+        NPC23 = GameObject.Find("NPC").transform.Find("NPC23").gameObject;
         NPCFrontFrenchSoldier1 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_1").transform.Find("NPCFrontFrenchSoldier1").gameObject;
         NPCFrontFrenchSoldier2 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_2").transform.Find("NPCFrontFrenchSoldier2").gameObject;
         NPCFrontFrenchSoldier3 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_3").transform.Find("NPCFrontFrenchSoldier3").gameObject;
@@ -44,9 +45,10 @@ public class PreparedStatementAnimations : MonoBehaviour
         NPCSideLeftFrenchSoldier1Animator = NPCSideLeftFrenchSoldier1.GetComponent<Animator>();
         NPCSideLeftFrenchSoldier2Animator = NPCSideLeftFrenchSoldier2.GetComponent<Animator>();
         NPCSideLeftFrenchSoldier3Animator = NPCSideLeftFrenchSoldier3.GetComponent<Animator>();
-        AdditionalPlayerAnimator = GameObject.Find("AdditionalPlayer").GetComponent<Animator>();
-        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer").transform.Find("PlayerSideLeftNapoleon").gameObject;
-        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer").transform.Find("PlayerFrontNapoleon").gameObject;
+        AdditionalPlayer23Animator = GameObject.Find("AdditionalPlayer23").GetComponent<Animator>();
+        AdditionalPlayer23 = GameObject.Find("AdditionalPlayer23").gameObject;
+        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerSideLeftNapoleon").gameObject;
+        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerFrontNapoleon").gameObject;
         PlayerSideLeftNapoleonAnimator = PlayerSideLeftNapoleon.GetComponent<Animator>();
     }
 
@@ -505,7 +507,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerPathFollowerStatement(23);
             yield return new WaitForSeconds(7f);
 
-            AdditionalPlayerAnimator.SetBool("Start", true);
+            AdditionalPlayer23Animator.SetBool("Start", true);
             PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
             yield return new WaitForSeconds(2f);
             PlayerSideLeftNapoleonAnimator.SetBool("isMoving", false);
@@ -513,7 +515,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerSideLeftNapoleon.SetActive(false);
             PlayerFrontNapoleon.SetActive(true);
 
-            NPC23.SetBool("Start", true);
+            NPC23Animator.SetBool("Start", true);
             NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", true);
             NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", true);
             NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", true);
@@ -570,6 +572,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             yield return new WaitForSeconds(2.5f);
 
             PlayerPathFollowerStatement(2301);
+            Destroy(NPC23);
+            Destroy(AdditionalPlayer23);
             yield return new WaitForSeconds(2f);
             doorHandler.CloseDoor();
 

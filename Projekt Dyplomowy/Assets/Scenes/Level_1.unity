@@ -48029,7 +48029,7 @@ GameObject:
   - component: {fileID: 1674464624}
   - component: {fileID: 1674464625}
   m_Layer: 0
-  m_Name: AdditionalPlayer
+  m_Name: AdditionalPlayer23
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
