@@ -296,7 +296,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
-            if (AnswerHandler.index == 21) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
+            if (AnswerHandler.index == 21 || AnswerHandler.index == 14) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
 
