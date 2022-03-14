@@ -48,6 +48,12 @@ public class PlayerPathFollower : MonoBehaviour
                 case 703:
                     Statement_703_Active();
                     break;
+                case 18:
+                    Statement_18_Active();
+                    break;
+                case 1801:
+                    Statement_1801_Active();
+                    break;
                 case 23:
                     Statement_23_Active();
                     break;
@@ -141,6 +147,30 @@ public class PlayerPathFollower : MonoBehaviour
     public void Statement_703_Active()
     {
         playerDestination = new Vector2(3.64f, -3.4f);
+        if (updateWalkingAnimation == true)
+        {
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_18_Active()
+    {
+        playerDestination = new Vector2(-10, -3.72f);
+        if (updateWalkingAnimation == true)
+        {
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_1801_Active()
+    {
+        playerDestination = new Vector2(-6, -3.76f);
         if (updateWalkingAnimation == true)
         {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;

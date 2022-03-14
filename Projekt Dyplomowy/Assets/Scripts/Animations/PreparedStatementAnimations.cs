@@ -465,7 +465,19 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_Yes_18()
     {
-        yield return new WaitForSeconds(1f);
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            PlayerPathFollowerStatement(18);
+
+
+            PlayerPathFollowerStatement(1801);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
     }
 
     public IEnumerator Statement_No_18()
