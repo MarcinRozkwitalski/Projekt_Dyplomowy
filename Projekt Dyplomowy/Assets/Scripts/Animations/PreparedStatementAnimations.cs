@@ -499,51 +499,80 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
-        //NPC23 - zawiera animator przeniesienia trzech NPC
-        //AdditionalPlayer - zawiera animator przeniesienia playera Napoleona
-
-        //otwórz drzwi
-        doorHandler.OpenDoor();
-        //przenieś gracza na lewą stronę
-        yield return new WaitForSeconds(1f);
-        PlayerPathFollowerStatement(23);
-        yield return new WaitForSeconds(7f);
-        //wpuść Napoleona
-        AdditionalPlayerAnimator.SetBool("Start", true);
-        PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
-        yield return new WaitForSeconds(2f);
-        PlayerSideLeftNapoleonAnimator.SetBool("isMoving", false);
-        yield return new WaitForSeconds(1f);
-        PlayerSideLeftNapoleon.SetActive(false);
-        PlayerFrontNapoleon.SetActive(true);
-
-
-
-
-        
-        //SIDEPLAYER AdditionalPlayer.SetBool("isMoving", true);
-        //niech wejdzie gracz przed "szafke"
-        //zamknij drzwi
-        
-        NPCSideLeftFrenchSoldierAnimator.SetBool("isMoving", true);
-        NPC23.SetBool("Start", true);
-        yield return new WaitForSeconds(6f);
-        NPCSideLeftFrenchSoldierAnimator.SetBool("isMoving", false);
-        yield return new WaitForSeconds(2f);
-        doorHandler.CloseDoor();
-
-        //uruchomi się wizja frontalna
-        //przechodzą jego zolnierze do prawej
-        //gdy stoja na sekunde, zamien pozycje na frontalna
-        //gdy stoja na sekunde, zamien pozycje na boczną w lewo
-        //niech zaczną maszerować do wyjścia
-        //gracz musi wstąpić "idealnie" za nich i wyjść razem z nimi
-        //gracz wracza z domyślną skórką przed drzwi
-        //swodobny ruch itd itp
-        yield return new WaitForSeconds(10f);
-        Debug.Log("test nowy");
-        
             PlayerCanInteract.playerCanDecide = true;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            PlayerPathFollowerStatement(23);
+            yield return new WaitForSeconds(7f);
+
+            AdditionalPlayerAnimator.SetBool("Start", true);
+            PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(2f);
+            PlayerSideLeftNapoleonAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeftNapoleon.SetActive(false);
+            PlayerFrontNapoleon.SetActive(true);
+
+            NPC23.SetBool("Start", true);
+            NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", true);
+
+            yield return new WaitForSeconds(5f);
+            NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", false);
+            NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", false);
+            NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", false);
+
+            yield return new WaitForSeconds(2f);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCSideLeftFrenchSoldier1.SetActive(false);
+            NPCFrontFrenchSoldier1.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCSideLeftFrenchSoldier2.SetActive(false);
+            NPCFrontFrenchSoldier2.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCSideLeftFrenchSoldier3.SetActive(false);
+            NPCFrontFrenchSoldier3.SetActive(true);
+
+            yield return new WaitForSeconds(1f);
+
+            if (NPCSideLeftFrenchSoldier1.transform.eulerAngles.y == 180) NPCSideLeftFrenchSoldier1.transform.Rotate(0, -180, 0);
+            if (NPCSideLeftFrenchSoldier2.transform.eulerAngles.y == 180) NPCSideLeftFrenchSoldier2.transform.Rotate(0, -180, 0);
+            if (NPCSideLeftFrenchSoldier3.transform.eulerAngles.y == 180) NPCSideLeftFrenchSoldier3.transform.Rotate(0, -180, 0);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCFrontFrenchSoldier1.SetActive(false);
+            NPCSideLeftFrenchSoldier1.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCFrontFrenchSoldier2.SetActive(false);
+            NPCSideLeftFrenchSoldier2.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCFrontFrenchSoldier3.SetActive(false);
+            NPCSideLeftFrenchSoldier3.SetActive(true);
+
+            yield return new WaitForSeconds(2f);
+            NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", true);
+
+            yield return new WaitForSeconds(3f);
+
+            PlayerFrontNapoleon.SetActive(false);
+            if (PlayerSideLeftNapoleon.transform.eulerAngles.y == 180) PlayerSideLeftNapoleon.transform.Rotate(0, -180, 0);
+            PlayerSideLeftNapoleon.SetActive(true);
+            PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
+
+            yield return new WaitForSeconds(2.5f);
+
+            PlayerPathFollowerStatement(2301);
+            yield return new WaitForSeconds(2f);
+            doorHandler.CloseDoor();
+
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
