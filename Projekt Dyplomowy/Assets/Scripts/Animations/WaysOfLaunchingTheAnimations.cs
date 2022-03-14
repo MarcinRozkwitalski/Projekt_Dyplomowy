@@ -440,9 +440,10 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             StartCoroutine(preparedStatementAnimations.Statement_No_21(animator));
                             break;
                         case 23:
+                            StartCoroutine(preparedStatementAnimations.Statement_No_23());
+                            yield return new WaitForSeconds(2f);
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
-                            StartCoroutine(preparedStatementAnimations.Statement_No_23());
                             break;
                         case 24:
                             animator.SetBool("Outro", true);

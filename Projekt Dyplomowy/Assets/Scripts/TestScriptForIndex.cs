@@ -20,7 +20,7 @@ public class TestScriptForIndex : MonoBehaviour
         //     indexList.Add(3);
         //     indexList.Add(4);
         //     indexList.Add(6);
-        // indexList.Add(7);
+        indexList.Add(7);
         //     indexList.Add(8);
         //     indexList.Add(10);
         //     indexList.Add(11);
@@ -42,7 +42,7 @@ public class TestScriptForIndex : MonoBehaviour
         bool status = true;
         do
         {
-            randomIndex = Random.Range(0, 1);
+            randomIndex = Random.Range(0, 2);
             if (!usedIndexList.Contains(indexList[randomIndex]))
             {
                 usedIndexList.Add(indexList[randomIndex]);

@@ -585,15 +585,43 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_No_23()
     {
-        yield return new WaitForSeconds(2f);
-
-        if (PlayerCanInteract.playerCanDecide == false)
+        if (PlayerCanInteract.canChangeIndex == false)
         {
-            PlayerCanInteract.playerCanDecide = true;
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
+            if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is23False() && PlayerMovement.canMove == false && playerStatementAnimations.No_23_Helper == true)
+            {
+                npcStatementAnimations.SetActive_False_Object_Yes_11();
+                playerStatementAnimations.SetActive_False_Object_Yes_11();
+                playerDirectionDisplayHandler.Player.transform.position = new Vector3(-0.789f, -3.616f, 0); // ustawienie player'a w dokładnym miejscu zakończenia Armchair -> idle
+                playerDirectionDisplayHandler.EnablePLayersCollider();
+                playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+                playerDirectionDisplayHandler.PlayerSideLeft.SetActive(true);
+                PlayerCanInteract.canChangeIndex = true; // włączenie możliwości generowania nowego indexu - playerCanInteract.cs w tym pliku jest to wyłączane
+                PlayerMovement.canMove = true; // Włączenie chodzenia gracza
+                PlayerCanInteract.playerCanDecide = true; // Gracz może znowu dokonywac wyboru
+                TriggerAnimation.runAnimation = true; // drzwi przypadek 1
+                TriggerAnimation.runAgain = true; // drzwi przypadek 1
+
+            }
+            else if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is23False())
+            {
+                Debug.Log("Początek 23 Fałsz");
+                Start_No_23();
+                yield return new WaitForSeconds(
+                    animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_No_23(),
+                    "PlayerSideSittingInArmchairS23F") + 1.8f);
+                End_No_23();
+            }
         }
+    }
+
+    public void Start_No_23()
+    {
+        playerStatementAnimations.Start_No_23();
+    }
+
+    public void End_No_23()
+    {
+        playerStatementAnimations.End_No_23();
     }
 
     // statement 23
