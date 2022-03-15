@@ -18,7 +18,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23Animator, AdditionalPlayer23Animator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
     Animator AdditionalPlayer18Animator, PlayerFrontCleanerAnimator, PlayerSideLeftCleanerAnimator, PlayerBackCleanerAnimator, PlayerSideRightCleanerAnimator;
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
-    
+
     private bool doUpdateForNPCWalk;
     private int whichNPCWalkForS7N;
 
@@ -48,19 +48,19 @@ public class PreparedStatementAnimations : MonoBehaviour
         NPCSideLeftFrenchSoldier3Animator = NPCSideLeftFrenchSoldier3.GetComponent<Animator>();
         AdditionalPlayer23Animator = GameObject.Find("AdditionalPlayer23").GetComponent<Animator>();
         AdditionalPlayer23 = GameObject.Find("AdditionalPlayer23").gameObject;
-        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerSideLeftNapoleon").gameObject;
-        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerFrontNapoleon").gameObject;
+        PlayerSideLeftNapoleon = GameObject.Find("AdditionalPlayer23").transform.Find("PlayerSideLeftNapoleon").gameObject;
+        PlayerFrontNapoleon = GameObject.Find("AdditionalPlayer23").transform.Find("PlayerFrontNapoleon").gameObject;
         PlayerSideLeftNapoleonAnimator = PlayerSideLeftNapoleon.GetComponent<Animator>();
         AdditionalPlayer18 = GameObject.Find("AdditionalPlayer18").gameObject;
         AdditionalPlayer18Animator = AdditionalPlayer18.GetComponent<Animator>();
-        PlayerFrontCleaner  = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerFrontCleaner").gameObject;
+        PlayerFrontCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerFrontCleaner").gameObject;
         PlayerSideLeftCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerSideLeftCleaner").gameObject;
         PlayerBackCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerBackCleaner").gameObject;
         PlayerSideRightCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerSideRightCleaner").gameObject;
         PlayerFrontCleanerAnimator = PlayerFrontCleaner.GetComponent<Animator>();
         PlayerSideLeftCleanerAnimator = PlayerSideLeftCleaner.GetComponent<Animator>();
         PlayerBackCleanerAnimator = PlayerBackCleaner.GetComponent<Animator>();
-        PlayerSideRightCleanerAnimator =PlayerSideRightCleaner.GetComponent<Animator>();
+        PlayerSideRightCleanerAnimator = PlayerSideRightCleaner.GetComponent<Animator>();
     }
 
     void Update()
@@ -68,7 +68,8 @@ public class PreparedStatementAnimations : MonoBehaviour
         float step = 3f * Time.deltaTime;
         if (doUpdateForNPCWalk)
         {
-            switch(whichNPCWalkForS7N){
+            switch (whichNPCWalkForS7N)
+            {
                 case 1:
                     StartCoroutine(MoveNPC(npc7No.transform, new Vector3(-0.47f, -3.47f, 0f), step));
                     break;
@@ -543,6 +544,31 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
     }
 
+    public void Statement_Yes_15()
+    {
+
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_15()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
     public IEnumerator Statement_No_18()
     {
         yield return new WaitForSeconds(1f);
@@ -865,7 +891,8 @@ public class PreparedStatementAnimations : MonoBehaviour
     /// USE DOOR 
     public IEnumerator MoveNPC(Transform NPC, Vector3 endPosition, float time)
     {
-        while (NPC.position != endPosition){
+        while (NPC.position != endPosition)
+        {
             NPC.position = Vector2.MoveTowards(NPC.position, endPosition, time * Time.deltaTime);
             yield return null;
         }
