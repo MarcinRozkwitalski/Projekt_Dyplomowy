@@ -13,9 +13,10 @@ public class PreparedStatementAnimations : MonoBehaviour
     DoorHandler doorHandler;
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
 
-    GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon;
-    Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23, AdditionalPlayerAnimator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
-
+    GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon, AdditionalPlayer23, NPC23;
+    GameObject AdditionalPlayer18, PlayerFrontCleaner, PlayerSideLeftCleaner, PlayerBackCleaner, PlayerSideRightCleaner;
+    Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23Animator, AdditionalPlayer23Animator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
+    Animator AdditionalPlayer18Animator, PlayerFrontCleanerAnimator, PlayerSideLeftCleanerAnimator, PlayerBackCleanerAnimator, PlayerSideRightCleanerAnimator;
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
     
     private bool doUpdateForNPCWalk;
@@ -34,7 +35,8 @@ public class PreparedStatementAnimations : MonoBehaviour
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
         NPCSideLeftFrenchSoldierAnimator = GameObject.Find("NPCSideLeftFrenchSoldier1").GetComponent<Animator>();
-        NPC23 = GameObject.Find("NPC").transform.Find("NPC23").GetComponent<Animator>();
+        NPC23Animator = GameObject.Find("NPC").transform.Find("NPC23").GetComponent<Animator>();
+        NPC23 = GameObject.Find("NPC").transform.Find("NPC23").gameObject;
         NPCFrontFrenchSoldier1 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_1").transform.Find("NPCFrontFrenchSoldier1").gameObject;
         NPCFrontFrenchSoldier2 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_2").transform.Find("NPCFrontFrenchSoldier2").gameObject;
         NPCFrontFrenchSoldier3 = GameObject.Find("NPC").transform.Find("NPC23").transform.Find("23_3").transform.Find("NPCFrontFrenchSoldier3").gameObject;
@@ -44,10 +46,21 @@ public class PreparedStatementAnimations : MonoBehaviour
         NPCSideLeftFrenchSoldier1Animator = NPCSideLeftFrenchSoldier1.GetComponent<Animator>();
         NPCSideLeftFrenchSoldier2Animator = NPCSideLeftFrenchSoldier2.GetComponent<Animator>();
         NPCSideLeftFrenchSoldier3Animator = NPCSideLeftFrenchSoldier3.GetComponent<Animator>();
-        AdditionalPlayerAnimator = GameObject.Find("AdditionalPlayer").GetComponent<Animator>();
-        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer").transform.Find("PlayerSideLeftNapoleon").gameObject;
-        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer").transform.Find("PlayerFrontNapoleon").gameObject;
+        AdditionalPlayer23Animator = GameObject.Find("AdditionalPlayer23").GetComponent<Animator>();
+        AdditionalPlayer23 = GameObject.Find("AdditionalPlayer23").gameObject;
+        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerSideLeftNapoleon").gameObject;
+        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerFrontNapoleon").gameObject;
         PlayerSideLeftNapoleonAnimator = PlayerSideLeftNapoleon.GetComponent<Animator>();
+        AdditionalPlayer18 = GameObject.Find("AdditionalPlayer18").gameObject;
+        AdditionalPlayer18Animator = AdditionalPlayer18.GetComponent<Animator>();
+        PlayerFrontCleaner  = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerFrontCleaner").gameObject;
+        PlayerSideLeftCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerSideLeftCleaner").gameObject;
+        PlayerBackCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerBackCleaner").gameObject;
+        PlayerSideRightCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerSideRightCleaner").gameObject;
+        PlayerFrontCleanerAnimator = PlayerFrontCleaner.GetComponent<Animator>();
+        PlayerSideLeftCleanerAnimator = PlayerSideLeftCleaner.GetComponent<Animator>();
+        PlayerBackCleanerAnimator = PlayerBackCleaner.GetComponent<Animator>();
+        PlayerSideRightCleanerAnimator =PlayerSideRightCleaner.GetComponent<Animator>();
     }
 
     void Update()
@@ -461,6 +474,80 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 11
 
+    public IEnumerator Statement_Yes_18()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            PlayerPathFollowerStatement(18);
+            yield return new WaitForSeconds(7f);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            AdditionalPlayer18Animator.SetBool("Start", true);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(2f);
+            doorHandler.CloseDoor();
+            PlayerSideRightCleaner.SetActive(false);
+            PlayerBackCleaner.SetActive(true);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", false);
+            PlayerBackCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(0.5f);
+            PlayerBackCleanerAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerBackCleaner.SetActive(false);
+            PlayerSideLeftCleaner.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeftCleanerAnimator.SetBool("isCleaning", true);
+            yield return new WaitForSeconds(2.1f);
+            PlayerSideLeftCleanerAnimator.SetBool("isCleaning", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeftCleaner.SetActive(false);
+            PlayerFrontCleaner.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            PlayerFrontCleaner.SetActive(false);
+            PlayerSideRightCleaner.SetActive(true);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(2f);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", true);
+            yield return new WaitForSeconds(2.1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(3f);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", true);
+            yield return new WaitForSeconds(2.1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleaner.SetActive(false);
+            PlayerFrontCleaner.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            PlayerFrontCleaner.SetActive(false);
+            PlayerSideLeftCleaner.SetActive(true);
+            PlayerSideLeftCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(1f);
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(7f);
+            playerDirectionDisplayHandler.DisablePLayersCollider();
+            PlayerPathFollowerStatement(1801);
+            Destroy(AdditionalPlayer18);
+            yield return new WaitForSeconds(2f);
+            doorHandler.CloseDoor();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public IEnumerator Statement_No_18()
+    {
+        yield return new WaitForSeconds(1f);
+    }
+
     // statement 21
     public IEnumerator Statement_Yes_21(Animator animator)
     {
@@ -499,51 +586,82 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         if (PlayerCanInteract.playerCanDecide == false)
         {
-        //NPC23 - zawiera animator przeniesienia trzech NPC
-        //AdditionalPlayer - zawiera animator przeniesienia playera Napoleona
-
-        //otwórz drzwi
-        doorHandler.OpenDoor();
-        //przenieś gracza na lewą stronę
-        yield return new WaitForSeconds(1f);
-        PlayerPathFollowerStatement(23);
-        yield return new WaitForSeconds(7f);
-        //wpuść Napoleona
-        AdditionalPlayerAnimator.SetBool("Start", true);
-        PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
-        yield return new WaitForSeconds(2f);
-        PlayerSideLeftNapoleonAnimator.SetBool("isMoving", false);
-        yield return new WaitForSeconds(1f);
-        PlayerSideLeftNapoleon.SetActive(false);
-        PlayerFrontNapoleon.SetActive(true);
-
-
-
-
-        
-        //SIDEPLAYER AdditionalPlayer.SetBool("isMoving", true);
-        //niech wejdzie gracz przed "szafke"
-        //zamknij drzwi
-        
-        NPCSideLeftFrenchSoldierAnimator.SetBool("isMoving", true);
-        NPC23.SetBool("Start", true);
-        yield return new WaitForSeconds(6f);
-        NPCSideLeftFrenchSoldierAnimator.SetBool("isMoving", false);
-        yield return new WaitForSeconds(2f);
-        doorHandler.CloseDoor();
-
-        //uruchomi się wizja frontalna
-        //przechodzą jego zolnierze do prawej
-        //gdy stoja na sekunde, zamien pozycje na frontalna
-        //gdy stoja na sekunde, zamien pozycje na boczną w lewo
-        //niech zaczną maszerować do wyjścia
-        //gracz musi wstąpić "idealnie" za nich i wyjść razem z nimi
-        //gracz wracza z domyślną skórką przed drzwi
-        //swodobny ruch itd itp
-        yield return new WaitForSeconds(10f);
-        Debug.Log("test nowy");
-        
             PlayerCanInteract.playerCanDecide = true;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            PlayerPathFollowerStatement(23);
+            yield return new WaitForSeconds(7f);
+
+            AdditionalPlayer23Animator.SetBool("Start", true);
+            PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(2f);
+            PlayerSideLeftNapoleonAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeftNapoleon.SetActive(false);
+            PlayerFrontNapoleon.SetActive(true);
+
+            NPC23Animator.SetBool("Start", true);
+            NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", true);
+
+            yield return new WaitForSeconds(5f);
+            NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", false);
+            NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", false);
+            NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", false);
+
+            yield return new WaitForSeconds(2f);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCSideLeftFrenchSoldier1.SetActive(false);
+            NPCFrontFrenchSoldier1.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCSideLeftFrenchSoldier2.SetActive(false);
+            NPCFrontFrenchSoldier2.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCSideLeftFrenchSoldier3.SetActive(false);
+            NPCFrontFrenchSoldier3.SetActive(true);
+
+            yield return new WaitForSeconds(1f);
+
+            if (NPCSideLeftFrenchSoldier1.transform.eulerAngles.y == 180) NPCSideLeftFrenchSoldier1.transform.Rotate(0, -180, 0);
+            if (NPCSideLeftFrenchSoldier2.transform.eulerAngles.y == 180) NPCSideLeftFrenchSoldier2.transform.Rotate(0, -180, 0);
+            if (NPCSideLeftFrenchSoldier3.transform.eulerAngles.y == 180) NPCSideLeftFrenchSoldier3.transform.Rotate(0, -180, 0);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCFrontFrenchSoldier1.SetActive(false);
+            NPCSideLeftFrenchSoldier1.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCFrontFrenchSoldier2.SetActive(false);
+            NPCSideLeftFrenchSoldier2.SetActive(true);
+
+            yield return new WaitForSeconds(0.5f);
+            NPCFrontFrenchSoldier3.SetActive(false);
+            NPCSideLeftFrenchSoldier3.SetActive(true);
+
+            yield return new WaitForSeconds(2f);
+            NPCSideLeftFrenchSoldier1Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier2Animator.SetBool("isMoving", true);
+            NPCSideLeftFrenchSoldier3Animator.SetBool("isMoving", true);
+
+            yield return new WaitForSeconds(3f);
+
+            PlayerFrontNapoleon.SetActive(false);
+            if (PlayerSideLeftNapoleon.transform.eulerAngles.y == 180) PlayerSideLeftNapoleon.transform.Rotate(0, -180, 0);
+            PlayerSideLeftNapoleon.SetActive(true);
+            PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
+
+            yield return new WaitForSeconds(2.5f);
+
+            PlayerPathFollowerStatement(2301);
+            Destroy(NPC23);
+            Destroy(AdditionalPlayer23);
+            yield return new WaitForSeconds(2f);
+            doorHandler.CloseDoor();
+
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
@@ -552,15 +670,43 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_No_23()
     {
-        yield return new WaitForSeconds(2f);
-
-        if (PlayerCanInteract.playerCanDecide == false)
+        if (PlayerCanInteract.canChangeIndex == false)
         {
-            PlayerCanInteract.playerCanDecide = true;
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
+            if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is23False() && PlayerMovement.canMove == false && playerStatementAnimations.No_23_Helper == true)
+            {
+                npcStatementAnimations.SetActive_False_Object_Yes_11();
+                playerStatementAnimations.SetActive_False_Object_Yes_11();
+                playerDirectionDisplayHandler.Player.transform.position = new Vector3(-0.789f, -3.616f, 0); // ustawienie player'a w dokładnym miejscu zakończenia Armchair -> idle
+                playerDirectionDisplayHandler.EnablePLayersCollider();
+                playerDirectionDisplayHandler.HideAllPlayerPerspectives();
+                playerDirectionDisplayHandler.PlayerSideLeft.SetActive(true);
+                PlayerCanInteract.canChangeIndex = true; // włączenie możliwości generowania nowego indexu - playerCanInteract.cs w tym pliku jest to wyłączane
+                PlayerMovement.canMove = true; // Włączenie chodzenia gracza
+                PlayerCanInteract.playerCanDecide = true; // Gracz może znowu dokonywac wyboru
+                TriggerAnimation.runAnimation = true; // drzwi przypadek 1
+                TriggerAnimation.runAgain = true; // drzwi przypadek 1
+
+            }
+            else if (!playerStatementAnimations.Player_Get_Bool_PlayerSideLeft_Animator_is23False())
+            {
+                Debug.Log("Początek 23 Fałsz");
+                Start_No_23();
+                yield return new WaitForSeconds(
+                    animationtime.GetAnimationTimeFromName(playerStatementAnimations.Player_Get_Animator_No_23(),
+                    "PlayerSideSittingInArmchairS23F") + 1.8f);
+                End_No_23();
+            }
         }
+    }
+
+    public void Start_No_23()
+    {
+        playerStatementAnimations.Start_No_23();
+    }
+
+    public void End_No_23()
+    {
+        playerStatementAnimations.End_No_23();
     }
 
     // statement 23
