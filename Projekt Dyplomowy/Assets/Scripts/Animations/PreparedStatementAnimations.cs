@@ -14,8 +14,9 @@ public class PreparedStatementAnimations : MonoBehaviour
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
 
     GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon, AdditionalPlayer23, NPC23;
+    GameObject AdditionalPlayer18, PlayerFrontCleaner, PlayerSideLeftCleaner, PlayerBackCleaner, PlayerSideRightCleaner;
     Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23Animator, AdditionalPlayer23Animator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
-
+    Animator AdditionalPlayer18Animator, PlayerFrontCleanerAnimator, PlayerSideLeftCleanerAnimator, PlayerBackCleanerAnimator, PlayerSideRightCleanerAnimator;
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat;
     
     private bool doUpdateForNPCWalk;
@@ -50,6 +51,16 @@ public class PreparedStatementAnimations : MonoBehaviour
         PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerSideLeftNapoleon").gameObject;
         PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer23").transform.Find("PlayerFrontNapoleon").gameObject;
         PlayerSideLeftNapoleonAnimator = PlayerSideLeftNapoleon.GetComponent<Animator>();
+        AdditionalPlayer18 = GameObject.Find("AdditionalPlayer18").gameObject;
+        AdditionalPlayer18Animator = AdditionalPlayer18.GetComponent<Animator>();
+        PlayerFrontCleaner  = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerFrontCleaner").gameObject;
+        PlayerSideLeftCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerSideLeftCleaner").gameObject;
+        PlayerBackCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerBackCleaner").gameObject;
+        PlayerSideRightCleaner = GameObject.Find("AdditionalPlayer18").transform.Find("PlayerSideRightCleaner").gameObject;
+        PlayerFrontCleanerAnimator = PlayerFrontCleaner.GetComponent<Animator>();
+        PlayerSideLeftCleanerAnimator = PlayerSideLeftCleaner.GetComponent<Animator>();
+        PlayerBackCleanerAnimator = PlayerBackCleaner.GetComponent<Animator>();
+        PlayerSideRightCleanerAnimator =PlayerSideRightCleaner.GetComponent<Animator>();
     }
 
     void Update()
@@ -471,9 +482,61 @@ public class PreparedStatementAnimations : MonoBehaviour
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(2f);
             PlayerPathFollowerStatement(18);
-
-
+            yield return new WaitForSeconds(7f);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            AdditionalPlayer18Animator.SetBool("Start", true);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(2f);
+            doorHandler.CloseDoor();
+            PlayerSideRightCleaner.SetActive(false);
+            PlayerBackCleaner.SetActive(true);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", false);
+            PlayerBackCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(0.5f);
+            PlayerBackCleanerAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerBackCleaner.SetActive(false);
+            PlayerSideLeftCleaner.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeftCleanerAnimator.SetBool("isCleaning", true);
+            yield return new WaitForSeconds(2.1f);
+            PlayerSideLeftCleanerAnimator.SetBool("isCleaning", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeftCleaner.SetActive(false);
+            PlayerFrontCleaner.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            PlayerFrontCleaner.SetActive(false);
+            PlayerSideRightCleaner.SetActive(true);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(2f);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", true);
+            yield return new WaitForSeconds(2.1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(3f);
+            PlayerSideRightCleanerAnimator.SetBool("isMoving", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", true);
+            yield return new WaitForSeconds(2.1f);
+            PlayerSideRightCleanerAnimator.SetBool("isCleaning", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideRightCleaner.SetActive(false);
+            PlayerFrontCleaner.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            PlayerFrontCleaner.SetActive(false);
+            PlayerSideLeftCleaner.SetActive(true);
+            PlayerSideLeftCleanerAnimator.SetBool("isMoving", true);
+            yield return new WaitForSeconds(1f);
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(7f);
+            playerDirectionDisplayHandler.DisablePLayersCollider();
             PlayerPathFollowerStatement(1801);
+            Destroy(AdditionalPlayer18);
+            yield return new WaitForSeconds(2f);
+            doorHandler.CloseDoor();
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
