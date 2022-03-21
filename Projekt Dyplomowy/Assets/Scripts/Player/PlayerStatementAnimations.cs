@@ -6,8 +6,9 @@ public class PlayerStatementAnimations : MonoBehaviour
 {
 
     public GameObject playerFront, playerFrontLeft45, playerSideLeft, playerBackLeft45, playerBack, player_yes_11;
-    Animator animator_no_1, animator_yes_1, animator_yes_7, animator_no_11, animator_yes_11;
+    Animator animator_no_1, animator_yes_1, animator_yes_7, animator_no_11, animator_yes_11, animator_no_23;
     public bool No_11_Helper = false;
+    public bool No_23_Helper = false;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class PlayerStatementAnimations : MonoBehaviour
         animator_yes_7 = playerSideLeft.GetComponent<Animator>();
         animator_yes_11 = player_yes_11.GetComponent<Animator>();
         animator_no_11 = playerSideLeft.GetComponent<Animator>();
+        animator_no_23 = playerSideLeft.GetComponent<Animator>();
     }
 
     public void Start_Yes_1()
@@ -120,6 +122,33 @@ public class PlayerStatementAnimations : MonoBehaviour
     {
         bool is11False = animator_no_11.GetBool("is11False");
         return is11False;
+    }
+
+    public void Start_No_23()
+    {
+        HideAllPlayerPerspectives();
+        gameObject.transform.position = new Vector3(-2, -4, 0);
+        if (playerSideLeft.transform.eulerAngles.y == 0) playerSideLeft.transform.Rotate(0, 180, 0);
+        playerSideLeft.SetActive(true);
+        animator_no_23.SetBool("is23False", true);
+    }
+
+    public void End_No_23()
+    {
+        animator_no_23.SetBool("is23False", false);
+        No_23_Helper = true;
+    }
+
+    public Animator Player_Get_Animator_No_23()
+    {
+        Animator animator = animator_no_23;
+        return animator;
+    }
+
+    public bool Player_Get_Bool_PlayerSideLeft_Animator_is23False()
+    {
+        bool is23False = animator_no_23.GetBool("is23False");
+        return is23False;
     }
 
     public void HideAllPlayerPerspectives()

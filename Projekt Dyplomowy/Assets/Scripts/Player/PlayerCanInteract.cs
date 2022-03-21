@@ -12,8 +12,9 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool playerCanPlay = true;
     public static bool playerCanDecide = true;
     static public bool playerCanClick = true;
+    Manekin manekin;
 
-    ArrayList usedObjects = new ArrayList(); 
+    ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
     Ray ray;
     RaycastHit2D hit;
@@ -49,6 +50,7 @@ public class PlayerCanInteract : MonoBehaviour
         answerHandler = GameObject.Find("IndexHandler").GetComponent<AnswerHandler>();
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
         testScriptForIndex = GameObject.Find("IndexHandler").GetComponent<TestScriptForIndex>();
+        manekin = GameObject.Find("MANEKINSCRIPT").GetComponent<Manekin>();
     }
 
     void Update()
@@ -91,19 +93,19 @@ public class PlayerCanInteract : MonoBehaviour
         }
         if (interactableObjects.Contains(clickedObject) && usedObjects.Contains(clickedObject) == false && tagName == "CanLoadIndex" && canChangeIndex == true && TestScriptForIndex.stop == true)
         {
-            
-            AnswerHandler.index = testScriptForIndex.GetRandomIndex();
-            TriggerAnimation.playAnimation = true; 
-            TriggerAnimation.runAnimation = true; 
 
-            canChangeIndex = false; 
+            AnswerHandler.index = testScriptForIndex.GetRandomIndex();
+            TriggerAnimation.playAnimation = true;
+            TriggerAnimation.runAnimation = true;
+
+            canChangeIndex = false;
             usedObjects.Add(clickedObject);
         }
         else if (tagName == "Decision" && Input.GetMouseButtonDown(0) && playerCanDecide == true)
         {
-            playerCanDecide = false; 
+            playerCanDecide = false;
             tagName = "";
-            TriggerAnimation.runAnimation = false; 
+            TriggerAnimation.runAnimation = false;
             TriggerAnimation.runAgain = true;
             if (tagAnswer == "True") answerHandler.AnswerYes();
             if (tagAnswer == "False") answerHandler.AnswerNo();
@@ -160,6 +162,111 @@ public class PlayerCanInteract : MonoBehaviour
             tagName = "";
             WaysOfLaunchingTheAnimations.game = 4;
         }
+
+        //----------------------------- ANIMACJA 15----------------------------------//
+        else if (tagName == "Manekin Koszula 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putTshirt1OnHanger();
+        }
+        else if (tagName == "Manekin Koszula 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putTshirt2OnHanger();
+        }
+        else if (tagName == "Manekin Spodnie 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putPants1OnHanger();
+        }
+        else if (tagName == "Manekin Spodnie 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putPants2OnHanger();
+        }
+        else if (tagName == "Manekin Czapka 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putHat1OnHanger();
+        }
+        else if (tagName == "Manekin Czapka 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putHat2OnHanger();
+        }
+        else if (tagName == "Manekin Kurtka 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putJacket1OnHanger();
+        }
+        else if (tagName == "Manekin Kurtka 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putJacket2OnHanger();
+        }
+        else if (tagName == "Manekin Parasol 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putUmbrella1OnHanger();
+        }
+        else if (tagName == "Manekin Parasol 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putUmbrella2OnHanger();
+        }
+
+
+        else if (tagName == "Koszula 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putTshirt1OnManekin();
+        }
+        else if (tagName == "Koszula 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putTshirt2OnManekin();
+        }
+        else if (tagName == "Spodnie 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putPants1OnManekin();
+        }
+        else if (tagName == "Spodnie 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putPants2OnManekin();
+        }
+        else if (tagName == "Czapka 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putHat1OnManekin();
+        }
+        else if (tagName == "Czapka 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putHat2OnManekin();
+        }
+        else if (tagName == "Kurtka 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putJacket1OnManekin();
+        }
+        else if (tagName == "Kurtka 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putJacket2OnManekin();
+        }
+        else if (tagName == "Parasol 1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putUmbrella1OnManekin();
+        }
+        else if (tagName == "Parasol 2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.putUmbrella2OnManekin();
+        }
+        //----------------------------- ANIMACJA 15----------------------------------//
         else
         {
         }

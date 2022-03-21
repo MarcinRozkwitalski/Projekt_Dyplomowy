@@ -22,6 +22,26 @@ TagManager:
   - K
   - ReturnToStats
   - ExitStats
+  - Koszula 1
+  - Koszula 2
+  - Spodnie 1
+  - Spodnie 2
+  - Czapka 1
+  - Czapka 2
+  - Kurtka 1
+  - Kurtka 2
+  - Parasol 1
+  - Parasol 2
+  - Manekin Koszula 1
+  - Manekin Koszula 2
+  - Manekin Spodnie 1
+  - Manekin Spodnie 2
+  - Manekin Czapka 1
+  - Manekin Czapka 2
+  - Manekin Kurtka 1
+  - Manekin Kurtka 2
+  - Manekin Parasol 1
+  - Manekin Parasol 2
   layers:
   - Default
   - TransparentFX

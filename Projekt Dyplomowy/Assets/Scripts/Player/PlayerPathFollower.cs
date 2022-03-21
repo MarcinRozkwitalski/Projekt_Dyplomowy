@@ -48,8 +48,17 @@ public class PlayerPathFollower : MonoBehaviour
                 case 703:
                     Statement_703_Active();
                     break;
+                case 18:
+                    Statement_18_Active();
+                    break;
+                case 1801:
+                    Statement_1801_Active();
+                    break;
                 case 23:
                     Statement_23_Active();
+                    break;
+                case 2301:
+                    Statement_2301_Active();
                     break;
                 case 91:
                     Statement_91_Active();
@@ -147,9 +156,45 @@ public class PlayerPathFollower : MonoBehaviour
         Player_Moving();
     }
 
+    public void Statement_18_Active()
+    {
+        playerDestination = new Vector2(-10, -3.72f);
+        if (updateWalkingAnimation == true)
+        {
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_1801_Active()
+    {
+        playerDestination = new Vector2(-6, -3.76f);
+        if (updateWalkingAnimation == true)
+        {
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
     public void Statement_23_Active()
     {
         playerDestination = new Vector2(-10, -3.72f);
+        if (updateWalkingAnimation == true)
+        {
+            PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
+            updateWalkingAnimation = false;
+        }
+        Player_Position_Update();
+        Player_Moving();
+    }
+
+    public void Statement_2301_Active()
+    {
+        playerDestination = new Vector2(-6, -3.76f);
         if (updateWalkingAnimation == true)
         {
             PlayerDirectionDisplayHandler.activeAnimationForPlayerPathFollower = true;
