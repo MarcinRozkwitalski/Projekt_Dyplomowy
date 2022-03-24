@@ -70,6 +70,11 @@ public class PreparedStatementAnimations : MonoBehaviour
         Player = GameObject.Find("Player").gameObject;
         PlayerSideLeft = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject;
         BoxWithChair18N = GameObject.Find("Room").transform.Find("ObjectsBeforeChoiceHandler").transform.Find("18N").transform.Find("BoxWithChair").gameObject;
+
+        AdditionalPlayer18N.SetActive(false);
+        AdditionalPlayer18Y.SetActive(false);
+        AdditionalPlayer23Y.SetActive(false);
+        NPC23Y.SetActive(false);
     }
 
     void Update()
@@ -556,6 +561,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             yield return new WaitForSeconds(2f);
             PlayerPathFollowerStatement(18);
             yield return new WaitForSeconds(7f);
+            AdditionalPlayer18Y.SetActive(true);
             playerDirectionDisplayHandler.EnablePLayersCollider();
             AdditionalPlayer18YAnimator.SetBool("Start", true);
             PlayerSideRightCleanerAnimator.SetBool("isMoving", true);
@@ -624,6 +630,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             yield return new WaitForSeconds(2f);
             PlayerPathFollowerStatement(18);
             yield return new WaitForSeconds(7f);
+            AdditionalPlayer18N.SetActive(true);
             doorHandler.CloseDoor();
             Player.transform.position = new Vector3(-15.06f, -3.78f, 0);
             playerDirectionDisplayHandler.EnablePLayersCollider();
@@ -695,7 +702,8 @@ public class PreparedStatementAnimations : MonoBehaviour
             yield return new WaitForSeconds(2f);
             PlayerPathFollowerStatement(23);
             yield return new WaitForSeconds(7f);
-
+            AdditionalPlayer23Y.SetActive(true);
+            NPC23Y.SetActive(true);
             AdditionalPlayer23YAnimator.SetBool("Start", true);
             PlayerSideLeftNapoleonAnimator.SetBool("isMoving", true);
             yield return new WaitForSeconds(2f);
