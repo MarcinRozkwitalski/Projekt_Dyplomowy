@@ -72,8 +72,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftOpening"));
-            PlayerPathFollower.statementPosition = AnswerHandler.index; 
-            PlayerPathFollower.playerCanChangePosition = true; 
+            PlayerPathFollower.statementPosition = AnswerHandler.index;
+            PlayerPathFollower.playerCanChangePosition = true;
             yield return new WaitForSeconds(3f);
             doorHandler.CloseDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandler.Get_Animator(), "DoorLeftClosing"));
@@ -144,8 +144,8 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             doorHandlerStats.OpenDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftOpening"));
-            PlayerPathFollower.statementPosition = 91; 
-            PlayerPathFollower.playerCanChangePosition = true; 
+            PlayerPathFollower.statementPosition = 91;
+            PlayerPathFollower.playerCanChangePosition = true;
             yield return new WaitForSeconds(3f);
             doorHandlerStats.CloseDoor();
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(doorHandlerStats.Get_Animator(), "DoorLeftClosing"));
@@ -296,7 +296,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
-            if (AnswerHandler.index == 21) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
+            if (AnswerHandler.index == 21 || AnswerHandler.index == 14) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
 
@@ -369,6 +369,15 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_11());
                             break;
+                        case 14:
+                            StartCoroutine(preparedStatementAnimations.Statement_Yes_14(animator));
+                            // animator.SetBool("Outro", true);
+                            // preparedStatementAnimations.Statement_No_15();
+                            break;
+                        case 15:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_Yes_15();
+                            break;
                         case 18:
                             animator.SetBool("Outro", true);
                             StartCoroutine(preparedStatementAnimations.Statement_Yes_18());
@@ -438,6 +447,14 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             animator.SetBool("Outro", true);
                             //yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "Outro"));
                             StartCoroutine(preparedStatementAnimations.Statement_No_11());
+                            break;
+                        case 14:
+                            // animator.SetBool("Outro", true);
+                            // preparedStatementAnimations.Statement_No_15();
+                            break;
+                        case 15:
+                            animator.SetBool("Outro", true);
+                            preparedStatementAnimations.Statement_No_15();
                             break;
                         case 18:
                             animator.SetBool("Outro", true);

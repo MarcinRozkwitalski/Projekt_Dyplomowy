@@ -58,6 +58,8 @@ public class Manekin : MonoBehaviour
     public GameObject jacket2OnHanger;
     public GameObject umbrella2OnHanger;
 
+    public GameObject zatwierdz;
+
     public Animator transition;
     public float transitionTime = 1f;
 
@@ -71,6 +73,8 @@ public class Manekin : MonoBehaviour
         switch (currentState)
         {
             case ManekinStates.Manekin:
+
+                //GameObject.Find("MIDDLE MANEKIN").transform.Find("MAN CZAPA 1").gameObject.SetActive(false);
                 hat1OnManekin.SetActive(false);
                 hat2OnManekin.SetActive(false);
                 hat1OnHanger.SetActive(true);
@@ -95,66 +99,78 @@ public class Manekin : MonoBehaviour
                 umbrella2OnManekin.SetActive(false);
                 umbrella1OnHanger.SetActive(true);
                 umbrella2OnHanger.SetActive(true);
+
+                zatwierdz.SetActive(false);
                 break;
             case ManekinStates.Manekin_HAT_1:
                 hat1OnManekin.SetActive(true);
                 hat2OnManekin.SetActive(false);
                 hat1OnHanger.SetActive(false);
                 hat2OnHanger.SetActive(true);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_HAT_2:
                 hat1OnManekin.SetActive(false);
                 hat2OnManekin.SetActive(true);
                 hat1OnHanger.SetActive(true);
                 hat2OnHanger.SetActive(false);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_JACKET_1:
                 jacket1OnManekin.SetActive(true);
                 jacket2OnManekin.SetActive(false);
                 jacket1OnHanger.SetActive(false);
                 jacket2OnHanger.SetActive(true);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_JACKET_2:
                 jacket1OnManekin.SetActive(false);
                 jacket2OnManekin.SetActive(true);
                 jacket1OnHanger.SetActive(true);
                 jacket2OnHanger.SetActive(false);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_PANTS_1:
                 pants1OnManekin.SetActive(true);
                 pants2OnManekin.SetActive(false);
                 pants1OnHanger.SetActive(false);
                 pants2OnHanger.SetActive(true);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_PANTS_2:
                 pants1OnManekin.SetActive(false);
                 pants2OnManekin.SetActive(true);
                 pants1OnHanger.SetActive(true);
                 pants2OnHanger.SetActive(false);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_TSHIRT_1:
                 tshirt1OnManekin.SetActive(true);
                 tshirt2OnManekin.SetActive(false);
                 tshirt1OnHanger.SetActive(false);
                 tshirt2OnHanger.SetActive(true);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_TSHIRT_2:
                 tshirt1OnManekin.SetActive(false);
                 tshirt2OnManekin.SetActive(true);
                 tshirt1OnHanger.SetActive(true);
                 tshirt2OnHanger.SetActive(false);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_UMBRELLA_1:
                 umbrella1OnManekin.SetActive(true);
                 umbrella2OnManekin.SetActive(false);
                 umbrella1OnHanger.SetActive(false);
                 umbrella2OnHanger.SetActive(true);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.Manekin_UMBRELLA_2:
                 umbrella1OnManekin.SetActive(false);
                 umbrella2OnManekin.SetActive(true);
                 umbrella1OnHanger.SetActive(true);
                 umbrella2OnHanger.SetActive(false);
+                zatwierdz.SetActive(true);
                 break;
             case ManekinStates.PANTS_1:
                 pants1OnManekin.SetActive(false);

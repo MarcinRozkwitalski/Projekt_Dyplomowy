@@ -11,6 +11,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     RockPaperScissors rockPaperScissors;
     AnimationTime animationtime;
     DoorHandler doorHandler;
+    Laboratory laboratory;
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
 
     GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon, AdditionalPlayer23Y, NPC23Y;
@@ -31,6 +32,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
+        laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
@@ -75,7 +77,8 @@ public class PreparedStatementAnimations : MonoBehaviour
         float step = 3f * Time.deltaTime;
         if (doUpdateForNPCWalk)
         {
-            switch(whichNPCWalkForS7N){
+            switch (whichNPCWalkForS7N)
+            {
                 case 1:
                     StartCoroutine(MoveNPC(npc7No.transform, new Vector3(-0.47f, -3.47f, 0f), step));
                     break;
@@ -550,6 +553,67 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
     }
 
+    // statement 15
+    public void Statement_Yes_15()
+    {
+
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_15()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 15
+
+    // statement 14
+    public IEnumerator Statement_Yes_14(Animator animator)
+    {
+        animator.SetInteger("Decision", 2);
+        animator.SetBool("Game",true);
+        laboratory.Gameplay(animator);
+
+        if(animator.GetBool("Game") == false)yield return new WaitForSeconds(4);
+
+        if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
+        {
+
+            PlayerCanInteract.playerCanDecide = true;
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public void Statement_No_14()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 14
+
+    // statement 18
     public IEnumerator Statement_No_18()
     {
         if (PlayerCanInteract.playerCanDecide == false)
@@ -585,6 +649,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
+    // statement 18
 
     // statement 21
     public IEnumerator Statement_Yes_21(Animator animator)
@@ -903,7 +968,8 @@ public class PreparedStatementAnimations : MonoBehaviour
     /// USE DOOR 
     public IEnumerator MoveNPC(Transform NPC, Vector3 endPosition, float time)
     {
-        while (NPC.position != endPosition){
+        while (NPC.position != endPosition)
+        {
             NPC.position = Vector2.MoveTowards(NPC.position, endPosition, time * Time.deltaTime);
             yield return null;
         }

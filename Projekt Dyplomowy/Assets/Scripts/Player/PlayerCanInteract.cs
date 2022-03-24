@@ -12,7 +12,6 @@ public class PlayerCanInteract : MonoBehaviour
     public static bool playerCanPlay = true;
     public static bool playerCanDecide = true;
     static public bool playerCanClick = true;
-    Manekin manekin;
 
     ArrayList usedObjects = new ArrayList();
     ArrayList interactableObjects = new ArrayList();
@@ -21,6 +20,8 @@ public class PlayerCanInteract : MonoBehaviour
     AnswerHandler answerHandler;
     RockPaperScissors rockPaperScissors;
     TestScriptForIndex testScriptForIndex;
+    Manekin manekin;
+    Laboratory laboratory;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -51,6 +52,7 @@ public class PlayerCanInteract : MonoBehaviour
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
         testScriptForIndex = GameObject.Find("IndexHandler").GetComponent<TestScriptForIndex>();
         manekin = GameObject.Find("MANEKINSCRIPT").GetComponent<Manekin>();
+        laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
     }
 
     void Update()
@@ -163,6 +165,34 @@ public class PlayerCanInteract : MonoBehaviour
             WaysOfLaunchingTheAnimations.game = 4;
         }
 
+        //----------------------------- ANIMACJA 14----------------------------------//
+        else if (tagName == "Sample_1" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            laboratory.Sample_1();
+        }
+        else if (tagName == "Sample_2" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            laboratory.Sample_2();
+        }
+        else if (tagName == "Sample_3" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            laboratory.Sample_3();
+        }
+        else if (tagName == "Sample_4" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            laboratory.Sample_4();
+        }
+        else if (tagName == "StartGame" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            laboratory.StartGameState(tagAnswer);
+        }
+        //----------------------------- ANIMACJA 14----------------------------------//
+
         //----------------------------- ANIMACJA 15----------------------------------//
         else if (tagName == "Manekin Koszula 1" && Input.GetMouseButtonDown(0))
         {
@@ -214,8 +244,6 @@ public class PlayerCanInteract : MonoBehaviour
             tagName = "";
             manekin.putUmbrella2OnHanger();
         }
-
-
         else if (tagName == "Koszula 1" && Input.GetMouseButtonDown(0))
         {
             tagName = "";
