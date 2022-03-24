@@ -32,7 +32,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
-        laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
+        //laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
@@ -484,6 +484,69 @@ public class PreparedStatementAnimations : MonoBehaviour
     }
     // statement 11
 
+    
+
+    // statement 15
+    public void Statement_Yes_15()
+    {
+
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+
+    public void Statement_No_15()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 15
+
+    // statement 14
+    public IEnumerator Statement_Yes_14(Animator animator)
+    {
+        animator.SetInteger("Decision", 2);
+        animator.SetBool("Game",true);
+        laboratory.Gameplay(animator);
+
+        if(animator.GetBool("Game") == false)yield return new WaitForSeconds(4);
+
+        if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
+        {
+
+            PlayerCanInteract.playerCanDecide = true;
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+        }
+    }
+
+    public void Statement_No_14()
+    {
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            PlayerCanInteract.playerCanDecide = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
+    }
+    // statement 14
+
+    // statement 18
     public IEnumerator Statement_Yes_18()
     {
         if (PlayerCanInteract.playerCanDecide == false)
@@ -552,68 +615,6 @@ public class PreparedStatementAnimations : MonoBehaviour
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
-
-    // statement 15
-    public void Statement_Yes_15()
-    {
-
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-        }
-    }
-
-    public void Statement_No_15()
-    {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-        }
-    }
-    // statement 15
-
-    // statement 14
-    public IEnumerator Statement_Yes_14(Animator animator)
-    {
-        animator.SetInteger("Decision", 2);
-        animator.SetBool("Game",true);
-        laboratory.Gameplay(animator);
-
-        if(animator.GetBool("Game") == false)yield return new WaitForSeconds(4);
-
-        if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
-        {
-
-            PlayerCanInteract.playerCanDecide = true;
-            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-        }
-    }
-
-    public void Statement_No_14()
-    {
-        if (PlayerCanInteract.playerCanDecide == false)
-        {
-
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
-        }
-    }
-    // statement 14
-
-    // statement 18
     public IEnumerator Statement_No_18()
     {
         if (PlayerCanInteract.playerCanDecide == false)
@@ -630,10 +631,10 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerSideLeft18NAnimator.SetBool("is18False", true);
             yield return new WaitForSeconds(4f);
             PlayerSideLeft18NAnimator.SetBool("is18False2", true);
-            yield return new WaitForSeconds(4f);
+            yield return new WaitForSeconds(3.9f);
             BoxWithChair18N.SetActive(true);
             PlayerSideLeft18NAnimator.SetBool("is18False", false);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.1f);
             PlayerSideLeft18NAnimator.SetBool("is18False2", false);
             yield return new WaitForSeconds(0.5f);
             PlayerSideLeft18NAnimator.SetBool("doCCC18N", true);

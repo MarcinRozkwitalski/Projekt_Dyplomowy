@@ -52,7 +52,7 @@ public class PlayerCanInteract : MonoBehaviour
         rockPaperScissors = GameObject.Find("11RockPaperScissors").GetComponent<RockPaperScissors>();
         testScriptForIndex = GameObject.Find("IndexHandler").GetComponent<TestScriptForIndex>();
         manekin = GameObject.Find("MANEKINSCRIPT").GetComponent<Manekin>();
-        laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
+        //laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
     }
 
     void Update()
