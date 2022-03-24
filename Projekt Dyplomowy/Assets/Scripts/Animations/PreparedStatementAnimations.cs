@@ -14,9 +14,9 @@ public class PreparedStatementAnimations : MonoBehaviour
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
 
     GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon, AdditionalPlayer23Y, NPC23Y;
-    GameObject AdditionalPlayer18Y, PlayerFrontCleaner, PlayerSideLeftCleaner, PlayerBackCleaner, PlayerSideRightCleaner;
+    GameObject AdditionalPlayer18Y, PlayerFrontCleaner, PlayerSideLeftCleaner, PlayerBackCleaner, PlayerSideRightCleaner, AdditionalPlayer18N, PlayerSideLeft18N, Player, PlayerSideLeft, BoxWithChair18N;
     Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23YAnimator, AdditionalPlayer23YAnimator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
-    Animator AdditionalPlayer18YAnimator, PlayerFrontCleanerAnimator, PlayerSideLeftCleanerAnimator, PlayerBackCleanerAnimator, PlayerSideRightCleanerAnimator;
+    Animator AdditionalPlayer18YAnimator, PlayerFrontCleanerAnimator, PlayerSideLeftCleanerAnimator, PlayerBackCleanerAnimator, PlayerSideRightCleanerAnimator, AdditionalPlayer18NAnimator, PlayerSideLeft18NAnimator;
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat, Chair18N;
     
     private bool doUpdateForNPCWalk;
@@ -61,6 +61,13 @@ public class PreparedStatementAnimations : MonoBehaviour
         PlayerSideLeftCleanerAnimator = PlayerSideLeftCleaner.GetComponent<Animator>();
         PlayerBackCleanerAnimator = PlayerBackCleaner.GetComponent<Animator>();
         PlayerSideRightCleanerAnimator = PlayerSideRightCleaner.GetComponent<Animator>();
+        AdditionalPlayer18N = GameObject.Find("AdditionalPlayer18N").gameObject;
+        AdditionalPlayer18NAnimator = AdditionalPlayer18N.GetComponent<Animator>();
+        PlayerSideLeft18N = GameObject.Find("AdditionalPlayer18N").transform.Find("PlayerSideLeft18N").gameObject;
+        PlayerSideLeft18NAnimator = PlayerSideLeft18N.GetComponent<Animator>();
+        Player = GameObject.Find("Player").gameObject;
+        PlayerSideLeft = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject;
+        BoxWithChair18N = GameObject.Find("Room").transform.Find("ObjectsBeforeChoiceHandler").transform.Find("18N").transform.Find("BoxWithChair").gameObject;
     }
 
     void Update()
@@ -545,7 +552,38 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_No_18()
     {
-        yield return new WaitForSeconds(1f);
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            PlayerPathFollowerStatement(18);
+            yield return new WaitForSeconds(7f);
+            doorHandler.CloseDoor();
+            Player.transform.position = new Vector3(-15.06f, -3.78f, 0);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            AdditionalPlayer18NAnimator.SetBool("Start", true);
+            PlayerSideLeft18NAnimator.SetBool("is18False", true);
+            yield return new WaitForSeconds(4f);
+            PlayerSideLeft18NAnimator.SetBool("is18False2", true);
+            yield return new WaitForSeconds(4f);
+            BoxWithChair18N.SetActive(true);
+            PlayerSideLeft18NAnimator.SetBool("is18False", false);
+            yield return new WaitForSeconds(1f);
+            PlayerSideLeft18NAnimator.SetBool("is18False2", false);
+            yield return new WaitForSeconds(0.5f);
+            PlayerSideLeft18NAnimator.SetBool("doCCC18N", true);
+            yield return new WaitForSeconds(4f);
+            BoxWithChair18N.SetActive(false);
+            yield return new WaitForSeconds(9.5f);
+            Player.transform.position = new Vector3(2.171f, -4.52f, 0);
+            if (PlayerSideLeft.transform.eulerAngles.y == 0) PlayerSideLeft.transform.Rotate(0, 180, 0);
+            Destroy(AdditionalPlayer18N);
+            yield return new WaitForSeconds(1f);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
     }
 
     // statement 21
