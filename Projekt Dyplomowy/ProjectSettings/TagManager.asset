@@ -42,6 +42,15 @@ TagManager:
   - Manekin Kurtka 2
   - Manekin Parasol 1
   - Manekin Parasol 2
+  - Sample_1
+  - Sample_2
+  - Sample_3
+  - Sample_4
+  - StartGame
+  - x
+  - o
+  - t
+  - k
   layers:
   - Default
   - TransparentFX
