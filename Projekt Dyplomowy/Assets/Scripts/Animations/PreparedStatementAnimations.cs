@@ -60,7 +60,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         PlayerFrontCleanerAnimator = PlayerFrontCleaner.GetComponent<Animator>();
         PlayerSideLeftCleanerAnimator = PlayerSideLeftCleaner.GetComponent<Animator>();
         PlayerBackCleanerAnimator = PlayerBackCleaner.GetComponent<Animator>();
-        PlayerSideRightCleanerAnimator =PlayerSideRightCleaner.GetComponent<Animator>();
+        PlayerSideRightCleanerAnimator = PlayerSideRightCleaner.GetComponent<Animator>();
     }
 
     void Update()
