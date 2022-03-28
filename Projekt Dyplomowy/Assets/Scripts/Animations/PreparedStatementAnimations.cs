@@ -32,7 +32,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         rpsAnimations = GameObject.Find("11RockPaperScissors").GetComponent<RPSAnimations>();
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
-        //laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
+        laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
