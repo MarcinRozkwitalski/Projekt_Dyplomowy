@@ -19,7 +19,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     Animator playerSideLeftAnim, npc7NoAnimator, NPCSideLeftFrenchSoldierAnimator, NPC23YAnimator, AdditionalPlayer23YAnimator, NPCSideLeftFrenchSoldier1Animator, NPCSideLeftFrenchSoldier2Animator, NPCSideLeftFrenchSoldier3Animator, PlayerSideLeftNapoleonAnimator;
     Animator AdditionalPlayer18YAnimator, PlayerFrontCleanerAnimator, PlayerSideLeftCleanerAnimator, PlayerBackCleanerAnimator, PlayerSideRightCleanerAnimator, AdditionalPlayer18NAnimator, PlayerSideLeft18NAnimator;
     public Sprite newChairSprite, newPlayerBackLeft45Chair, newPlayerBackLeft45ChairSeat, Chair18N;
-    
+
     private bool doUpdateForNPCWalk;
     private int whichNPCWalkForS7N;
 
@@ -50,12 +50,12 @@ public class PreparedStatementAnimations : MonoBehaviour
         NPCSideLeftFrenchSoldier3Animator = NPCSideLeftFrenchSoldier3.GetComponent<Animator>();
         AdditionalPlayer23YAnimator = GameObject.Find("AdditionalPlayer23Y").GetComponent<Animator>();
         AdditionalPlayer23Y = GameObject.Find("AdditionalPlayer23Y").gameObject;
-        PlayerSideLeftNapoleon =  GameObject.Find("AdditionalPlayer23Y").transform.Find("PlayerSideLeftNapoleon").gameObject;
-        PlayerFrontNapoleon =  GameObject.Find("AdditionalPlayer23Y").transform.Find("PlayerFrontNapoleon").gameObject;
+        PlayerSideLeftNapoleon = GameObject.Find("AdditionalPlayer23Y").transform.Find("PlayerSideLeftNapoleon").gameObject;
+        PlayerFrontNapoleon = GameObject.Find("AdditionalPlayer23Y").transform.Find("PlayerFrontNapoleon").gameObject;
         PlayerSideLeftNapoleonAnimator = PlayerSideLeftNapoleon.GetComponent<Animator>();
         AdditionalPlayer18Y = GameObject.Find("AdditionalPlayer18Y").gameObject;
         AdditionalPlayer18YAnimator = AdditionalPlayer18Y.GetComponent<Animator>();
-        PlayerFrontCleaner  = GameObject.Find("AdditionalPlayer18Y").transform.Find("PlayerFrontCleaner").gameObject;
+        PlayerFrontCleaner = GameObject.Find("AdditionalPlayer18Y").transform.Find("PlayerFrontCleaner").gameObject;
         PlayerSideLeftCleaner = GameObject.Find("AdditionalPlayer18Y").transform.Find("PlayerSideLeftCleaner").gameObject;
         PlayerBackCleaner = GameObject.Find("AdditionalPlayer18Y").transform.Find("PlayerBackCleaner").gameObject;
         PlayerSideRightCleaner = GameObject.Find("AdditionalPlayer18Y").transform.Find("PlayerSideRightCleaner").gameObject;
@@ -517,17 +517,17 @@ public class PreparedStatementAnimations : MonoBehaviour
         animator.SetBool("Game", true);
         yield return new WaitForSeconds(2.3f);
         GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(true);
-        GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Start",true);
+        GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Start", true);
         yield return new WaitForSeconds(5f);
-        animator.SetBool("Game",false);
+        animator.SetBool("Game", false);
         yield return new WaitForSeconds(8f);
-        
+
 
         if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
         {
             PlayerCanInteract.canChangeIndex = true;
             GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-             GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
+            GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
@@ -549,8 +549,9 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
     }
 
-    public void Statement_No_15()
+    public void Statement_No_15(Animator animator)
     {
+        animator.SetInteger("Decision", 1);
         if (PlayerCanInteract.playerCanDecide == false)
         {
 

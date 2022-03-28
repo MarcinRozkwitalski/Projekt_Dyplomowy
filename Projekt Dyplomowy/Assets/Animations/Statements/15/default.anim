@@ -56,7 +56,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -67,7 +67,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: MANEKINSCRIPT/Canvas/MIDDLE MANEKIN/Zatwierdz
+    path: MANEKINSCRIPT/Canvas/MIDDLE/Zatwierdz
     classID: 1
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -79,7 +79,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 2399248361
+      path: 2725921148
       attribute: 2086281974
       script: {fileID: 0}
       typeID: 1
@@ -212,7 +212,7 @@ AnimationClip:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 1
         inSlope: Infinity
         outSlope: Infinity
         tangentMode: 103
@@ -223,7 +223,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_IsActive
-    path: MANEKINSCRIPT/Canvas/MIDDLE MANEKIN/Zatwierdz
+    path: MANEKINSCRIPT/Canvas/MIDDLE/Zatwierdz
     classID: 1
     script: {fileID: 0}
   m_EulerEditorCurves: []
