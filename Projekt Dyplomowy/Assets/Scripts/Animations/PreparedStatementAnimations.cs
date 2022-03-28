@@ -12,6 +12,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     AnimationTime animationtime;
     DoorHandler doorHandler;
     Laboratory laboratory;
+    Manekin manekin;
     public GameObject npc7No, playerBackLeft45Chair, playerBackLeft45ChairSeat;
 
     GameObject NPCFrontFrenchSoldier1, NPCFrontFrenchSoldier2, NPCFrontFrenchSoldier3, NPCSideLeftFrenchSoldier1, NPCSideLeftFrenchSoldier2, NPCSideLeftFrenchSoldier3, PlayerSideLeftNapoleon, PlayerFrontNapoleon, AdditionalPlayer23Y, NPC23Y;
@@ -33,6 +34,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         animationtime = GameObject.Find("AnimationHandler").GetComponent<AnimationTime>();
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
         laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
+        manekin = GameObject.Find("MANEKINSCRIPT").GetComponent<Manekin>();
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
@@ -536,12 +538,12 @@ public class PreparedStatementAnimations : MonoBehaviour
     // statement 14
 
     // statement 15
-    public void Statement_Yes_15()
+    public void Statement_Yes_15(Animator animator)
     {
-
-        if (PlayerCanInteract.playerCanDecide == false)
+        animator.SetInteger("Decision", 2);
+        manekin.StartGame(animator);
+        if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Outro") == true)
         {
-
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
@@ -549,9 +551,11 @@ public class PreparedStatementAnimations : MonoBehaviour
         }
     }
 
-    public void Statement_No_15(Animator animator)
+    public IEnumerator Statement_No_15(Animator animator)
     {
         animator.SetInteger("Decision", 1);
+        yield return new WaitForSeconds(9f);
+
         if (PlayerCanInteract.playerCanDecide == false)
         {
 

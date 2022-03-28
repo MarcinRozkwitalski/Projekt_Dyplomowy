@@ -294,6 +294,11 @@ public class PlayerCanInteract : MonoBehaviour
             tagName = "";
             manekin.putUmbrella2OnManekin();
         }
+         else if (tagName == "endGame" && Input.GetMouseButtonDown(0))
+        {
+            tagName = "";
+            manekin.endGame();
+        }
         //----------------------------- ANIMACJA 15----------------------------------//
         else
         {

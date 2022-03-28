@@ -31,6 +31,7 @@ public class Manekin : MonoBehaviour
         JACKET_1,
         JACKET_2,
         UMBRELLA_2,
+        END_GAME
     };
 
     public ManekinStates currentState;
@@ -68,7 +69,7 @@ public class Manekin : MonoBehaviour
         currentState = ManekinStates.Manekin;
     }
 
-    void Update()
+    public void StartGame(Animator animator)
     {
         switch (currentState)
         {
@@ -234,6 +235,10 @@ public class Manekin : MonoBehaviour
                 umbrella1OnHanger.SetActive(true);
                 umbrella2OnHanger.SetActive(true);
                 break;
+            case ManekinStates.END_GAME:
+                animator.SetBool("Outro",true);
+                break;
+
         }
     }
 
@@ -337,5 +342,10 @@ public class Manekin : MonoBehaviour
     public void putUmbrella2OnHanger()
     {
         currentState = ManekinStates.UMBRELLA_2;
+    }
+
+    public void endGame()
+    {
+        currentState = ManekinStates.END_GAME;
     }
 }

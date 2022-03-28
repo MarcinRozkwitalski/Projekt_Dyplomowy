@@ -51,6 +51,7 @@ TagManager:
   - o
   - t
   - k
+  - endGame
   layers:
   - Default
   - TransparentFX
