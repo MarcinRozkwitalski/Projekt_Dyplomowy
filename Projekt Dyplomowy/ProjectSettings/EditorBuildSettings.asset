@@ -9,11 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/GUI.unity
     guid: 7221538fbe0ecda40bb2546c8086694c
   - enabled: 0
-    path: Assets/Scenes/RAFAL - L1.unity
-    guid: 13c3b881364513b4ebb7a8dc831c7c0e
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level_1.unity
     guid: c79547cedbfaa9a42bc48d3844dfef6b
+  - enabled: 1
+    path: Assets/Scenes/Filip 1.unity
+    guid: d3d7a847a43face4496d2b119a4e29ff
   - enabled: 1
     path: Assets/Scenes/PlayerScene.unity
     guid: 54241f51fcf47264da5f69d4a498696f
