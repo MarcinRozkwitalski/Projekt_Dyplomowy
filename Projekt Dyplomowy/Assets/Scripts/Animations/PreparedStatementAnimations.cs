@@ -635,10 +635,41 @@ public class PreparedStatementAnimations : MonoBehaviour
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
-
     public IEnumerator Statement_No_18()
     {
-        yield return new WaitForSeconds(1f);
+        if (PlayerCanInteract.playerCanDecide == false)
+        {
+            PlayerCanInteract.playerCanDecide = true;
+            doorHandler.OpenDoor();
+            yield return new WaitForSeconds(2f);
+            PlayerPathFollowerStatement(18);
+            yield return new WaitForSeconds(7f);
+            AdditionalPlayer18N.SetActive(true);
+            doorHandler.CloseDoor();
+            Player.transform.position = new Vector3(-15.06f, -3.78f, 0);
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+            AdditionalPlayer18NAnimator.SetBool("Start", true);
+            PlayerSideLeft18NAnimator.SetBool("is18False", true);
+            yield return new WaitForSeconds(4f);
+            PlayerSideLeft18NAnimator.SetBool("is18False2", true);
+            yield return new WaitForSeconds(3.9f);
+            BoxWithChair18N.SetActive(true);
+            PlayerSideLeft18NAnimator.SetBool("is18False", false);
+            yield return new WaitForSeconds(1.1f);
+            PlayerSideLeft18NAnimator.SetBool("is18False2", false);
+            yield return new WaitForSeconds(0.5f);
+            PlayerSideLeft18NAnimator.SetBool("doCCC18N", true);
+            yield return new WaitForSeconds(4f);
+            BoxWithChair18N.SetActive(false);
+            yield return new WaitForSeconds(9.5f);
+            Player.transform.position = new Vector3(2.171f, -4.52f, 0);
+            if (PlayerSideLeft.transform.eulerAngles.y == 0) PlayerSideLeft.transform.Rotate(0, 180, 0);
+            Destroy(AdditionalPlayer18N);
+            yield return new WaitForSeconds(1f);
+            PlayerCanInteract.canChangeIndex = true;
+            PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
+        }
     }
     // statement 18
 
