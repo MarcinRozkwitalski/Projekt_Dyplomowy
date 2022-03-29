@@ -365,7 +365,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 2);
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
-            // animator.SetInteger("Decision", 3);
+            animator.SetInteger("Decision", 3);
             playerDirectionDisplayHandler.EnablePLayersCollider();
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
@@ -379,7 +379,7 @@ public class PreparedStatementAnimations : MonoBehaviour
             PlayerCanInteract.playerCanDecide = true;
             animator.SetInteger("Decision", 1);
             yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
-            // animator.SetInteger("Decision", 3);
+            animator.SetInteger("Decision", 3);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
