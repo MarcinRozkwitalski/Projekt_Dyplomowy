@@ -539,10 +539,11 @@ public class PreparedStatementAnimations : MonoBehaviour
     // statement 14
 
     // statement 15
-    public void Statement_Yes_15(Animator animator)
+    public IEnumerator Statement_Yes_15(Animator animator)
     {
         animator.SetInteger("Decision", 2);
         manekin.StartGame(animator);
+        if(animator.GetBool("Outro") == true)yield return new WaitForSeconds(1f);
         if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Outro") == true)
         {
             PlayerCanInteract.canChangeIndex = true;
