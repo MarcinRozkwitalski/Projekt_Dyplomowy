@@ -35,6 +35,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         doorHandler = GameObject.Find("DoorLeft").GetComponent<DoorHandler>();
         laboratory = GameObject.Find("Laboratory").GetComponent<Laboratory>();
         manekin = GameObject.Find("MANEKINSCRIPT").GetComponent<Manekin>();
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(11).gameObject.SetActive(false);
         playerSideLeftAnim = GameObject.Find("Player").transform.Find("PlayerSideLeft").gameObject.transform.GetComponent<Animator>();
         npc7No = GameObject.Find("NPC").transform.Find("7").gameObject;
         npc7NoAnimator = npc7No.GetComponent<Animator>();
@@ -554,7 +555,14 @@ public class PreparedStatementAnimations : MonoBehaviour
     public IEnumerator Statement_No_15(Animator animator)
     {
         animator.SetInteger("Decision", 1);
-        yield return new WaitForSeconds(9f);
+        yield return new WaitForSeconds(5.5f);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(2).gameObject.SetActive(true);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(4).gameObject.SetActive(true);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(7).gameObject.SetActive(true);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(8).gameObject.SetActive(true);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(10).gameObject.SetActive(false);
+        yield return new WaitForSeconds(4f);
 
         if (PlayerCanInteract.playerCanDecide == false)
         {

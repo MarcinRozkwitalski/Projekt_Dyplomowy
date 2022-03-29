@@ -61,9 +61,6 @@ public class Manekin : MonoBehaviour
 
     public GameObject zatwierdz;
 
-    public Animator transition;
-    public float transitionTime = 1f;
-
     void Awake()
     {
         currentState = ManekinStates.Manekin;
@@ -74,7 +71,6 @@ public class Manekin : MonoBehaviour
         switch (currentState)
         {
             case ManekinStates.Manekin:
-
                 //GameObject.Find("MIDDLE MANEKIN").transform.Find("MAN CZAPA 1").gameObject.SetActive(false);
                 hat1OnManekin.SetActive(false);
                 hat2OnManekin.SetActive(false);
@@ -236,7 +232,7 @@ public class Manekin : MonoBehaviour
                 umbrella2OnHanger.SetActive(true);
                 break;
             case ManekinStates.END_GAME:
-                animator.SetBool("Outro",true);
+                animator.SetBool("Outro", true);
                 break;
 
         }
