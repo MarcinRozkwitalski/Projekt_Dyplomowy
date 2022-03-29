@@ -557,7 +557,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         animator.SetInteger("Decision", 1);
         yield return new WaitForSeconds(5.5f);
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(0).gameObject.SetActive(true); // błąd null kod nie widzi obiektu
         GameObject.Find("MIDDLEMANEKIN").transform.GetChild(2).gameObject.SetActive(true);
         GameObject.Find("MIDDLEMANEKIN").transform.GetChild(4).gameObject.SetActive(true);
         GameObject.Find("MIDDLEMANEKIN").transform.GetChild(7).gameObject.SetActive(true);

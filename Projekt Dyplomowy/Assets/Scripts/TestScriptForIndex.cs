@@ -15,20 +15,20 @@ public class TestScriptForIndex : MonoBehaviour
     void Start()
     {
 
-        indexList.Add(1);
-        indexList.Add(2);
-        indexList.Add(3);
-        indexList.Add(4);
-        indexList.Add(6);
-        indexList.Add(7);
-        indexList.Add(8);
-        indexList.Add(10);
-        indexList.Add(11);
-        indexList.Add(14);
-        indexList.Add(15);
-        indexList.Add(18);
+        // indexList.Add(1);
+        // indexList.Add(2);
+        // indexList.Add(3);
+        // indexList.Add(4);
+        // indexList.Add(6);
+        // indexList.Add(7);
+        // indexList.Add(8);
+        // indexList.Add(10);
+        // indexList.Add(11);
+        // indexList.Add(14);
+        // indexList.Add(15);
+        // indexList.Add(18);
         indexList.Add(21);
-        indexList.Add(23);
+        // indexList.Add(23); // wyłaczenie chodzenia podczas animacji dla prawdy
         indexList.Add(24);
         indexList.Add(29);
 
@@ -44,7 +44,7 @@ public class TestScriptForIndex : MonoBehaviour
         bool status = true;
         do
         {
-            randomIndex = Random.Range(0, 16);
+            randomIndex = Random.Range(0, 3);
             if (!usedIndexList.Contains(indexList[randomIndex]))
             {
                 usedIndexList.Add(indexList[randomIndex]);
