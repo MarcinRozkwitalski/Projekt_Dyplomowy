@@ -543,7 +543,7 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         animator.SetInteger("Decision", 2);
         manekin.StartGame(animator);
-        if(animator.GetBool("Outro") == true)yield return new WaitForSeconds(1f);
+        if (animator.GetBool("Outro") == true) yield return new WaitForSeconds(1f);
         if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Outro") == true)
         {
             PlayerCanInteract.canChangeIndex = true;
@@ -557,21 +557,22 @@ public class PreparedStatementAnimations : MonoBehaviour
     {
         animator.SetInteger("Decision", 1);
         yield return new WaitForSeconds(5.5f);
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(0).gameObject.SetActive(true); // błąd null kod nie widzi obiektu
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(2).gameObject.SetActive(true);
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(4).gameObject.SetActive(true);
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(7).gameObject.SetActive(true);
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(8).gameObject.SetActive(true);
-        GameObject.Find("MIDDLEMANEKIN").transform.GetChild(10).gameObject.SetActive(false);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(0).gameObject.SetActive(true);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(2).gameObject.SetActive(true);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(4).gameObject.SetActive(true);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(7).gameObject.SetActive(true);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(8).gameObject.SetActive(true);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(10).gameObject.SetActive(true);
+        GameObject.Find("15").transform.GetChild(0).transform.GetChild(0).transform.GetChild(5).transform.GetChild(11).gameObject.SetActive(false);
         yield return new WaitForSeconds(4f);
 
         if (PlayerCanInteract.playerCanDecide == false)
         {
-
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
+
         }
     }
     // statement 15
