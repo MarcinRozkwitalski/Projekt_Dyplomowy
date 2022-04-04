@@ -524,13 +524,12 @@ public class PreparedStatementAnimations : MonoBehaviour
         yield return new WaitForSeconds(5f);
         animator.SetBool("Game", false);
         yield return new WaitForSeconds(8f);
-
+        GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+        GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
 
         if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
         {
             PlayerCanInteract.canChangeIndex = true;
-            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-            GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
             PlayerMovement.canMove = true;
             PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
