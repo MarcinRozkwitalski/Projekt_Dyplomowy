@@ -523,7 +523,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Start", true);
         yield return new WaitForSeconds(5f);
         animator.SetBool("Game", false);
-        yield return new WaitForSeconds(8f);
+        yield return new WaitForSeconds(8.5f);
         GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
         GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
 
