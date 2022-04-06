@@ -8,19 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GUI.unity
     guid: 7221538fbe0ecda40bb2546c8086694c
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Level_1.unity
     guid: c79547cedbfaa9a42bc48d3844dfef6b
-  - enabled: 1
-    path: Assets/Scenes/Filip 1.unity
-    guid: d3d7a847a43face4496d2b119a4e29ff
-  - enabled: 1
-    path: Assets/Scenes/PlayerScene.unity
-    guid: 54241f51fcf47264da5f69d4a498696f
-  - enabled: 1
-    path: Assets/Scenes/Statistics.unity
-    guid: f08fcacd9b085a9409b58940ada06d22
   m_configObjects: {}

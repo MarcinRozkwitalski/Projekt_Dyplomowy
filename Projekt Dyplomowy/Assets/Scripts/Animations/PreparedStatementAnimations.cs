@@ -726,6 +726,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         if (PlayerCanInteract.playerCanDecide == false)
         {
             PlayerCanInteract.playerCanDecide = true;
+            PlayerMovement.canMove = false;
             doorHandler.OpenDoor();
             yield return new WaitForSeconds(2f);
             PlayerPathFollowerStatement(23);

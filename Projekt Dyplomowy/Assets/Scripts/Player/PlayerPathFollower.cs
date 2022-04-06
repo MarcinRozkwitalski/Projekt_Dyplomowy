@@ -77,7 +77,9 @@ public class PlayerPathFollower : MonoBehaviour
             updateWalkingAnimation = true;
             playerCanChangePosition = false;
             if (statementPosition == 91 ||
-            statementPosition == 7 || statementPosition == 701 || statementPosition == 702 || statementPosition == 703 || statementPosition == 23
+            statementPosition == 7 || statementPosition == 701 || statementPosition == 702 || statementPosition == 703 || 
+            statementPosition == 18 || 
+            statementPosition == 23
             ) PlayerMovement.canMove = false;
             else PlayerMovement.canMove = true;
             playerDestination = new Vector2(1, 1);
