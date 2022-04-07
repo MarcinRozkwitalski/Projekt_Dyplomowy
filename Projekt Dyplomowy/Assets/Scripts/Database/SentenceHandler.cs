@@ -10,7 +10,7 @@ public class SentenceHandler : MonoBehaviour
     public static int number;
     public static Hashtable hashTableStatements;
     public static Hashtable hashTableAnswers;
-    public static bool test = true;
+    public static bool test = false;
 
     public void Button()
     {

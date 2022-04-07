@@ -12,6 +12,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     public static int game = 1;
     public static bool exitStats = false;
     public static int viewStats = 0;
+    public static bool turnOff = true;
     Animator roomAnimator, rBarAnimator, bBarAnimator, aBarAnimator, sBarAnimator, pBarAnimator, kBarAnimator, rNumberAnimator, bNumberAnimator, aNumberAnimator, sNumberAnimator, pNumberAnimator, kNumberAnimator;
 
     void Start()
@@ -291,12 +292,13 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
     {
         if (TriggerAnimation.playAnimation == true && tag != "UseDoor" && tag != "WaitForClick")
         {
+            
             SetActive_False_Object(AnswerHandler.index);
             PlayerMovement.canMove = false;
             playerDirectionDisplayHandler.DisablePLayersCollider();
             animator.SetBool("Intro", true);
             yield return new WaitForSeconds(1f);
-            if (AnswerHandler.index == 21 || AnswerHandler.index == 14) GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); // 21 ???
+            if (AnswerHandler.index == 21 && turnOff == true || AnswerHandler.index == 14 && turnOff == true) { GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(false); turnOff = false;Debug.Log("TURN OFF"); }
             animator.SetBool("Intro", false);
             TriggerAnimation.playAnimation = false;
 
@@ -328,6 +330,7 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
         {
             if (SentenceHandler.hashTableAnswers[AnswerHandler.index] != null)
             {
+                turnOff = true;
                 if (SentenceHandler.hashTableAnswers[AnswerHandler.index].Equals("true"))
                 {
                     switch (AnswerHandler.index)
@@ -456,7 +459,6 @@ public class WaysOfLaunchingTheAnimations : MonoBehaviour
                             StartCoroutine(preparedStatementAnimations.Statement_No_18());
                             break;
                         case 21:
-                            // animator.SetBool("Outro", true);
                             StartCoroutine(preparedStatementAnimations.Statement_No_21(animator));
                             break;
                         case 23:

@@ -501,7 +501,7 @@ public class PreparedStatementAnimations : MonoBehaviour
         animator.SetBool("Game", true);
         laboratory.Gameplay(animator);
 
-        if (animator.GetBool("Game") == false) yield return new WaitForSeconds(4);
+        if (animator.GetBool("Game") == false) yield return new WaitForSeconds(2.6f);
 
         if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
         {
@@ -523,15 +523,15 @@ public class PreparedStatementAnimations : MonoBehaviour
         GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Start", true);
         yield return new WaitForSeconds(5f);
         animator.SetBool("Game", false);
-        yield return new WaitForSeconds(8.5f);
-        GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-        GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
+        yield return new WaitForSeconds(7.6f);
 
         if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
         {
+            PlayerCanInteract.playerCanDecide = true;
+            GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
+            GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
-            PlayerCanInteract.playerCanDecide = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
@@ -690,28 +690,30 @@ public class PreparedStatementAnimations : MonoBehaviour
     // statement 21
     public IEnumerator Statement_Yes_21(Animator animator)
     {
+        animator.SetInteger("Decision", 2);
+        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes") + 3);
+
         if (PlayerCanInteract.playerCanDecide == false)
         {
             PlayerCanInteract.playerCanDecide = true;
-            animator.SetInteger("Decision", 2);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerYes"));
             GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-            // animator.SetInteger("Decision", 3);
-            playerDirectionDisplayHandler.EnablePLayersCollider();
+            yield return new WaitForSeconds(1);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
+            playerDirectionDisplayHandler.EnablePLayersCollider();
         }
     }
 
     public IEnumerator Statement_No_21(Animator animator)
     {
+        animator.SetInteger("Decision", 1);
+        yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo") + 3);
+
         if (PlayerCanInteract.playerCanDecide == false)
         {
             PlayerCanInteract.playerCanDecide = true;
-            animator.SetInteger("Decision", 1);
-            yield return new WaitForSeconds(animationtime.GetAnimationTimeFromName(animator, "AnswerNo"));
             GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
-            // animator.SetInteger("Decision", 3);
+            yield return new WaitForSeconds(1);
             PlayerCanInteract.canChangeIndex = true;
             PlayerMovement.canMove = true;
             playerDirectionDisplayHandler.EnablePLayersCollider();
