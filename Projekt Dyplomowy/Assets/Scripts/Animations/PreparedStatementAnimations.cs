@@ -516,23 +516,27 @@ public class PreparedStatementAnimations : MonoBehaviour
 
     public IEnumerator Statement_No_14(Animator animator)
     {
-        animator.SetInteger("Decision", 1);
-        animator.SetBool("Game", true);
-        yield return new WaitForSeconds(2.3f);
-        GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(true);
-        GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Start", true);
-        yield return new WaitForSeconds(5f);
-        animator.SetBool("Game", false);
-        yield return new WaitForSeconds(7.6f);
 
-        if (PlayerCanInteract.playerCanDecide == false && animator.GetBool("Game") == false)
+        if (PlayerCanInteract.playerCanDecide == false)
         {
             PlayerCanInteract.playerCanDecide = true;
+            animator.SetInteger("Decision", 1);
+            animator.SetBool("Game", true);
+            yield return new WaitForSeconds(2.3f);
+            GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(true);
+            GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.GetComponent<Animator>().SetBool("Start", true);
+            yield return new WaitForSeconds(5f);
+            animator.SetBool("Game", false);
+            yield return new WaitForSeconds(7.6f);
             GameObject.Find("Room").transform.Find("DefaultObjects").transform.Find("DoorWardrobe").gameObject.SetActive(true);
             GameObject.Find("AdditionalPlayers").transform.GetChild(0).gameObject.SetActive(false);
-            PlayerCanInteract.canChangeIndex = true;
-            PlayerMovement.canMove = true;
-            playerDirectionDisplayHandler.EnablePLayersCollider();
+
+            if (animator.GetBool("Game") == false)
+            {
+                PlayerCanInteract.canChangeIndex = true;
+                PlayerMovement.canMove = true;
+                playerDirectionDisplayHandler.EnablePLayersCollider();
+            }
         }
     }
     // statement 14
